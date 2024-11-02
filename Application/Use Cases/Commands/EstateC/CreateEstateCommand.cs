@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
 using MediatR;
 
-namespace SmartRealEstateManagementSystem.Controllers
+namespace Application.Use_Cases.Commands.EstateC
 {
     public class CreateEstateCommand: IRequest<Result<Guid>>
     {

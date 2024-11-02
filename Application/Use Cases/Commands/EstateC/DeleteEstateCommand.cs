@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SmartRealEstateManagementSystem.Controllers
+namespace Application.Use_Cases.Commands.EstateC
 {
     public class DeleteEstateCommand(Guid id) : IRequest
     {

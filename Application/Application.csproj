@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Use Cases\CommandHandlers\Estate\" />
-    <Folder Include="Use Cases\CommandHandlers\User\" />
-    <Folder Include="Use Cases\Commands\User\" />
+    <Folder Include="Use Cases\CommandHandlers\UserCH\" />
+    <Folder Include="Use Cases\Commands\UserC\" />
     <Folder Include="Use Cases\Queries\User\" />
     <Folder Include="Use Cases\QueryHandlers\Estate\" />
     <Folder Include="Use Cases\QueryHandlers\User\" />
