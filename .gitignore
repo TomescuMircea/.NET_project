@@ -7,6 +7,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+**/migrations/*
+
 # User-specific files
 *.rsuser
 *.suo
@@ -398,6 +400,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+/SmartRealEstateManagementSystem/SmartRealEstateManagementSystem/appsettings.json
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
