@@ -33,19 +33,16 @@
     <Folder Include="Use Cases\Queries\ReviewProperty\" />
     <Folder Include="Use Cases\Queries\ReviewUser\" />
     <Folder Include="Use Cases\Queries\Transaction\" />
+    <Folder Include="Use Cases\Queries\Report\" />
+    <Folder Include="Use Cases\Queries\ReviewProperty\" />
+    <Folder Include="Use Cases\Queries\ReviewUser\" />
+    <Folder Include="Use Cases\Queries\Transaction\" />
+    <Folder Include="Use Cases\Queries\Report\" />
+    <Folder Include="Use Cases\Queries\ReviewProperty\" />
+    <Folder Include="Use Cases\Queries\ReviewUser\" />
+    <Folder Include="Use Cases\Queries\Transaction\" />
     <Folder Include="Use Cases\Queries\User\" />
     <Folder Include="Use Cases\QueryHandlers\Estate\" />
-    <Folder Include="Use Cases\QueryHandlers\Apartment\" />
-    <Folder Include="Use Cases\QueryHandlers\House\" />
-    <Folder Include="Use Cases\QueryHandlers\BusinessSpace\" />
-    <Folder Include="Use Cases\QueryHandlers\Credential\" />
-    <Folder Include="Use Cases\QueryHandlers\Contact\" />
-    <Folder Include="Use Cases\QueryHandlers\Image\" />
-    <Folder Include="Use Cases\QueryHandlers\Favourite\" />
-    <Folder Include="Use Cases\QueryHandlers\Report\" />
-    <Folder Include="Use Cases\QueryHandlers\ReviewProperty\" />
-    <Folder Include="Use Cases\QueryHandlers\ReviewUser\" />
-    <Folder Include="Use Cases\QueryHandlers\Transaction\" />
     <Folder Include="Use Cases\QueryHandlers\User\" />
   </ItemGroup>
 
