@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Use Cases\CommandHandlers\HouseCH\" />
     <Folder Include="Use Cases\CommandHandlers\CredentialCH\" />
     <Folder Include="Use Cases\CommandHandlers\ContactCH\" />
     <Folder Include="Use Cases\CommandHandlers\ImageCH\" />
@@ -16,7 +15,6 @@
     <Folder Include="Use Cases\CommandHandlers\ReviewPropertyCH\" />
     <Folder Include="Use Cases\CommandHandlers\ReviewUserCH\" />
     <Folder Include="Use Cases\CommandHandlers\TransactionCH\" />
-    <Folder Include="Use Cases\Commands\HouseC\" />
     <Folder Include="Use Cases\Commands\CredentialC\" />
     <Folder Include="Use Cases\Commands\ContactC\" />
     <Folder Include="Use Cases\Commands\ImageC\" />
