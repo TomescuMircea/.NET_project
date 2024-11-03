@@ -10,6 +10,7 @@ using Application.Use_Cases.Commands.ContactC;
 using Application.Use_Cases.Commands.CredentialC;
 using Application.Use_Cases.Commands.FavoriteC;
 using Application.Use_Cases.Commands.ImageC;
+using Application.Use_Cases.Commands.ReportC;
 
 namespace Application.Utils
 {
@@ -40,6 +41,9 @@ namespace Application.Utils
 
             CreateMap<Image, ImageDto>().ReverseMap();
             CreateMap<CreateImageCommand, Image>().ReverseMap();
+
+            CreateMap<Report, ReportDto>().ReverseMap();
+            CreateMap<CreateReportCommand, Report>().ReverseMap();
 
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<CreateUserCommand, User>().ReverseMap();
