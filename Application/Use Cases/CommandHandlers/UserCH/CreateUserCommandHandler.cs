@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.UserCH
         public async Task<Result<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var user = mapper.Map<User>(request);
-            return await repository.AddAsync(user);
+            var result = await repository.AddAsync(user);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

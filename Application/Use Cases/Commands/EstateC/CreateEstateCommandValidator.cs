@@ -12,7 +12,7 @@ namespace Application.Use_Cases.Commands.EstateC
             RuleFor(x => x.Price).GreaterThan(0);
             RuleFor(x => x.Address).NotEmpty().MaximumLength(200);
             RuleFor(x => x.Size).GreaterThan(0);
-            RuleFor(x => x.Type).NotEmpty().MaximumLength(100);
+            RuleFor(x => x.Type).NotEmpty().MaximumLength(1);
             RuleFor(x => x.Status).NotEmpty().MaximumLength(100);
             RuleFor(x => x.ListingData).NotEmpty();
         }

@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.ContactCH
         public async Task<Result<Guid>> Handle(CreateContactCommand request, CancellationToken cancellationToken)
         {
             var contact = mapper.Map<Contact>(request);
-            return await repository.AddAsync(contact);
+            var result = await repository.AddAsync(contact);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.ApartmentCH
         public async Task<Result<Guid>> Handle(CreateApartmentCommand request, CancellationToken cancellationToken)
         {
             var apartment = mapper.Map<Apartment>(request);
-            return await repository.AddAsync(apartment);
+            var result = await repository.AddAsync(apartment);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

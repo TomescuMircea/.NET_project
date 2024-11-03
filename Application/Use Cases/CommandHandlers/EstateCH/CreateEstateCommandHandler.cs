@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.EstateCH
         public async Task<Result<Guid>> Handle(CreateEstateCommand request, CancellationToken cancellationToken)
         {
             var estate = mapper.Map<Estate>(request);
-            return await repository.AddAsync(estate);
+            var result = await repository.AddAsync(estate);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }
