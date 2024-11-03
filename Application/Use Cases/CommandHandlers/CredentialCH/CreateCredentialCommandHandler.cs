@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.CredentialCH
         public async Task<Result<Guid>> Handle(CreateCredentialCommand request, CancellationToken cancellationToken)
         {
             var credential = mapper.Map<Credential>(request);
-            return await repository.AddAsync(credential);
+            var result = await repository.AddAsync(credential);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

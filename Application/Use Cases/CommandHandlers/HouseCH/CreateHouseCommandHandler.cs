@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.HouseCH
         public async Task<Result<Guid>> Handle(CreateHouseCommand request, CancellationToken cancellationToken)
         {
             var house = mapper.Map<House>(request);
-            return await repository.AddAsync(house);
+            var result = await repository.AddAsync(house);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

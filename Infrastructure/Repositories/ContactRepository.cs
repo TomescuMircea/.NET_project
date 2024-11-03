@@ -16,9 +16,16 @@ namespace Infrastructure.Repositories
         }
         public async Task<Result<Guid>> AddAsync(Contact contact)
         {
-            await context.Contacts.AddAsync(contact);
-            await context.SaveChangesAsync();
-            return Result<Guid>.Success(contact.Id);
+            try
+            {
+                await context.Contacts.AddAsync(contact);
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(contact.Id);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException.ToString());
+            }
 
         }
 

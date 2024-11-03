@@ -16,10 +16,16 @@ namespace Infrastructure.Repositories
         }
         public async Task<Result<Guid>> AddAsync(Apartment apartment)
         {
-            await context.Apartments.AddAsync(apartment);
-            await context.SaveChangesAsync();
-            return Result<Guid>.Success(apartment.EstateId);
-
+            try
+            {
+                await context.Apartments.AddAsync(apartment);
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(apartment.EstateId);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException.ToString());
+            }
         }
 
         //public Task DeleteAsync(Guid id)

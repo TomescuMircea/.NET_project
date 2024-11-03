@@ -7,12 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Use Cases\CommandHandlers\ImageCH\" />
     <Folder Include="Use Cases\CommandHandlers\ReportCH\" />
     <Folder Include="Use Cases\CommandHandlers\ReviewPropertyCH\" />
     <Folder Include="Use Cases\CommandHandlers\ReviewUserCH\" />
     <Folder Include="Use Cases\CommandHandlers\TransactionCH\" />
-    <Folder Include="Use Cases\Commands\ImageC\" />
     <Folder Include="Use Cases\Commands\ReportC\" />
     <Folder Include="Use Cases\Commands\ReviewPropertyC\" />
     <Folder Include="Use Cases\Commands\ReviewUserC\" />

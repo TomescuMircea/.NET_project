@@ -16,9 +16,17 @@ namespace Infrastructure.Repositories
         }
         public async Task<Result<Guid>> AddAsync(Favorite favorite)
         {
-            await context.Favorites.AddAsync(favorite);
-            await context.SaveChangesAsync();
-            return Result<Guid>.Success(favorite.UserId);
+            try
+            {
+                await context.Favorites.AddAsync(favorite);
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(favorite.UserId);
+
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException.ToString());
+            }
         }
 
         //public Task DeleteAsync(Guid id)

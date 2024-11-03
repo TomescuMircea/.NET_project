@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.BusinessSpaceCH
         public async Task<Result<Guid>> Handle(CreateBusinessSpaceCommand request, CancellationToken cancellationToken)
         {
             var businessSpace = mapper.Map<BusinessSpace>(request);
-            return await repository.AddAsync(businessSpace);
+            var result = await repository.AddAsync(businessSpace);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

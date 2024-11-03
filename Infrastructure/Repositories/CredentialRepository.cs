@@ -17,10 +17,16 @@ namespace Infrastructure.Repositories
         }
         public async Task<Result<Guid>> AddAsync(Credential credential)
         {
-            await context.Credentials.AddAsync(credential);
-            await context.SaveChangesAsync();
-            return Result<Guid>.Success(credential.UserId);
-
+            try
+            {
+                await context.Credentials.AddAsync(credential);
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(credential.UserId);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException.ToString());
+            }
         }
 
         //public Task DeleteAsync(Guid id)
