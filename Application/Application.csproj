@@ -30,6 +30,7 @@
     <Folder Include="Use Cases\Commands\TransactionC\" />
     <Folder Include="Use Cases\Commands\UserC\" />
     <Folder Include="Use Cases\Queries\Apartment\" />
+    <Folder Include="Use Cases\Queries\Estate\" />
     <Folder Include="Use Cases\Queries\House\" />
     <Folder Include="Use Cases\Queries\BusinessSpace\" />
     <Folder Include="Use Cases\Queries\Credential\" />
