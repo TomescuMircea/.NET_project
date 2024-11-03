@@ -7,8 +7,8 @@ namespace Domain.Repositories
     {
         Task<IEnumerable<Estate>> GetAllAsync();
         Task<Estate> GetByIdAsync(Guid id);
-        Task<Result<Guid>> AddAsync(Estate book);
-        Task UpdateAsync(Estate book);
+        Task<Result<Guid>> AddAsync(Estate estate);
+        Task UpdateAsync(Estate estate);
         Task DeleteAsync(Guid id);
     }
 }

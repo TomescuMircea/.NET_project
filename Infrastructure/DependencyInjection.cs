@@ -17,6 +17,27 @@ namespace Infrastructure
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddScoped<IEstateRepository, EstateRepository>();
+            services.AddScoped<ICredentialRepository, CredentialRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IHouseRepository, HouseRepository>();
+            services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IApartmentRepository, ApartmentRepository>();
+            services.AddScoped<IBusinessSpaceRepository, BusinessSpaceRepository>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IReportRepository, ReportRepository>();
+            services.AddScoped<IReviewPropertyRepository, ReviewPropertyRepository>();
+            services.AddScoped<IReviewUserRepository, ReviewUserRepository>();
+
+
+
+
+
+
+
+
 
             return services;
         }

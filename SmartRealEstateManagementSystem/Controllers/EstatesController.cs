@@ -1,17 +1,18 @@
-using Application.DTO;
+﻿using Application.DTO;
 using Application.Use_Cases.Commands.EstateC;
 using Domain.Common;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/v1/[controller]")]
-    public class EstateController : ControllerBase
+    public class EstatesController : ControllerBase
     {
         private readonly IMediator mediator;
-        public EstateController(IMediator mediator)
+        public EstatesController(IMediator mediator)
         {
             this.mediator = mediator;
         }
@@ -54,3 +55,4 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
     }
 }
+
