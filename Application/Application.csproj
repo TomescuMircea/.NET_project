@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Use Cases\CommandHandlers\ReviewPropertyCH\" />
     <Folder Include="Use Cases\CommandHandlers\ReviewUserCH\" />
     <Folder Include="Use Cases\CommandHandlers\TransactionCH\" />
-    <Folder Include="Use Cases\Commands\ReviewPropertyC\" />
     <Folder Include="Use Cases\Commands\ReviewUserC\" />
     <Folder Include="Use Cases\Commands\TransactionC\" />
     <Folder Include="Use Cases\Queries\Apartment\" />
