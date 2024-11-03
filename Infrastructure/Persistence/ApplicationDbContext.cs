@@ -41,9 +41,13 @@ namespace Infrastructure.Persistence
 
                 entity.HasKey(e => e.Id); 
                 entity.Property(e => e.Id)
+                    .HasColumnType("uuid")
+                    .HasDefaultValueSql("uuid_generate_v4()")
                     .ValueGeneratedOnAdd(); 
 
                 entity.Property(e => e.UserId)
+                    .HasColumnType("uuid")
+                    .HasDefaultValueSql("uuid_generate_v4()")
                     .IsRequired(); 
 
                 entity.Property(e => e.Name)
@@ -67,7 +71,7 @@ namespace Infrastructure.Persistence
 
                 entity.Property(e => e.Type)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(1);
 
                 entity.Property(e => e.Status)
                     .IsRequired()
@@ -75,16 +79,14 @@ namespace Infrastructure.Persistence
 
                 entity.Property(e => e.ListingData)
                     .IsRequired();
-                  
-
 
                 modelBuilder.Entity<Estate>()
-     .HasOne(e => e.User)
-     .WithMany(u => u.Estates)
-     .HasForeignKey(e => e.UserId)
-     .OnDelete(DeleteBehavior.Cascade);
+                    .HasOne(e => e.User)
+                    .WithMany(u => u.Estates)
+                    .HasForeignKey(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
-            ///////////////////////////////////////////////
+            /********************************************************************/
 
             modelBuilder.Entity<User>(entity =>
             {
@@ -92,6 +94,8 @@ namespace Infrastructure.Persistence
 
                 entity.HasKey(u => u.Id);
                 entity.Property(u => u.Id)
+                    .HasColumnType("uuid")
+                    .HasDefaultValueSql("uuid_generate_v4()")
                     .ValueGeneratedOnAdd();
 
                 entity.Property(u => u.Type)
@@ -111,25 +115,25 @@ namespace Infrastructure.Persistence
                     .HasMaxLength(50);
             });
 
-            //////////////////////////////////////////////////
+            /********************************************************************/
 
             modelBuilder.Entity<Apartment>(entity =>
             {
                 entity.ToTable("Apartments");
 
-                entity.HasKey(a => a.EstateId); 
+                entity.HasKey(a => a.EstateId);
 
                 entity.Property(a => a.RoomNumber)
                     .IsRequired()
-                    .HasColumnType("decimal(18,2)");
+                    .HasColumnType("smallint");
 
                 entity.Property(a => a.FloorNumber)
                     .IsRequired()
-                    .HasColumnType("decimal(18,2)");
+                    .HasColumnType("smallint");
 
                 entity.Property(a => a.FullySeparated)
                     .IsRequired()
-                    .HasColumnType("decimal(18,2)");
+                    .HasColumnType("boolean");
 
                 entity.HasOne<Estate>()
                     .WithOne()
@@ -142,11 +146,11 @@ namespace Infrastructure.Persistence
             {
                 entity.ToTable("BusinessSpaces");
 
-                entity.HasKey(b => b.EstateId); 
+                entity.HasKey(b => b.EstateId);
 
                 entity.Property(b => b.FloorNumber)
                     .IsRequired()
-                    .HasColumnType("decimal(18,2)");
+                    .HasColumnType("smallint");
 
                 entity.HasOne<Estate>()
                     .WithOne()
@@ -321,7 +325,7 @@ namespace Infrastructure.Persistence
 
                 entity.Property(rp => rp.Rating)
                     .IsRequired()
-                    .HasColumnType("int");
+                    .HasColumnType("smallint");
 
                 entity.HasOne<Estate>()
                     .WithMany()
@@ -356,7 +360,7 @@ namespace Infrastructure.Persistence
 
                 entity.Property(ru => ru.Rating)
                     .IsRequired()
-                    .HasColumnType("int"); 
+                    .HasColumnType("smallint"); 
 
                 entity.HasOne<User>()
                     .WithMany()

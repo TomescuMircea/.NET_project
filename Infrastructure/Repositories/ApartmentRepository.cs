@@ -3,34 +3,43 @@
 using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
+using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
     public class ApartmentRepository : IApartmentRepository
     {
-        public Task<Result<Guid>> AddAsync(Apartment apartment)
+        private readonly ApplicationDbContext context;
+        public ApartmentRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
+        }
+        public async Task<Result<Guid>> AddAsync(Apartment apartment)
+        {
+            await context.Apartments.AddAsync(apartment);
+            await context.SaveChangesAsync();
+            return Result<Guid>.Success(apartment.EstateId);
+
         }
 
-        public Task DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task DeleteAsync(Guid id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<IEnumerable<Apartment>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<Apartment>> GetAllAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<Apartment> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<Apartment> GetByIdAsync(Guid id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task UpdateAsync(Apartment apartment)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task UpdateAsync(Apartment apartment)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
