@@ -5,6 +5,7 @@ using Application.Use_Cases.Commands.ApartmentC;
 using Application.Use_Cases.Commands.EstateC;
 using Application.Use_Cases.Commands.BusinessSpaceC;
 using Application.Use_Cases.Commands.UserC;
+using Application.Use_Cases.Commands.HouseC;
 
 namespace Application.Utils
 {
@@ -20,6 +21,9 @@ namespace Application.Utils
 
             CreateMap<Estate,EstateDto>().ReverseMap();
             CreateMap<CreateEstateCommand,Estate>().ReverseMap();
+            
+            CreateMap<House, HouseDto>().ReverseMap();
+            CreateMap<CreateHouseCommand, House>().ReverseMap();
 
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<CreateUserCommand, User>().ReverseMap();
