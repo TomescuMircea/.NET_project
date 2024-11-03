@@ -12,6 +12,7 @@ using Application.Use_Cases.Commands.FavoriteC;
 using Application.Use_Cases.Commands.ImageC;
 using Application.Use_Cases.Commands.ReportC;
 using Application.Use_Cases.Commands.ReviewPropertyC;
+using Application.Use_Cases.Commands.ReviewUserC;
 
 namespace Application.Utils
 {
@@ -48,6 +49,9 @@ namespace Application.Utils
 
             CreateMap<ReviewProperty, ReviewPropertyDto>().ReverseMap();
             CreateMap<CreateReviewPropertyCommand, ReviewProperty>().ReverseMap();
+
+            CreateMap<ReviewUser, ReviewUserDto>().ReverseMap();
+            CreateMap<CreateReviewUserCommand, ReviewUser>().ReverseMap();
 
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<CreateUserCommand, User>().ReverseMap();
