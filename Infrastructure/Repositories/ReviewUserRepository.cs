@@ -16,9 +16,16 @@ namespace Infrastructure.Repositories
         }
         public async Task<Result<Guid>> AddAsync(ReviewUser reviewUser)
         {
-            await context.ReviewUsers.AddAsync(reviewUser);
-            await context.SaveChangesAsync();
-            return Result<Guid>.Success(reviewUser.Id);
+            try
+            {
+                await context.ReviewUsers.AddAsync(reviewUser);
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(reviewUser.Id);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+            }
         }
 
         //public Task DeleteAsync(Guid id)

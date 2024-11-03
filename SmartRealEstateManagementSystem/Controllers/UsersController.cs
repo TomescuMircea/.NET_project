@@ -3,6 +3,7 @@ using Application.Use_Cases.Commands.UserC;
 using Domain.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
@@ -20,7 +21,12 @@ namespace SmartRealEstateManagementSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Result<Guid>>> CreateUser(CreateUserCommand command)
         {
-            return await mediator.Send(command);
+            var result = await mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status201Created, result.Data);
         }
     }
 }

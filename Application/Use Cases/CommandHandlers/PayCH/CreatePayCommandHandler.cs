@@ -21,7 +21,11 @@ namespace Application.Use_Cases.CommandHandlers.PayCH
         {
             var transact = mapper.Map<Pay>(request);
             var result = await repository.AddAsync(transact);
-            return Result<Guid>.Success(result.Data);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

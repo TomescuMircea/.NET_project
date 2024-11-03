@@ -21,11 +21,10 @@ namespace Infrastructure.Repositories
                 await context.Images.AddAsync(image);
                 await context.SaveChangesAsync();
                 return Result<Guid>.Success(image.EstateId);
-
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException.ToString());
+                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
             }
         }
 

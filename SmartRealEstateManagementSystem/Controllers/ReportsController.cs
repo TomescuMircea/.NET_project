@@ -20,8 +20,12 @@ namespace SmartRealEstateManagementSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Result<Guid>>> CreateImage(CreateReportCommand command)
         {
-            var result = await mediator.Send(command) as Result<Guid>;
-            return Ok(result);
+            var result = await mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status201Created, result.Data);
         }
     }
 }

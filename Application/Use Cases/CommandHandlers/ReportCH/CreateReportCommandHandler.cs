@@ -22,7 +22,11 @@ namespace Application.Use_Cases.CommandHandlers.ReportCH
         {
             var report = mapper.Map<Report>(request);
             var result = await repository.AddAsync(report);
-            return Result<Guid>.Success(result.Data);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

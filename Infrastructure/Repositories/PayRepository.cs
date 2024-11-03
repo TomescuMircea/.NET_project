@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
@@ -14,9 +15,16 @@ namespace Infrastructure.Repositories
         }
         public async Task<Result<Guid>> AddAsync(Pay pay)
         {
-            await context.Pays.AddAsync(pay);
-            await context.SaveChangesAsync();
-            return Result<Guid>.Success(pay.Id);
+            try
+            {
+                await context.Pays.AddAsync(pay);
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(pay.Id);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+            }
         }
 
         //public Task DeleteAsync(Guid id)

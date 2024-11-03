@@ -21,7 +21,11 @@ namespace Application.Use_Cases.CommandHandlers.ReviewUserCH
         {
             var review = mapper.Map<ReviewUser>(request);
             var result = await repository.AddAsync(review);
-            return Result<Guid>.Success(result.Data);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

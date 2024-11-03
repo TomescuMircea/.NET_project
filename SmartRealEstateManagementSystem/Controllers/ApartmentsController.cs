@@ -18,7 +18,12 @@ namespace SmartRealEstateManagementSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Result<Guid>>> CreateApartment(CreateApartmentCommand command)
         {
-            return await mediator.Send(command);
+            var result = await mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status201Created, result.Data);
         }
     }
 

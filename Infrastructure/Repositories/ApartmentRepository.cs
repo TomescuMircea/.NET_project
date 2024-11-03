@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException.ToString());
+                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
             }
         }
 

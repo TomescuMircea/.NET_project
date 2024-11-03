@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
-    [Route("api/review-properties")]
+    [Route("api/review-property")]
     [ApiController]
     public class ReviewsPropertiesController : ControllerBase
     {
@@ -20,8 +20,12 @@ namespace SmartRealEstateManagementSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<Result<Guid>>> CreateReviewsProperties(CreateReviewPropertyCommand command)
         {
-            var result = await mediator.Send(command) as Result<Guid>;
-            return Ok(result);
+            var result = await mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status201Created, result.Data);
         }
     }
 }
