@@ -16,7 +16,6 @@
     <Folder Include="Use Cases\CommandHandlers\ReviewPropertyCH\" />
     <Folder Include="Use Cases\CommandHandlers\ReviewUserCH\" />
     <Folder Include="Use Cases\CommandHandlers\TransactionCH\" />
-    <Folder Include="Use Cases\CommandHandlers\UserCH\" />
     <Folder Include="Use Cases\Commands\HouseC\" />
     <Folder Include="Use Cases\Commands\CredentialC\" />
     <Folder Include="Use Cases\Commands\ContactC\" />
@@ -26,7 +25,6 @@
     <Folder Include="Use Cases\Commands\ReviewPropertyC\" />
     <Folder Include="Use Cases\Commands\ReviewUserC\" />
     <Folder Include="Use Cases\Commands\TransactionC\" />
-    <Folder Include="Use Cases\Commands\UserC\" />
     <Folder Include="Use Cases\Queries\Apartment\" />
     <Folder Include="Use Cases\Queries\Estate\" />
     <Folder Include="Use Cases\Queries\House\" />
