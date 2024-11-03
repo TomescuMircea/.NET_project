@@ -3,6 +3,7 @@ using Domain.Entities;
 using AutoMapper;
 using Application.Use_Cases.Commands.ApartmentC;
 using Application.Use_Cases.Commands.EstateC;
+using Application.Use_Cases.Commands.BusinessSpaceC;
 
 namespace Application.Utils
 {
@@ -10,10 +11,14 @@ namespace Application.Utils
     {
         public MappingProfile()
         {
-            CreateMap<Estate,EstateDto>().ReverseMap();
-            CreateMap<CreateEstateCommand,Estate>().ReverseMap();
             CreateMap<Apartment, ApartmentDto>().ReverseMap();
             CreateMap<CreateApartmentCommand, Apartment>().ReverseMap();
+
+            CreateMap<BusinessSpace, BusinessSpaceDto>().ReverseMap();
+            CreateMap<CreateBusinessSpaceCommand, BusinessSpace>().ReverseMap();
+
+            CreateMap<Estate,EstateDto>().ReverseMap();
+            CreateMap<CreateEstateCommand,Estate>().ReverseMap();
         }
     }
 }
