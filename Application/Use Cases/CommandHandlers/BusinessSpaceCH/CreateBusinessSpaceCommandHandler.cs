@@ -3,10 +3,11 @@ using AutoMapper;
 using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
+using MediatR;
 
 namespace Application.Use_Cases.CommandHandlers.BusinessSpaceCH
 {
-    public class CreateBusinessSpaceCommandHandler
+    public class CreateBusinessSpaceCommandHandler : IRequestHandler<CreateBusinessSpaceCommand, Result<Guid>>
     {
         private readonly IBusinessSpaceRepository repository;
         private readonly IMapper mapper;
