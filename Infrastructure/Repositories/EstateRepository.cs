@@ -12,29 +12,31 @@ namespace Infrastructure.Repositories
         {
             this.context = context;
         }
-        public Task<Result<Guid>> AddAsync(Estate book)
+        public async Task<Result<Guid>> AddAsync(Estate estate)
         {
-            throw new NotImplementedException();
+            await context.Estates.AddAsync(estate);
+            await context.SaveChangesAsync();
+            return Result<Guid>.Success(estate.Id);
         }
 
-        public Task DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task DeleteAsync(Guid id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<IEnumerable<Estate>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<Estate>> GetAllAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<Estate> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<Estate> GetByIdAsync(Guid id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task UpdateAsync(Estate book)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task UpdateAsync(Estate estate)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
