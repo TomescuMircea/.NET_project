@@ -1,11 +1,24 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Application.Use_Cases.Commands.FavoriteC;
+using Domain.Common;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/favorite")]
     [ApiController]
     public class FavoritesController : ControllerBase
     {
+        private readonly IMediator mediator;
+        public FavoritesController(IMediator mediator)
+        {
+            this.mediator = mediator;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Result<Guid>>> CreateFavorite(CreateFavoriteCommand command)
+        {
+            return await mediator.Send(command);
+        }
     }
 }
