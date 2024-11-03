@@ -22,7 +22,7 @@ namespace Infrastructure
             services.AddScoped<IHouseRepository, HouseRepository>();
             services.AddScoped<IFavoriteRepository, FavoriteRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IPayRepository, PayRepository>();
             services.AddScoped<IApartmentRepository, ApartmentRepository>();
             services.AddScoped<IBusinessSpaceRepository, BusinessSpaceRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();

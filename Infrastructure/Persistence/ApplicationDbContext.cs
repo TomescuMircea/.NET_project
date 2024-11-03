@@ -30,7 +30,7 @@ namespace Infrastructure.Persistence
 
         public DbSet<ReviewProperty> ReviewProperties { get; set; }
 
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Pay> Pays{ get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasPostgresExtension("uuid-ossp");
@@ -377,9 +377,9 @@ namespace Infrastructure.Persistence
 
             /*******************************************************************/
 
-            modelBuilder.Entity<Transaction>(entity =>
+            modelBuilder.Entity<Pay>(entity =>
             {
-                entity.ToTable("Transactions");
+                entity.ToTable("Pays");
 
                 entity.HasKey(t => t.Id);
 
