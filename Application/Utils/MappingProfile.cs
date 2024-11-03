@@ -8,6 +8,7 @@ using Application.Use_Cases.Commands.UserC;
 using Application.Use_Cases.Commands.HouseC;
 using Application.Use_Cases.Commands.ContactC;
 using Application.Use_Cases.Commands.CredentialC;
+using Application.Use_Cases.Commands.FavoriteC;
 
 namespace Application.Utils
 {
@@ -29,6 +30,9 @@ namespace Application.Utils
 
             CreateMap<Estate,EstateDto>().ReverseMap();
             CreateMap<CreateEstateCommand,Estate>().ReverseMap();
+
+            CreateMap<Favorite, FavoriteDto>().ReverseMap();
+            CreateMap<CreateFavoriteCommand, Favorite>().ReverseMap();
             
             CreateMap<House, HouseDto>().ReverseMap();
             CreateMap<CreateHouseCommand, House>().ReverseMap();
