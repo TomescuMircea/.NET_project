@@ -21,7 +21,12 @@ namespace Application.Use_Cases.CommandHandlers.FavoriteCH
         public async Task<Result<Guid>> Handle(CreateFavoriteCommand request, CancellationToken cancellationToken)
         {
             var favorite = mapper.Map<Favorite>(request);
-            return await repository.AddAsync(favorite);
+            var result = await repository.AddAsync(favorite);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }

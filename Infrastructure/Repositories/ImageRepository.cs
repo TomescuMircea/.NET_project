@@ -16,9 +16,17 @@ namespace Infrastructure.Repositories
         }
         public async Task<Result<Guid>> AddAsync(Image image)
         {
-            await context.Images.AddAsync(image);
-            await context.SaveChangesAsync();
-            return Result<Guid>.Success(image.EstateId);
+            try
+            {
+                await context.Images.AddAsync(image);
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(image.EstateId);
+
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException.ToString());
+            }
         }
 
         //public Task DeleteAsync(Guid id)

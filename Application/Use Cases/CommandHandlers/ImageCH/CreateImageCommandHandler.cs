@@ -20,7 +20,12 @@ namespace Application.Use_Cases.CommandHandlers.ImageCH
         public async Task<Result<Guid>> Handle(CreateImageCommand request, CancellationToken cancellationToken)
         {
             var image = mapper.Map<Image>(request);
-            return await repository.AddAsync(image);
+            var result = await repository.AddAsync(image);
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }
