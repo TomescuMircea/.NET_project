@@ -11,6 +11,7 @@ using Application.Use_Cases.Commands.CredentialC;
 using Application.Use_Cases.Commands.FavoriteC;
 using Application.Use_Cases.Commands.ImageC;
 using Application.Use_Cases.Commands.ReportC;
+using Application.Use_Cases.Commands.ReviewPropertyC;
 
 namespace Application.Utils
 {
@@ -44,6 +45,9 @@ namespace Application.Utils
 
             CreateMap<Report, ReportDto>().ReverseMap();
             CreateMap<CreateReportCommand, Report>().ReverseMap();
+
+            CreateMap<ReviewProperty, ReviewPropertyDto>().ReverseMap();
+            CreateMap<CreateReviewPropertyCommand, ReviewProperty>().ReverseMap();
 
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<CreateUserCommand, User>().ReverseMap();
