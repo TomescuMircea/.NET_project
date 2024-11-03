@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Use Cases\CommandHandlers\TransactionCH\" />
-    <Folder Include="Use Cases\Commands\TransactionC\" />
     <Folder Include="Use Cases\Queries\Apartment\" />
     <Folder Include="Use Cases\Queries\Estate\" />
     <Folder Include="Use Cases\Queries\House\" />
@@ -20,15 +18,15 @@
     <Folder Include="Use Cases\Queries\Report\" />
     <Folder Include="Use Cases\Queries\ReviewProperty\" />
     <Folder Include="Use Cases\Queries\ReviewUser\" />
-    <Folder Include="Use Cases\Queries\Transaction\" />
+    <Folder Include="Use Cases\Queries\Pay\" />
     <Folder Include="Use Cases\Queries\Report\" />
     <Folder Include="Use Cases\Queries\ReviewProperty\" />
     <Folder Include="Use Cases\Queries\ReviewUser\" />
-    <Folder Include="Use Cases\Queries\Transaction\" />
+    <Folder Include="Use Cases\Queries\Pay\" />
     <Folder Include="Use Cases\Queries\Report\" />
     <Folder Include="Use Cases\Queries\ReviewProperty\" />
     <Folder Include="Use Cases\Queries\ReviewUser\" />
-    <Folder Include="Use Cases\Queries\Transaction\" />
+    <Folder Include="Use Cases\Queries\Pay\" />
     <Folder Include="Use Cases\Queries\User\" />
     <Folder Include="Use Cases\QueryHandlers\Estate\" />
     <Folder Include="Use Cases\QueryHandlers\User\" />

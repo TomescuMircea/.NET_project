@@ -13,6 +13,7 @@ using Application.Use_Cases.Commands.ImageC;
 using Application.Use_Cases.Commands.ReportC;
 using Application.Use_Cases.Commands.ReviewPropertyC;
 using Application.Use_Cases.Commands.ReviewUserC;
+using Application.Use_Cases.Commands.PayC;
 
 namespace Application.Utils
 {
@@ -52,6 +53,9 @@ namespace Application.Utils
 
             CreateMap<ReviewUser, ReviewUserDto>().ReverseMap();
             CreateMap<CreateReviewUserCommand, ReviewUser>().ReverseMap();
+
+            CreateMap<Pay, PayDto>().ReverseMap();
+            CreateMap<CreatePayCommand, Pay>().ReverseMap();
 
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<CreateUserCommand, User>().ReverseMap();

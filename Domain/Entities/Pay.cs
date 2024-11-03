@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Transaction
+    public class Pay
     {
         public Guid Id { get; set; }
         public Guid SellerGuid { get; set; }
