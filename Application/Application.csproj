@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Use Cases\CommandHandlers\CredentialCH\" />
-    <Folder Include="Use Cases\CommandHandlers\ContactCH\" />
     <Folder Include="Use Cases\CommandHandlers\ImageCH\" />
     <Folder Include="Use Cases\CommandHandlers\FavoriteCH\" />
     <Folder Include="Use Cases\CommandHandlers\ReportCH\" />
@@ -16,7 +15,6 @@
     <Folder Include="Use Cases\CommandHandlers\ReviewUserCH\" />
     <Folder Include="Use Cases\CommandHandlers\TransactionCH\" />
     <Folder Include="Use Cases\Commands\CredentialC\" />
-    <Folder Include="Use Cases\Commands\ContactC\" />
     <Folder Include="Use Cases\Commands\ImageC\" />
     <Folder Include="Use Cases\Commands\FavoriteC\" />
     <Folder Include="Use Cases\Commands\ReportC\" />
