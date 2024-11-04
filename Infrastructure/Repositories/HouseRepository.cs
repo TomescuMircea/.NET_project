@@ -5,6 +5,7 @@ using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -34,19 +35,19 @@ namespace Infrastructure.Repositories
         //    throw new NotImplementedException();
         //}
 
-        //public Task<IEnumerable<House>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<House>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
         //public Task<House> GetByIdAsync(Guid id)
         //{
         //    throw new NotImplementedException();
         //}
 
-        //public Task UpdateAsync(House house)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(House house)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

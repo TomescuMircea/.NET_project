@@ -34,19 +34,19 @@ namespace Infrastructure.Repositories
         //    throw new NotImplementedException();
         //}
 
-        //public Task<IEnumerable<Credential>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Credential>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
         //public Task<Credential> GetByIdAsync(Guid id)
         //{
         //    throw new NotImplementedException();
         //}
 
-        //public Task UpdateAsync(Credential credential)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(Credential credential)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

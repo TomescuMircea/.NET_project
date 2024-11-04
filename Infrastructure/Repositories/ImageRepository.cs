@@ -33,19 +33,19 @@ namespace Infrastructure.Repositories
         //    throw new NotImplementedException();
         //}
 
-        //public Task<IEnumerable<Image>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Image>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
         //public Task<Image> GetByIdAsync(Guid id)
         //{
         //    throw new NotImplementedException();
         //}
 
-        //public Task UpdateAsync(Image image)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(Image image)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

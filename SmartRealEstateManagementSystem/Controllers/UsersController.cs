@@ -1,6 +1,8 @@
 ﻿using Application.Use_Cases.Commands.EstateC;
 using Application.Use_Cases.Commands.UserC;
+using Application.Use_Cases.Queries.UserQ;
 using Domain.Common;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -28,5 +30,23 @@ namespace SmartRealEstateManagementSystem.Controllers
             }
             return StatusCode(StatusCodes.Status201Created, result.Data);
         }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateBook(Guid id, UpdateUserCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("The id should be identical with command.Id");
+            }
+            await mediator.Send(command);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<User>>> GetAllAsync()
+        {
+            return await mediator.Send(new GetUsersQuery());
+        }
+
     }
 }
