@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.ApartmentCH
 {
     public class CreateApartmentCommandHandler : IRequestHandler<CreateApartmentCommand, Result<Guid>>
     {
-        private readonly IApartmentRepository repository;
+        private readonly IGenericEntityRepository<Apartment> repository;
         private readonly IMapper mapper;
 
-        public CreateApartmentCommandHandler(IApartmentRepository repository, IMapper mapper)
+        public CreateApartmentCommandHandler(IGenericEntityRepository<Apartment> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

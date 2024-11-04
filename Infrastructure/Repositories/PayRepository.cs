@@ -6,7 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
-    public class PayRepository : IPayRepository
+    public class PayRepository : IGenericEntityRepository<Pay>
     {
         private readonly ApplicationDbContext context;
         public PayRepository(ApplicationDbContext context)

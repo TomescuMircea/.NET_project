@@ -8,7 +8,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class CredentialRepository : ICredentialRepository
+    public class CredentialRepository : IGenericEntityRepository<Credential>
     {
         private readonly ApplicationDbContext context;
         public CredentialRepository(ApplicationDbContext context)

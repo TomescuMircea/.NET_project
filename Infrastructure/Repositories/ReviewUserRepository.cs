@@ -7,7 +7,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class ReviewUserRepository : IReviewUserRepository
+    public class ReviewUserRepository : IGenericEntityRepository<ReviewUser>
     {
         private readonly ApplicationDbContext context;
         public ReviewUserRepository(ApplicationDbContext context)

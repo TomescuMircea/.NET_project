@@ -5,7 +5,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class EstateRepository : IEstateRepository
+    public class EstateRepository : IGenericEntityRepository<Estate>
     {
         private readonly ApplicationDbContext context;
         public EstateRepository(ApplicationDbContext context)

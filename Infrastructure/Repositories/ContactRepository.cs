@@ -7,7 +7,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class ContactRepository : IContactRepository
+    public class ContactRepository : IGenericEntityRepository<Contact>
     {
         private readonly ApplicationDbContext context;
         public ContactRepository(ApplicationDbContext context)

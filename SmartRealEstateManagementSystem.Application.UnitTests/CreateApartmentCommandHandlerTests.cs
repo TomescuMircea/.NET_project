@@ -11,17 +11,17 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class CreateAppartmentCommandHandlerTests
     {
-        private readonly IApartmentRepository _appartmentRepository;
-        private readonly IEstateRepository _estateRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IGenericEntityRepository<Apartment> _appartmentRepository;
+        private readonly IGenericEntityRepository<Estate> _estateRepository;
+        private readonly IGenericEntityRepository<User> _userRepository;
         private readonly IMapper _mapper;
         private readonly CreateApartmentCommandHandler _handler;
 
         public CreateAppartmentCommandHandlerTests()
         {
-            _appartmentRepository = Substitute.For<IApartmentRepository>();
-            _estateRepository = Substitute.For<IEstateRepository>();
-            _userRepository = Substitute.For<IUserRepository>();
+            _appartmentRepository = Substitute.For<IGenericEntityRepository<Apartment>>();
+            _estateRepository = Substitute.For<IGenericEntityRepository<Estate>>();
+            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
             _mapper = Substitute.For<IMapper>();
             _handler = new CreateApartmentCommandHandler(_appartmentRepository, _mapper);
         }

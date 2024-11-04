@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.BusinessSpaceCH
 {
     public class CreateBusinessSpaceCommandHandler : IRequestHandler<CreateBusinessSpaceCommand, Result<Guid>>
     {
-        private readonly IBusinessSpaceRepository repository;
+        private readonly IGenericEntityRepository<BusinessSpace> repository;
         private readonly IMapper mapper;
 
-        public CreateBusinessSpaceCommandHandler(IBusinessSpaceRepository repository, IMapper mapper)
+        public CreateBusinessSpaceCommandHandler(IGenericEntityRepository<BusinessSpace> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

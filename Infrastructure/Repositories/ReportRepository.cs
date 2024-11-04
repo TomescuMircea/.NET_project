@@ -7,7 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
-    public class ReportRepository : IReportRepository
+    public class ReportRepository : IGenericEntityRepository<Report>
     {
         private readonly ApplicationDbContext context;
         public ReportRepository(ApplicationDbContext context)

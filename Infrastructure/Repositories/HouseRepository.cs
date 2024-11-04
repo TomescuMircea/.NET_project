@@ -8,7 +8,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class HouseRepository : IHouseRepository
+    public class HouseRepository : IGenericEntityRepository<House>
     {
         private readonly ApplicationDbContext context;
         public HouseRepository(ApplicationDbContext context)

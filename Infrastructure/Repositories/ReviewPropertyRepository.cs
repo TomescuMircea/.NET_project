@@ -8,7 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
-    public class ReviewPropertyRepository : IReviewPropertyRepository
+    public class ReviewPropertyRepository : IGenericEntityRepository<ReviewProperty>
     {
         private readonly ApplicationDbContext context;
         public ReviewPropertyRepository(ApplicationDbContext context)

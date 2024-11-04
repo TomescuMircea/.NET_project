@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.ContactCH
 {
     public class CreateContactCommandHandler : IRequestHandler<CreateContactCommand, Result<Guid>>
     {
-        private readonly IContactRepository repository;
+        private readonly IGenericEntityRepository<Contact> repository;
         private readonly IMapper mapper;
 
-        public CreateContactCommandHandler(IContactRepository repository, IMapper mapper)
+        public CreateContactCommandHandler(IGenericEntityRepository<Contact> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

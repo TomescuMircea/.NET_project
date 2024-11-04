@@ -7,7 +7,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class ApartmentRepository : IApartmentRepository
+    public class ApartmentRepository : IGenericEntityRepository<Apartment>
     {
         private readonly ApplicationDbContext context;
         public ApartmentRepository(ApplicationDbContext context)

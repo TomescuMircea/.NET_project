@@ -6,7 +6,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class BusinessSpaceRepository : IBusinessSpaceRepository
+    public class BusinessSpaceRepository : IGenericEntityRepository<BusinessSpace>
     {
         private readonly ApplicationDbContext context;
         public BusinessSpaceRepository(ApplicationDbContext context)

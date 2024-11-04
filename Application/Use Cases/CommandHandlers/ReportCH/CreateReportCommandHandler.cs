@@ -10,10 +10,10 @@ namespace Application.Use_Cases.CommandHandlers.ReportCH
 {
     public class CreateReportCommandHandler : IRequestHandler<CreateReportCommand, Result<Guid>>
     {
-        private readonly IReportRepository repository;
+        private readonly IGenericEntityRepository<Report> repository;
         private readonly IMapper mapper;
 
-        public CreateReportCommandHandler(IReportRepository repository, IMapper mapper)
+        public CreateReportCommandHandler(IGenericEntityRepository<Report> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

@@ -6,7 +6,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IGenericEntityRepository<User>
     {
         private readonly ApplicationDbContext context;
         public UserRepository(ApplicationDbContext context)

@@ -15,10 +15,10 @@ namespace Application.Use_Cases.CommandHandlers.ReviewPropertyCH
 {
     public class CreateReviewPropertyCommandHandler : IRequestHandler<CreateReviewPropertyCommand, Result<Guid>>
     {
-        private readonly IReviewPropertyRepository repository;
+        private readonly IGenericEntityRepository<ReviewProperty> repository;
         private readonly IMapper mapper;
 
-        public CreateReviewPropertyCommandHandler(IReviewPropertyRepository repository, IMapper mapper)
+        public CreateReviewPropertyCommandHandler(IGenericEntityRepository<ReviewProperty> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

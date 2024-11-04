@@ -7,7 +7,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class ImageRepository : IImageRepository
+    public class ImageRepository : IGenericEntityRepository<Image>
     {
         private readonly ApplicationDbContext context;
         public ImageRepository(ApplicationDbContext context)

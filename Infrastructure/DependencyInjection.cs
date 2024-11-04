@@ -1,4 +1,5 @@
-﻿using Domain.Repositories;
+﻿using Domain.Entities;
+using Domain.Repositories;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,20 +17,19 @@ namespace Infrastructure
                     configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-            services.AddScoped<IEstateRepository, EstateRepository>();
-            services.AddScoped<ICredentialRepository, CredentialRepository>();
-            services.AddScoped<IImageRepository, ImageRepository>();
-            services.AddScoped<IHouseRepository, HouseRepository>();
-            services.AddScoped<IFavoriteRepository, FavoriteRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IPayRepository, PayRepository>();
-            services.AddScoped<IApartmentRepository, ApartmentRepository>();
-            services.AddScoped<IBusinessSpaceRepository, BusinessSpaceRepository>();
-            services.AddScoped<IContactRepository, ContactRepository>();
-            services.AddScoped<IImageRepository, ImageRepository>();
-            services.AddScoped<IReportRepository, ReportRepository>();
-            services.AddScoped<IReviewPropertyRepository, ReviewPropertyRepository>();
-            services.AddScoped<IReviewUserRepository, ReviewUserRepository>();
+            services.AddScoped<IGenericEntityRepository<Estate>, EstateRepository>();
+            services.AddScoped<IGenericEntityRepository<Credential>, CredentialRepository>();
+            services.AddScoped<IGenericEntityRepository<Image>, ImageRepository>();
+            services.AddScoped<IGenericEntityRepository<House>, HouseRepository>();
+            services.AddScoped<IGenericEntityRepository<Favorite>, FavoriteRepository>();
+            services.AddScoped<IGenericEntityRepository<User>, UserRepository>();
+            services.AddScoped<IGenericEntityRepository<Pay>, PayRepository>();
+            services.AddScoped<IGenericEntityRepository<Apartment>, ApartmentRepository>();
+            services.AddScoped<IGenericEntityRepository<BusinessSpace>, BusinessSpaceRepository>();
+            services.AddScoped<IGenericEntityRepository<Contact>, ContactRepository>();
+            services.AddScoped<IGenericEntityRepository<Report>, ReportRepository>();
+            services.AddScoped<IGenericEntityRepository<ReviewProperty>, ReviewPropertyRepository>();
+            services.AddScoped<IGenericEntityRepository<ReviewUser>, ReviewUserRepository>();
 
 
 

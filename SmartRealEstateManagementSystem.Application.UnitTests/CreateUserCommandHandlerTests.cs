@@ -16,13 +16,13 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class CreateUserCommandHandlerTests
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IGenericEntityRepository<User> _userRepository;
         private readonly IMapper _mapper;
         private readonly CreateUserCommandHandler _handler;
 
         public CreateUserCommandHandlerTests()
         {
-            _userRepository = Substitute.For<IUserRepository>();
+            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
             _mapper = Substitute.For<IMapper>();
             _handler = new CreateUserCommandHandler(_userRepository, _mapper);
         }

@@ -7,7 +7,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class FavoriteRepository : IFavoriteRepository
+    public class FavoriteRepository : IGenericEntityRepository<Favorite>
     {
         private readonly ApplicationDbContext context;
         public FavoriteRepository(ApplicationDbContext context)

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Utils;
+using FluentValidation;
 
 namespace Application.Use_Cases.Commands.FavoriteC
 {
@@ -6,14 +7,8 @@ namespace Application.Use_Cases.Commands.FavoriteC
     {
         public CreateFavoriteCommandValidator()
         {
-            RuleFor(x => x.UserId).NotEmpty().Must(BeAValidGuid).WithMessage("'UserId' must be a valid Guid"); ;
-            RuleFor(x => x.EstateId).NotEmpty().Must(BeAValidGuid).WithMessage("'EstateId' must be a valid Guid");
+            RuleFor(x => x.UserId).NotEmpty().Must(GuidValidator.BeAValidGuid).WithMessage("'UserId' must be a valid Guid"); ;
+            RuleFor(x => x.EstateId).NotEmpty().Must(GuidValidator.BeAValidGuid).WithMessage("'EstateId' must be a valid Guid");
         }
-
-        private bool BeAValidGuid(Guid guid)
-        {
-            return Guid.TryParse(guid.ToString(), out _);
-        }
-
     }
 }
