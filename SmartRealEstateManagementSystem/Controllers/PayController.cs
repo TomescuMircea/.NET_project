@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
-    [Route("api/pay")]
+    [Route("api/pays")]
     [ApiController]
     public class PayController : ControllerBase
     {

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
-    [Route("api/image")]
+    [Route("api/images")]
     [ApiController]
     public class ImagesController : ControllerBase
     {
