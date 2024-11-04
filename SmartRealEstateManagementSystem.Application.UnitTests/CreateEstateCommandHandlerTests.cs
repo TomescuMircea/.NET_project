@@ -93,7 +93,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             };
             var estate = new Estate
             {
-                Id = new Guid("4fd3f7f1-fd01-4731-8c3d-e865306e0d91"),
+                Id = new Guid("3fd3f7f1-fd01-4731-8c3d-e865306e0d91"),
                 UserId = command.UserId,
                 Name = command.Name,
                 Description = command.Description,
@@ -105,6 +105,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 ListingData = DateTime.Now,
             };
             _mapper.Map<Estate>(command).Returns(estate);
+            _userRepository.AddAsync(user).Returns(Result<Guid>.Success(user.Id));
             _estateRepository.AddAsync(estate).Returns(Result<Guid>.Failure("Error"));
 
             // Act
