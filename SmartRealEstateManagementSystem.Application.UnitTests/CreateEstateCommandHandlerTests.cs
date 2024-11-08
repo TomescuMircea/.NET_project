@@ -43,7 +43,8 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Description = "Estate Description",
                 Address = "Estate Address",
                 Price = 100000,
-
+                Type = "1",
+                Status = "Active"
             };
             var estate = new Estate
             {
@@ -90,6 +91,8 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Description = "Estate Description",
                 Address = "Estate Address",
                 Price = 100000,
+                Type = "1",
+                Status = "Active"
             };
             var estate = new Estate
             {

@@ -27,20 +27,10 @@ namespace Infrastructure.Repositories
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public Task<IEnumerable<BusinessSpace>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
-
-        //public Task<BusinessSpace> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public Task UpdateAsync(BusinessSpace businessSpace)
         {

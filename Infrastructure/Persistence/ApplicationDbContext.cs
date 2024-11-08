@@ -86,7 +86,8 @@ namespace Infrastructure.Persistence
                     .HasForeignKey(e => e.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
             });
-            /********************************************************************/
+
+            // ModelBuilder for Entity<User>
 
             modelBuilder.Entity<User>(entity =>
             {
@@ -115,8 +116,7 @@ namespace Infrastructure.Persistence
                     .HasMaxLength(50);
             });
 
-            /********************************************************************/
-
+            // ModelBuilder for Entity<Apartment>
             modelBuilder.Entity<Apartment>(entity =>
             {
                 entity.ToTable("Apartments");
@@ -140,8 +140,8 @@ namespace Infrastructure.Persistence
                     .HasForeignKey<Apartment>(a => a.EstateId) 
                     .OnDelete(DeleteBehavior.Cascade); 
             });
-            /********************************************************************/
 
+            // ModelBuilder for Entity<BusinessSpace>
             modelBuilder.Entity<BusinessSpace>(entity =>
             {
                 entity.ToTable("BusinessSpaces");
@@ -158,8 +158,7 @@ namespace Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Cascade); 
             });
 
-            /*******************************************************************/
-
+            // ModelBuilder for Entity<Contact>
             modelBuilder.Entity<Contact>(entity =>
             {
                 entity.ToTable("Contacts");
@@ -180,8 +179,8 @@ namespace Infrastructure.Persistence
                     .HasForeignKey<Contact>(c => c.UserId) 
                     .OnDelete(DeleteBehavior.Cascade); 
             });
-            /*******************************************************************/
 
+            // ModelBuilder for Entity<Credential>
             modelBuilder.Entity<Credential>(entity =>
             {
                 entity.ToTable("Credentials");
@@ -206,8 +205,7 @@ namespace Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Cascade); 
             });
 
-            /*******************************************************************/
-
+            // ModelBuilder for Entity<Favorite>
             modelBuilder.Entity<Favorite>(entity =>
             {
                 entity.ToTable("Favorites");
@@ -224,8 +222,8 @@ namespace Infrastructure.Persistence
                     .HasForeignKey(f => f.EstateId)
                     .OnDelete(DeleteBehavior.Cascade); 
             });
-            /*******************************************************************/
 
+            // ModelBuilder for Entity<House>
             modelBuilder.Entity<House>(entity =>
             {
                 entity.ToTable("Houses");
@@ -243,8 +241,7 @@ namespace Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            /*******************************************************************/
-
+            // ModelBuilder for Entity<Image>
             modelBuilder.Entity<Image>(entity =>
             {
                 entity.ToTable("Images");
@@ -257,7 +254,7 @@ namespace Infrastructure.Persistence
                 entity.Property(i => i.EstateId)
                     .IsRequired(); 
 
-                entity.Property(i => i.Extenstion)
+                entity.Property(i => i.Extension)
                     .IsRequired()
                     .HasMaxLength(10); 
 
@@ -268,8 +265,7 @@ namespace Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Cascade); 
             });
 
-            /*******************************************************************/
-
+            // ModelBuilder for Entity<Report>
             modelBuilder.Entity<Report>(entity =>
             {
                 entity.ToTable("Reports");
@@ -301,10 +297,7 @@ namespace Infrastructure.Persistence
                     .IsRequired();
             });
 
-
-
-            /*******************************************************************/
-
+            // ModelBuilder for Entity<ReviewProperty>
             modelBuilder.Entity<ReviewProperty>(entity =>
             {
                 entity.ToTable("ReviewProperties");
@@ -338,8 +331,7 @@ namespace Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Restrict); 
             });
 
-            /*******************************************************************/
-
+            // ModelBuilder for Entity<ReviewUser>
             modelBuilder.Entity<ReviewUser>(entity =>
             {
                 entity.ToTable("ReviewUsers");
@@ -375,8 +367,7 @@ namespace Infrastructure.Persistence
                     .IsRequired();
             });
 
-            /*******************************************************************/
-
+            // ModelBuilder for Entity<Pay>
             modelBuilder.Entity<Pay>(entity =>
             {
                 entity.ToTable("Pays");
@@ -414,8 +405,6 @@ namespace Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Restrict) 
                     .IsRequired();
             });
-
-
         }
     }
 }

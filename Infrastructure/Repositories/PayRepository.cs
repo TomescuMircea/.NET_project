@@ -26,21 +26,10 @@ namespace Infrastructure.Repositories
                 return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
-
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public Task<IEnumerable<Pay>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
-
-        //public Task<Pay> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public Task UpdateAsync(Pay pay)
         {
