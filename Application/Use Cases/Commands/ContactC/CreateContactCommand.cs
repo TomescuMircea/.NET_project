@@ -11,7 +11,7 @@ namespace Application.Use_Cases.Commands.ContactC
     public class CreateContactCommand : IRequest<Result<Guid>>
     {
         public Guid UserId { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public required string Email { get; set; }
+        public required string Phone { get; set; }
     }
 }

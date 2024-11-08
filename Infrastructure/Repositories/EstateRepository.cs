@@ -5,7 +5,7 @@ using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class EstateRepository : IEstateRepository
+    public class EstateRepository : IGenericEntityRepository<Estate>
     {
         private readonly ApplicationDbContext context;
         public EstateRepository(ApplicationDbContext context)
@@ -22,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<Estate>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Estate>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<Estate> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Estate> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(Estate estate)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(Estate estate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

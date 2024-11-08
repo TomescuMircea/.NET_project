@@ -10,10 +10,10 @@ namespace Application.Use_Cases.CommandHandlers.FavoriteCH
 {
     public class CreateFavoriteCommandHandler : IRequestHandler<CreateFavoriteCommand, Result<Guid>>
     {
-        private readonly IFavoriteRepository repository;
+        private readonly IGenericEntityRepository<Favorite> repository;
         private readonly IMapper mapper;
 
-        public CreateFavoriteCommandHandler(IFavoriteRepository repository, IMapper mapper)
+        public CreateFavoriteCommandHandler(IGenericEntityRepository<Favorite> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

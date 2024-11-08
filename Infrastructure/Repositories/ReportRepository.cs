@@ -1,13 +1,11 @@
-﻿
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
-    public class ReportRepository : IReportRepository
+    public class ReportRepository : IGenericEntityRepository<Report>
     {
         private readonly ApplicationDbContext context;
         public ReportRepository(ApplicationDbContext context)
@@ -24,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<Report>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Report>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<Report> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Report> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(Report report)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(Report report)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

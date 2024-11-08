@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Utils;
+using FluentValidation;
 
 namespace Application.Use_Cases.Commands.EstateC 
 {
@@ -6,7 +7,7 @@ namespace Application.Use_Cases.Commands.EstateC
     {
         public CreateEstateCommandValidator()
         {
-            RuleFor(x => x.UserId).NotEmpty().Must(BeAValidGuid).WithMessage("'UserId' must be a valid Guid");
+            RuleFor(x => x.UserId).NotEmpty().Must(GuidValidator.BeAValidGuid).WithMessage("'UserId' must be a valid Guid");
             RuleFor(x => x.Name).NotEmpty().MaximumLength(100);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(500);
             RuleFor(x => x.Price).GreaterThan(0);
@@ -15,11 +16,6 @@ namespace Application.Use_Cases.Commands.EstateC
             RuleFor(x => x.Type).NotEmpty().MaximumLength(1);
             RuleFor(x => x.Status).NotEmpty().MaximumLength(100);
             RuleFor(x => x.ListingData).NotEmpty();
-        }
-
-        private bool BeAValidGuid(Guid guid)
-        {
-            return Guid.TryParse(guid.ToString(), out _);
         }
     }
 }

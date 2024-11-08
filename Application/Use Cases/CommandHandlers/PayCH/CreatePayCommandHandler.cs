@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.PayCH
 {
     public class CreatePayCommandHandler : IRequestHandler<CreatePayCommand, Result<Guid>>
     {
-        private readonly IPayRepository repository;
+        private readonly IGenericEntityRepository<Pay> repository;
         private readonly IMapper mapper;
 
-        public CreatePayCommandHandler(IPayRepository repository, IMapper mapper)
+        public CreatePayCommandHandler(IGenericEntityRepository<Pay> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

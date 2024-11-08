@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.EstateCH
 {
     public class CreateEstateCommandHandler : IRequestHandler<CreateEstateCommand, Result<Guid>>
     {
-        private readonly IEstateRepository repository;
+        private readonly IGenericEntityRepository<Estate> repository;
         private readonly IMapper mapper;
 
-        public CreateEstateCommandHandler(IEstateRepository repository, IMapper mapper)
+        public CreateEstateCommandHandler(IGenericEntityRepository<Estate> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

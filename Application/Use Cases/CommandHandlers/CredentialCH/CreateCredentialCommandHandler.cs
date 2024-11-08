@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.CredentialCH
 {
     public class CreateCredentialCommandHandler : IRequestHandler<CreateCredentialCommand, Result<Guid>>
     {
-        private readonly ICredentialRepository repository;
+        private readonly IGenericEntityRepository<Credential> repository;
         private readonly IMapper mapper;
 
-        public CreateCredentialCommandHandler(ICredentialRepository repository, IMapper mapper)
+        public CreateCredentialCommandHandler(IGenericEntityRepository<Credential> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

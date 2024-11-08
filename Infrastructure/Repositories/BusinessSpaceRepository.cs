@@ -3,10 +3,9 @@ using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
 
-
 namespace Infrastructure.Repositories
 {
-    public class BusinessSpaceRepository : IBusinessSpaceRepository
+    public class BusinessSpaceRepository : IGenericEntityRepository<BusinessSpace>
     {
         private readonly ApplicationDbContext context;
         public BusinessSpaceRepository(ApplicationDbContext context)
@@ -23,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<BusinessSpace>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<BusinessSpace>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<BusinessSpace> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<BusinessSpace> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(BusinessSpace businessSpace)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(BusinessSpace businessSpace)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

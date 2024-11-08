@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.ImageCH
 {
     public class CreateImageCommandHandler : IRequestHandler<CreateImageCommand, Result<Guid>>
     {
-        private readonly IImageRepository repository;
+        private readonly IGenericEntityRepository<Image> repository;
         private readonly IMapper mapper;
 
-        public CreateImageCommandHandler(IImageRepository repository, IMapper mapper)
+        public CreateImageCommandHandler(IGenericEntityRepository<Image> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

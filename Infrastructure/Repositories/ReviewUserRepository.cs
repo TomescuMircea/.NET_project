@@ -1,13 +1,11 @@
-﻿
-
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class ReviewUserRepository : IReviewUserRepository
+    public class ReviewUserRepository : IGenericEntityRepository<ReviewUser>
     {
         private readonly ApplicationDbContext context;
         public ReviewUserRepository(ApplicationDbContext context)
@@ -24,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<ReviewUser>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<ReviewUser>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<ReviewUser> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<ReviewUser> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(ReviewUser reviewUser)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(ReviewUser reviewUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

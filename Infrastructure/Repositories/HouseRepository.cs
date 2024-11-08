@@ -1,14 +1,11 @@
-﻿
-
-
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class HouseRepository : IHouseRepository
+    public class HouseRepository : IGenericEntityRepository<House>
     {
         private readonly ApplicationDbContext context;
         public HouseRepository(ApplicationDbContext context)
@@ -25,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<House>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<House>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<House> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<House> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(House house)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(House house)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

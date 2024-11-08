@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.ReviewUserCH
 {
     public class CreateReviewUserCommandHandler : IRequestHandler<CreateReviewUserCommand, Result<Guid>>
     {
-        private readonly IReviewUserRepository repository;
+        private readonly IGenericEntityRepository<ReviewUser> repository;
         private readonly IMapper mapper;
 
-        public CreateReviewUserCommandHandler(IReviewUserRepository repository, IMapper mapper)
+        public CreateReviewUserCommandHandler(IGenericEntityRepository<ReviewUser> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

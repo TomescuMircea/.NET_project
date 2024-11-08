@@ -1,14 +1,14 @@
-﻿using Application.Use_Cases.Commands.EstateC;
+﻿using Application.DTO;
 using Application.Use_Cases.Commands.UserC;
+using Application.Use_Cases.Queries.UserQ;
 using Domain.Common;
+using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
-    [Route("api/user")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -28,5 +28,41 @@ namespace SmartRealEstateManagementSystem.Controllers
             }
             return StatusCode(StatusCodes.Status201Created, result.Data);
         }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateUser(Guid id, UpdateUserCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("The id should be identical with command.Id");
+            }
+            await mediator.Send(command);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllAsync()
+        {
+            var result = await mediator.Send(new GetUsersQuery());
+            return Ok(result);
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<UserDto>> GetUserById(Guid id)
+        {
+            return await mediator.Send(new GetUserByIdQuery { Id = id });
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<ActionResult<Result<Guid>>> DeleteUser(Guid id,DeleteUserCommand command)
+        {
+            var result = await mediator.Send(new DeleteUserCommand(id));
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status200OK, result.Data);
+        }
+
     }
 }

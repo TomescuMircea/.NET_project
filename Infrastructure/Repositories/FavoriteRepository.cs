@@ -1,13 +1,11 @@
-﻿
-
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class FavoriteRepository : IFavoriteRepository
+    public class FavoriteRepository : IGenericEntityRepository<Favorite>
     {
         private readonly ApplicationDbContext context;
         public FavoriteRepository(ApplicationDbContext context)
@@ -25,28 +23,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<Favorite>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Favorite>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<Favorite> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Favorite> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(Favorite favorite)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(Favorite favorite)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

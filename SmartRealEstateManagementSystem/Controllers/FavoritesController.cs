@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
-    [Route("api/favorite")]
+    [Route("api/favorites")]
     [ApiController]
     public class FavoritesController : ControllerBase
     {

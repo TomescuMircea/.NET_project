@@ -11,15 +11,15 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class CreateEstateCommandHandlerTests
     {
-        private readonly IEstateRepository _estateRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IGenericEntityRepository<Estate> _estateRepository;
+        private readonly IGenericEntityRepository<User> _userRepository;
         private readonly IMapper _mapper;
         private readonly CreateEstateCommandHandler _handler;
 
         public CreateEstateCommandHandlerTests()
         {
-            _estateRepository = Substitute.For<IEstateRepository>();
-            _userRepository = Substitute.For<IUserRepository>();
+            _estateRepository = Substitute.For<IGenericEntityRepository<Estate>>();
+            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
             _mapper = Substitute.For<IMapper>();
             _handler = new CreateEstateCommandHandler(_estateRepository, _mapper);
         }
@@ -43,7 +43,8 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Description = "Estate Description",
                 Address = "Estate Address",
                 Price = 100000,
-
+                Type = "1",
+                Status = "Active"
             };
             var estate = new Estate
             {
@@ -90,6 +91,8 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Description = "Estate Description",
                 Address = "Estate Address",
                 Price = 100000,
+                Type = "1",
+                Status = "Active"
             };
             var estate = new Estate
             {

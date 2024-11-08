@@ -1,14 +1,11 @@
-﻿
-
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
-    public class ReviewPropertyRepository : IReviewPropertyRepository
+    public class ReviewPropertyRepository : IGenericEntityRepository<ReviewProperty>
     {
         private readonly ApplicationDbContext context;
         public ReviewPropertyRepository(ApplicationDbContext context)
@@ -25,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<ReviewProperty>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<ReviewProperty>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<ReviewProperty> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<ReviewProperty> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(ReviewProperty reviewProperty)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(ReviewProperty reviewProperty)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,11 +2,10 @@
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
-    public class PayRepository : IPayRepository
+    public class PayRepository : IGenericEntityRepository<Pay>
     {
         private readonly ApplicationDbContext context;
         public PayRepository(ApplicationDbContext context)
@@ -23,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<Pay>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Pay>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<Pay> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Pay> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(Pay pay)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(Pay pay)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

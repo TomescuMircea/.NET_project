@@ -11,13 +11,13 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class CreateBusinessSpaceCommandHandlerTests
     {
-        private readonly IBusinessSpaceRepository _businessSpaceRepository;
+        private readonly IGenericEntityRepository<BusinessSpace> _businessSpaceRepository;
         private readonly IMapper _mapper;
         private readonly CreateBusinessSpaceCommandHandler _handler;
 
         public CreateBusinessSpaceCommandHandlerTests()
         {
-            _businessSpaceRepository = Substitute.For<IBusinessSpaceRepository>();
+            _businessSpaceRepository = Substitute.For<IGenericEntityRepository<BusinessSpace>>();
             _mapper = Substitute.For<IMapper>();
             _handler = new CreateBusinessSpaceCommandHandler(_businessSpaceRepository, _mapper);
         }

@@ -1,13 +1,11 @@
-﻿
-
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
-    public class ImageRepository : IImageRepository
+    public class ImageRepository : IGenericEntityRepository<Image>
     {
         private readonly ApplicationDbContext context;
         public ImageRepository(ApplicationDbContext context)
@@ -24,28 +22,28 @@ namespace Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                return Result<Guid>.Failure(ex.InnerException?.ToString() ?? ex.Message);
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
 
-        //public Task DeleteAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<IEnumerable<Image>> GetAllAsync()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Image>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task<Image> GetByIdAsync(Guid id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<Image> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public Task UpdateAsync(Image image)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task UpdateAsync(Image image)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

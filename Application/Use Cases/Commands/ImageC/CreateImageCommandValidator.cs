@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Utils;
+using FluentValidation;
 
 namespace Application.Use_Cases.Commands.ImageC
 {
@@ -6,13 +7,8 @@ namespace Application.Use_Cases.Commands.ImageC
     {
         public CreateImageCommandValidator()
         {
-            RuleFor(x => x.EstateId).NotEmpty().Must(BeAValidGuid).WithMessage("'EstateId' must be a valid Guid");
+            RuleFor(x => x.EstateId).NotEmpty().Must(GuidValidator.BeAValidGuid).WithMessage("'EstateId' must be a valid Guid");
             RuleFor(x => x.Extenstion).NotEmpty().MaximumLength(10);
-        }
-
-        private bool BeAValidGuid(Guid guid)
-        {
-            return Guid.TryParse(guid.ToString(), out _);
         }
     }
 }

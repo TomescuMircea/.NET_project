@@ -27,9 +27,7 @@
     <Folder Include="Use Cases\Queries\ReviewProperty\" />
     <Folder Include="Use Cases\Queries\ReviewUser\" />
     <Folder Include="Use Cases\Queries\Pay\" />
-    <Folder Include="Use Cases\Queries\User\" />
     <Folder Include="Use Cases\QueryHandlers\Estate\" />
-    <Folder Include="Use Cases\QueryHandlers\User\" />
   </ItemGroup>
 
   <ItemGroup>

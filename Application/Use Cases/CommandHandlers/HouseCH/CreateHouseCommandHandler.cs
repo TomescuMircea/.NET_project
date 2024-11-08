@@ -9,10 +9,10 @@ namespace Application.Use_Cases.CommandHandlers.HouseCH
 {
     public class CreateHouseCommandHandler : IRequestHandler<CreateHouseCommand, Result<Guid>>
     {
-        private readonly IHouseRepository repository;
+        private readonly IGenericEntityRepository<House> repository;
         private readonly IMapper mapper;
 
-        public CreateHouseCommandHandler(IHouseRepository repository, IMapper mapper)
+        public CreateHouseCommandHandler(IGenericEntityRepository<House> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

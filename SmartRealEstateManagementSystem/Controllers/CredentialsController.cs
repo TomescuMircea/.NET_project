@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
-    [Route("api/credential")]
+    [Route("api/credentials")]
     [ApiController]
     public class CredentialsController : ControllerBase
     {
