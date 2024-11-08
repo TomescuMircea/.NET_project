@@ -42,16 +42,16 @@ namespace SmartRealEstateManagementSystem.Controllers
             return await mediator.Send(query);
         }
 
-        //[HttpPut("{id:guid}")]
-        //public async Task<IActionResult> UpdateEstate(Guid id, UpdateEstateCommand command)
-        //{
-        //    if (id != command.Id)
-        //    {
-        //        return BadRequest("The id should be identical with command.Id");
-        //    }
-        //    await mediator.Send(command);
-        //    return StatusCode(StatusCodes.Status204NoContent);
-        //}
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateEstate(Guid id, UpdateEstateCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("The id should be identical with command.Id");
+            }
+            await mediator.Send(command);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteEstate(Guid id)
