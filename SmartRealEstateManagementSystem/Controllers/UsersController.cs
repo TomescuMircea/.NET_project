@@ -1,11 +1,8 @@
-﻿using Application.Use_Cases.Commands.EstateC;
-using Application.Use_Cases.Commands.UserC;
+﻿using Application.Use_Cases.Commands.UserC;
 using Application.Use_Cases.Queries.UserQ;
 using Domain.Common;
 using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
@@ -46,6 +43,17 @@ namespace SmartRealEstateManagementSystem.Controllers
         public async Task<ActionResult<List<User>>> GetAllAsync()
         {
             return await mediator.Send(new GetUsersQuery());
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<ActionResult<Result<Guid>>> DeleteUser(Guid id,DeleteUserCommand command)
+        {
+            var result = await mediator.Send(new DeleteUserCommand(id));
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status200OK, result.Data);
         }
 
     }

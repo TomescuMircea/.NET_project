@@ -1,6 +1,4 @@
-﻿
-
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
@@ -29,7 +27,18 @@ namespace Infrastructure.Repositories
 
 
         }
+
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Contact>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Contact> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

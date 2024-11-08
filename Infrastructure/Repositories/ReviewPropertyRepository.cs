@@ -1,10 +1,7 @@
-﻿
-
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Repositories
 {
@@ -29,7 +26,17 @@ namespace Infrastructure.Repositories
             }
         }
 
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<ReviewProperty>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ReviewProperty> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

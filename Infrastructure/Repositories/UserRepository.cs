@@ -1,5 +1,4 @@
-﻿
-using Domain.Common;
+﻿using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
@@ -27,10 +26,29 @@ namespace Infrastructure.Repositories
                 return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
+
+        public async Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            var user = await context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return Result<Guid>.Failure("User not found");
+            }
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
+            return Result<Guid>.Success(id);
+        }
+
         public async Task<IEnumerable<User>> GetAllAsync()
         {
             return await context.Users.ToListAsync();
         }
+
+        public Task<User> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateAsync(User user)
         {
             context.Entry(user).State = EntityState.Modified;
