@@ -27,10 +27,21 @@ namespace Infrastructure.Repositories
                 return Result<Guid>.Failure(ex.InnerException!.ToString());
             }
         }
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<User>> GetAllAsync()
         {
             return await context.Users.ToListAsync();
         }
+
+        public Task<User> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task UpdateAsync(User user)
         {
             context.Entry(user).State = EntityState.Modified;

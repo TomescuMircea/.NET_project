@@ -28,7 +28,17 @@ namespace Infrastructure.Repositories
             }
         }
 
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Apartment>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Apartment> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

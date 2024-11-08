@@ -35,6 +35,8 @@ namespace Application.Utils
 
             CreateMap<Estate,EstateDto>().ReverseMap();
             CreateMap<CreateEstateCommand,Estate>().ReverseMap();
+            CreateMap<UpdateEstateCommand, Estate>().ReverseMap();
+            CreateMap<DeleteEstateCommand, Estate>().ReverseMap();
 
             CreateMap<Favorite, FavoriteDto>().ReverseMap();
             CreateMap<CreateFavoriteCommand, Favorite>().ReverseMap();

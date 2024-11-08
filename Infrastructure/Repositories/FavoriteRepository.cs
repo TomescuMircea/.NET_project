@@ -29,7 +29,17 @@ namespace Infrastructure.Repositories
             }
         }
 
+        public Task<Result<Guid>> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Favorite>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Favorite> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

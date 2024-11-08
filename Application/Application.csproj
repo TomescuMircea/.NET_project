@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Use Cases\Queries\Apartment\" />
-    <Folder Include="Use Cases\Queries\Estate\" />
     <Folder Include="Use Cases\Queries\House\" />
     <Folder Include="Use Cases\Queries\BusinessSpace\" />
     <Folder Include="Use Cases\Queries\Credential\" />
@@ -27,7 +26,6 @@
     <Folder Include="Use Cases\Queries\ReviewProperty\" />
     <Folder Include="Use Cases\Queries\ReviewUser\" />
     <Folder Include="Use Cases\Queries\Pay\" />
-    <Folder Include="Use Cases\QueryHandlers\Estate\" />
   </ItemGroup>
 
   <ItemGroup>
