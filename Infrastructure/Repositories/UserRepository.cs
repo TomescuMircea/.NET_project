@@ -44,9 +44,9 @@ namespace Infrastructure.Repositories
             return await context.Users.ToListAsync();
         }
 
-        public Task<User> GetByIdAsync(Guid id)
+        public async Task<User> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await context.Users.FindAsync(id);
         }
 
         public async Task UpdateAsync(User user)

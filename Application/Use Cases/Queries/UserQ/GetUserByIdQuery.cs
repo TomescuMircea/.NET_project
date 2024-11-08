@@ -3,8 +3,8 @@ using MediatR;
 
 namespace Application.Use_Cases.Queries.UserQ
 {
-    public class GetUsersQuery : IRequest<List<UserDto>>
+    public class GetUserByIdQuery: IRequest<UserDto>
     {
-
+        public Guid Id { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Application.Use_Cases.Commands.UserC;
+﻿using Application.DTO;
+using Application.Use_Cases.Commands.UserC;
 using Application.Use_Cases.Queries.UserQ;
 using Domain.Common;
 using Domain.Entities;
@@ -29,7 +30,7 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateBook(Guid id, UpdateUserCommand command)
+        public async Task<IActionResult> UpdateUser(Guid id, UpdateUserCommand command)
         {
             if (id != command.Id)
             {
@@ -40,9 +41,16 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllAsync()
         {
-            return await mediator.Send(new GetUsersQuery());
+            var result = await mediator.Send(new GetUsersQuery());
+            return Ok(result);
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<UserDto>> GetUserById(Guid id)
+        {
+            return await mediator.Send(new GetUserByIdQuery { Id = id });
         }
 
         [HttpDelete("{id:guid}")]
