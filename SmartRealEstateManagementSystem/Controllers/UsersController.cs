@@ -54,7 +54,7 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-        public async Task<ActionResult<Result<Guid>>> DeleteUser(Guid id,DeleteUserCommand command)
+        public async Task<ActionResult<Result<Guid>>> DeleteUser(Guid id)
         {
             var result = await mediator.Send(new DeleteUserCommand(id));
             if (!result.IsSuccess)
