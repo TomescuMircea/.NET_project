@@ -45,7 +45,7 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
             var result = await mediator.Send(new GetUsersQuery());
             return Ok(result);
