@@ -29,6 +29,8 @@ namespace Application.Utils
 
             CreateMap<Contact, ContactDto>().ReverseMap();
             CreateMap<CreateContactCommand,  Contact>().ReverseMap();
+            CreateMap<UpdateContactCommand, Contact>().ReverseMap();
+            CreateMap<DeleteContactCommand, Contact>().ReverseMap();
 
             CreateMap<Credential, CredentialDto>().ReverseMap();
             CreateMap<CreateCredentialCommand, Credential>().ReverseMap();

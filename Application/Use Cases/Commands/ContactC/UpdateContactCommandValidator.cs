@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Application.Use_Cases.Commands.ContactC
 {
-    internal class UpdateContactCommandValidator : AbstractValidator<UpdateContactCommand>
+    public class UpdateContactCommandValidator : AbstractValidator<UpdateContactCommand>
     {
         public UpdateContactCommandValidator()
         {
