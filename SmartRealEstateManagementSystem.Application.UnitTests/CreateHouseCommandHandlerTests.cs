@@ -19,16 +19,16 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class CreateHouseCommandHandlerTests
     {
-        private readonly IHouseRepository _houseRepository;
-        private readonly IEstateRepository _estateRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IGenericEntityRepository<House> _houseRepository;
+        private readonly IGenericEntityRepository<Estate> _estateRepository;
+        private readonly IGenericEntityRepository<User> _userRepository;
         private readonly IMapper _mapper;
         private readonly CreateHouseCommandHandler _handler;
         public CreateHouseCommandHandlerTests()
         {
-            _houseRepository = Substitute.For<IHouseRepository>();
-            _estateRepository = Substitute.For<IEstateRepository>();
-            _userRepository = Substitute.For<IUserRepository>();
+            _houseRepository = Substitute.For<IGenericEntityRepository<House>>();
+            _estateRepository = Substitute.For<IGenericEntityRepository<Estate>>();
+            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
             _mapper = Substitute.For<IMapper>();
             _handler = new CreateHouseCommandHandler(_houseRepository, _mapper);
         }

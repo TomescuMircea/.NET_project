@@ -18,14 +18,15 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class CreateContactCommandHandlerTests
     {
-        private readonly IContactRepository _contactRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly IGenericEntityRepository<Contact> _contactRepository;
+        private readonly IGenericEntityRepository<User> _userRepository;
         private readonly IMapper _mapper;
         private readonly CreateContactCommandHandler _handler;
+
         public CreateContactCommandHandlerTests()
         {
-            _contactRepository = Substitute.For<IContactRepository>();
-            _userRepository = Substitute.For<IUserRepository>();
+            _contactRepository = Substitute.For<IGenericEntityRepository<Contact>>();
+            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
             _mapper = Substitute.For<IMapper>();
             _handler = new CreateContactCommandHandler(_contactRepository, _mapper);
 
