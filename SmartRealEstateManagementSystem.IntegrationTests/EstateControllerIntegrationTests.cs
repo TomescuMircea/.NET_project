@@ -54,7 +54,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public void GivenExistingEtates_WhenGetAllIsCalled_ThenReturnsTheRightEstates()
+        public void GivenExistingEstates_WhenGetAllIsCalled_ThenReturnsTheRightEstates()
         {
             // arrange
             var client = factory.CreateClient();
