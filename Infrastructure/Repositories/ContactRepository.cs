@@ -43,7 +43,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Contact contact)
+        public Task<Result<Guid>> UpdateAsync(Contact contact)
         {
             throw new NotImplementedException();
         }

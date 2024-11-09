@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(House house)
+        public Task<Result<Guid>> UpdateAsync(House house)
         {
             throw new NotImplementedException();
         }

@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(BusinessSpace businessSpace)
+        public Task<Result<Guid>> UpdateAsync(BusinessSpace businessSpace)
         {
             throw new NotImplementedException();
         }

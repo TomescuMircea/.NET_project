@@ -42,7 +42,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Favorite favorite)
+        public Task<Result<Guid>> UpdateAsync(Favorite favorite)
         {
             throw new NotImplementedException();
         }
