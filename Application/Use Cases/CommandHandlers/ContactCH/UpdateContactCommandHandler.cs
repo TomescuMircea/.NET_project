@@ -19,10 +19,19 @@ namespace Application.Use_Cases.CommandHandlers.ContactCH
             this.mapper = mapper;
         }
 
-        public Task<Result<Guid>> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
         {
             var contact = mapper.Map<Contact>(request);
-            return repository.UpdateAsync(contact);
+            var result = await repository.UpdateAsync(contact);
+            if (result == null)
+            {
+                return Result<Guid>.Failure("Update operation failed.");
+            }
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }
