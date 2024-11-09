@@ -30,14 +30,18 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateUser(Guid id, UpdateUserCommand command)
+        public async Task<ActionResult<Result<Guid>>> UpdateUser(Guid id, UpdateUserCommand command)
         {
             if (id != command.Id)
             {
                 return BadRequest("The id should be identical with command.Id");
             }
-            await mediator.Send(command);
-            return StatusCode(StatusCodes.Status204NoContent);
+            var result = await mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status200OK, result.Data);
         }
 
         [HttpGet]

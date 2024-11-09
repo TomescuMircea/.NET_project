@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Image image)
+        public Task<Result<Guid>> UpdateAsync(Image image)
         {
             throw new NotImplementedException();
         }

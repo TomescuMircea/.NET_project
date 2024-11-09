@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Credential credential)
+        public Task<Result<Guid>> UpdateAsync(Credential credential)
         {
             throw new NotImplementedException();
         }

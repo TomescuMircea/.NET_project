@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Pay pay)
+        public Task<Result<Guid>> UpdateAsync(Pay pay)
         {
             throw new NotImplementedException();
         }

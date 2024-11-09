@@ -49,10 +49,18 @@ namespace Infrastructure.Repositories
             return await context.Users.FindAsync(id);
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task<Result<Guid>> UpdateAsync(User user)
         {
-            context.Entry(user).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            try
+            {
+                context.Entry(user).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(user.Id);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
+            }
         }
     }
 }
