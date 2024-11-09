@@ -11,7 +11,6 @@
     <Folder Include="Use Cases\Queries\House\" />
     <Folder Include="Use Cases\Queries\BusinessSpace\" />
     <Folder Include="Use Cases\Queries\Credential\" />
-    <Folder Include="Use Cases\Queries\Contact\" />
     <Folder Include="Use Cases\Queries\Image\" />
     <Folder Include="Use Cases\Queries\Favorite\" />
     <Folder Include="Use Cases\Queries\Report\" />

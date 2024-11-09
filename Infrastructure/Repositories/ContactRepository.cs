@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -28,24 +29,33 @@ namespace Infrastructure.Repositories
 
         }
 
-        public Task<Result<Guid>> DeleteAsync(Guid id)
+        public async Task<Result<Guid>> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var contact = await context.Contacts.FindAsync(id);
+            if (contact == null)
+            {
+                return Result<Guid>.Failure("Contact not found");
+            }
+            context.Contacts.Remove(contact);
+            await context.SaveChangesAsync();
+            return Result<Guid>.Success(id);
         }
 
-        public Task<IEnumerable<Contact>> GetAllAsync()
+        public async Task<IEnumerable<Contact>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await context.Contacts.ToListAsync();
         }
 
-        public Task<Contact> GetByIdAsync(Guid id)
+        public async Task<Contact> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+
+            return await context.Contacts.FindAsync(id);
         }
 
-        public Task UpdateAsync(Contact contact)
+        public  async Task UpdateAsync(Contact contact)
         {
-            throw new NotImplementedException();
+            context.Entry(contact).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
     }
 }
