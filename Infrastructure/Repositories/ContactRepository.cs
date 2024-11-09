@@ -52,10 +52,21 @@ namespace Infrastructure.Repositories
             return await context.Contacts.FindAsync(id);
         }
 
-        public  async Task UpdateAsync(Contact contact)
+        public async Task<Result<Guid>> UpdateAsync(Contact contact)
         {
-            context.Entry(contact).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            try
+            {
+                context.Entry(contact).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+                return Result<Guid>.Success(contact.Id);
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Failure(ex.InnerException!.ToString());
+            }
+
+
         }
+
     }
 }

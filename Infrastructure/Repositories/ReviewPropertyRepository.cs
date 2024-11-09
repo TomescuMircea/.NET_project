@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(ReviewProperty reviewProperty)
+        public Task<Result<Guid>> UpdateAsync(ReviewProperty reviewProperty)
         {
             throw new NotImplementedException();
         }

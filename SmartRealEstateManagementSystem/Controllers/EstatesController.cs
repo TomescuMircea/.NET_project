@@ -4,6 +4,7 @@ using Application.Use_Cases.Queries.EstateQ;
 using Domain.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
@@ -43,14 +44,18 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateEstate(Guid id, UpdateEstateCommand command)
+        public async Task<ActionResult<Result<Guid>>> UpdateEstate(Guid id, UpdateEstateCommand command)
         {
             if (id != command.Id)
             {
                 return BadRequest("The id should be identical with command.Id");
             }
-            await mediator.Send(command);
-            return StatusCode(StatusCodes.Status204NoContent);
+            var result = await mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return StatusCode(StatusCodes.Status200OK, result.Data);
         }
 
         [HttpDelete("{id:guid}")]

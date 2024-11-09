@@ -1,12 +1,13 @@
 ﻿using Application.Use_Cases.Commands.UserC;
 using AutoMapper;
+using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
 
 namespace Application.Use_Cases.CommandHandlers.UserCH
 {
-    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
+    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Result<Guid>>
     {
         private readonly IGenericEntityRepository<User> repository;
         private readonly IMapper mapper;
@@ -17,7 +18,7 @@ namespace Application.Use_Cases.CommandHandlers.UserCH
             this.mapper = mapper;
         }
 
-        public Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public Task<Result<Guid>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var user = mapper.Map<User>(request);
             return repository.UpdateAsync(user);

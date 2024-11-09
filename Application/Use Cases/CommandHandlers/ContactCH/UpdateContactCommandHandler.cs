@@ -1,18 +1,14 @@
 ﻿using Application.Use_Cases.Commands.ContactC;
-using Application.Use_Cases.Commands.EstateC;
 using AutoMapper;
+using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Application.Use_Cases.CommandHandlers.ContactCH
 {
-    public class UpdateContactCommandHandler : IRequestHandler<UpdateContactCommand>
+    public class UpdateContactCommandHandler : IRequestHandler<UpdateContactCommand, Result<Guid>>
     {
         private readonly IGenericEntityRepository<Contact> repository;
         private readonly IMapper mapper;
@@ -23,7 +19,7 @@ namespace Application.Use_Cases.CommandHandlers.ContactCH
             this.mapper = mapper;
         }
 
-        public Task Handle(UpdateContactCommand request, CancellationToken cancellationToken)
+        public Task<Result<Guid>> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
         {
             var contact = mapper.Map<Contact>(request);
             return repository.UpdateAsync(contact);
