@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Application.Use_Cases.QueryHandlers.ContactQH
 {
-    internal class GetContactsQueryHandler : IRequestHandler<GetContactsQuery, List<ContactDto>>
+    public class GetContactsQueryHandler : IRequestHandler<GetContactsQuery, List<ContactDto>>
     {
         private readonly IGenericEntityRepository<Contact> repository;
         private readonly IMapper mapper;
