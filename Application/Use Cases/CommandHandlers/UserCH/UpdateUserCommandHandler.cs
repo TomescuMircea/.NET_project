@@ -18,10 +18,19 @@ namespace Application.Use_Cases.CommandHandlers.UserCH
             this.mapper = mapper;
         }
 
-        public Task<Result<Guid>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var user = mapper.Map<User>(request);
-            return repository.UpdateAsync(user);
+            var result = await repository.UpdateAsync(user);
+            if (result == null)
+            {
+                return Result<Guid>.Failure("Update operation failed.");
+            }
+            if (result.IsSuccess)
+            {
+                return Result<Guid>.Success(result.Data);
+            }
+            return Result<Guid>.Failure(result.ErrorMessage);
         }
     }
 }
