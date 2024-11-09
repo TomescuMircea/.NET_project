@@ -104,6 +104,18 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 
             };
 
+            _mapper.Map<Contact>(command).Returns(contact);
+            _userRepository.AddAsync(user).Returns(Result<Guid>.Failure("Error"));
+            _contactRepository.AddAsync(contact).Returns(Result<Guid>.Failure("Error"));
+
+            // Act
+            var result = await _handler.Handle(command, CancellationToken.None);
+
+            // Assert
+            result.IsSuccess.Should().BeFalse();
+            result.Data.Should().Be(Guid.Empty);
+            result.ErrorMessage.Should().NotBeNullOrEmpty();
+
         }
     }
 }
