@@ -4,8 +4,6 @@ using Application.Use_Cases.Queries.EstateQ;
 using Application.Utils;
 using Domain.Common;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmartRealEstateManagementSystem.Controllers
@@ -41,7 +39,12 @@ namespace SmartRealEstateManagementSystem.Controllers
         public async Task<ActionResult<EstateDto>> GetEstateById(Guid id)
         {
             var query = new GetEstateByIdQuery { Id = id };
-            return await mediator.Send(query);
+            var result = await mediator.Send(query);
+            if (result == null)
+            {
+                return BadRequest("Estate not found");
+            }
+            return Ok(result);
         }
 
         [HttpPut("{id:guid}")]
@@ -68,6 +71,18 @@ namespace SmartRealEstateManagementSystem.Controllers
                 return BadRequest(result.ErrorMessage);
             }
             return StatusCode(StatusCodes.Status200OK, result.Data);
+        }
+
+        [HttpGet("paginated")]
+        public async Task<ActionResult<PagedResult<EstateDto>>> GetFilteredBooks([FromQuery] int page, [FromQuery] int pageSize)
+        {
+            var query = new GetFilteredEstatesQuery
+            {
+                Page = page,
+                PageSize = pageSize
+            };
+            var result = await mediator.Send(query);
+            return Ok(result);
         }
     }
 }

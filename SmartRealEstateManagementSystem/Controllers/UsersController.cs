@@ -54,7 +54,12 @@ namespace SmartRealEstateManagementSystem.Controllers
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<UserDto>> GetUserById(Guid id)
         {
-            return await mediator.Send(new GetUserByIdQuery { Id = id });
+            var result = await mediator.Send(new GetUserByIdQuery { Id = id });
+            if (result == null)
+            {
+                return BadRequest("User not found");
+            }
+            return Ok(result);
         }
 
         [HttpDelete("{id:guid}")]

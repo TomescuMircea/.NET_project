@@ -34,7 +34,12 @@ namespace SmartRealEstateManagementSystem.Controllers
         public async Task<ActionResult<ContactDto>> GetContactById(Guid id)
         {
             var query = new GetContactByIdQuery { Id = id };
-            return await mediator.Send(query);
+            var result = await mediator.Send(query);
+            if (result == null)
+            {
+                return BadRequest("Cantact not found");
+            }
+            return Ok(result);
         }
 
         [HttpGet]
