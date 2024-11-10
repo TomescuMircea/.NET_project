@@ -11,19 +11,19 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class GetContactByIdQueryHandlerTests
     {
-        private readonly IGenericEntityRepository<Contact> _contactRepository;
-        private readonly IMapper _mapper;
-        private readonly GetContactByIdQueryHandler _handler;
+        private readonly IGenericEntityRepository<Contact> repository;
+        private readonly IMapper mapper;
+        private readonly GetContactByIdQueryHandler handler;
 
         public GetContactByIdQueryHandlerTests()
         {
-            _contactRepository = Substitute.For<IGenericEntityRepository<Contact>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new GetContactByIdQueryHandler(_contactRepository, _mapper);
+            repository = Substitute.For<IGenericEntityRepository<Contact>>();
+            mapper = Substitute.For<IMapper>();
+            handler = new GetContactByIdQueryHandler(repository, mapper);
         }
 
         [Fact]
-        public void Given_GetContactByIdQueryHandler_When_HandleIsCalled_Then_TheContactShouldBeReturned()
+        public async void Given_GetContactByIdQueryHandler_When_HandleIsCalled_Then_TheContactShouldBeReturned()
         {
             // Arrange
             var contact = new Contact
@@ -33,7 +33,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Email = "example@example.com",
                 Phone = "123-456-7890"
             };
-            _contactRepository.GetByIdAsync(contact.Id).Returns(contact);
+            repository.GetByIdAsync(contact.Id).Returns(contact);
             var query = new GetContactByIdQuery { Id = contact.Id };
             var contactDto = new ContactDto
             {
@@ -42,10 +42,10 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Email = contact.Email,
                 Phone = contact.Phone
             };
-            _mapper.Map<ContactDto>(contact).Returns(contactDto);
+            mapper.Map<ContactDto>(contact).Returns(contactDto);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None).Result;
+            var result = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
@@ -56,14 +56,14 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public void Given_GetContactByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
+        public async void Given_GetContactByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
         {
             // Arrange
             var query = new GetContactByIdQuery { Id = new Guid("a3c7b2a9-715d-4b99-8e1d-43ed32a6a8b1") };
-            _contactRepository.GetByIdAsync(query.Id).Returns((Contact)null);
+            repository.GetByIdAsync(query.Id).Returns((Contact?)null);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None).Result;
+            var result = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().BeNull();

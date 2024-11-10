@@ -10,17 +10,15 @@ namespace Application.Use_Cases.Commands.EstateC
 {
     public class UpdateEstateCommandHandlerTests
     {
-        private readonly IGenericEntityRepository<Estate> _estateRepository;
-        private readonly IGenericEntityRepository<User> _userRepository;
-        private readonly IMapper _mapper;
-        private readonly UpdateEstateCommandHandler _handler;
+        private readonly IGenericEntityRepository<Estate> repository;
+        private readonly IMapper mapper;
+        private readonly UpdateEstateCommandHandler handler;
 
         public UpdateEstateCommandHandlerTests()
         {
-            _estateRepository = Substitute.For<IGenericEntityRepository<Estate>>();
-            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new UpdateEstateCommandHandler(_estateRepository, _mapper);
+            repository = Substitute.For<IGenericEntityRepository<Estate>>();
+            mapper = Substitute.For<IMapper>();
+            handler = new UpdateEstateCommandHandler(repository, mapper);
         }
 
         [Fact]
@@ -62,13 +60,13 @@ namespace Application.Use_Cases.Commands.EstateC
                 User = user
             };
 
-            _mapper.Map<Estate>(command).Returns(estate);
+            mapper.Map<Estate>(command).Returns(estate);
 
             // Act
-            await _handler.Handle(command, CancellationToken.None);
+            await handler.Handle(command, CancellationToken.None);
 
             // Assert
-            await _estateRepository.Received(1).UpdateAsync(estate);
+            await repository.Received(1).UpdateAsync(estate);
         }
 
         [Fact]
@@ -101,11 +99,11 @@ namespace Application.Use_Cases.Commands.EstateC
                 ListingData = DateTime.Now
             };
 
-            _mapper.Map<Estate>(command).Returns(estate);
-            _estateRepository.UpdateAsync(estate).Returns(Result<Guid>.Failure("Update operation failed."));
+            mapper.Map<Estate>(command).Returns(estate);
+            repository.UpdateAsync(estate).Returns(Result<Guid>.Failure("Update operation failed."));
 
             // Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
             result.Should().BeOfType<Result<Guid>>();

@@ -45,7 +45,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             _contactRepository.DeleteAsync(contact.Id).Returns(Result<Guid>.Success(contact.Id));
 
             //Act
-            var result = await _handler.Handle(command, System.Threading.CancellationToken.None);
+            var result = await _handler.Handle(command, CancellationToken.None);
 
             //Assert
             result.IsSuccess.Should().BeTrue();
@@ -63,7 +63,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             _contactRepository.DeleteAsync(command.Id).Returns(Result<Guid>.Failure("Contact not found"));
 
             //Act
-            var result = await _handler.Handle(command, System.Threading.CancellationToken.None);
+            var result = await _handler.Handle(command, CancellationToken.None);
 
             //Assert
             result.IsSuccess.Should().BeFalse();

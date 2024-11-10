@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Pay> GetByIdAsync(Guid id)
+        public Task<Pay?> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

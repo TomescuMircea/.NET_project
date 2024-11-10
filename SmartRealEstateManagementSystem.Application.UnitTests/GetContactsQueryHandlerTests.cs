@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public void Given_GetContactsQueryHandler_When_HandleIsCalled_Then_AListOfContactsShouldBeReturned()
+        public async void Given_GetContactsQueryHandler_When_HandleIsCalled_Then_AListOfContactsShouldBeReturned()
         {
             // Arrange
             List<Contact> contacts = GenerateContacts();
@@ -32,13 +32,13 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             GenerateContactsDto(contacts);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None);
+            var result = await _handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
-            Assert.Equal(2, result.Result.Count);
-            Assert.Equal(contacts[0].Id, result.Result[0].Id);
-            Assert.Equal(contacts[1].Id, result.Result[1].Id);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(contacts[0].Id, result[0].Id);
+            Assert.Equal(contacts[1].Id, result[1].Id);
         }
 
         private void GenerateContactsDto(List<Contact> contacts)
@@ -62,7 +62,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             });
         }
 
-        private List<Contact> GenerateContacts()
+        static private List<Contact> GenerateContacts()
         {
             return new List<Contact>
             {

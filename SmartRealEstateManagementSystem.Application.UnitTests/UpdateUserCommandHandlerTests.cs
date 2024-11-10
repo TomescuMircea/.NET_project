@@ -12,15 +12,15 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class UpdateUserCommandHandlerTests
     {
-        private readonly IGenericEntityRepository<User> _userRepository;
-        private readonly IMapper _mapper;
-        private readonly UpdateUserCommandHandler _handler;
+        private readonly IGenericEntityRepository<User> repository;
+        private readonly IMapper mapper;
+        private readonly UpdateUserCommandHandler handler;
 
         public UpdateUserCommandHandlerTests()
         {
-            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new UpdateUserCommandHandler(_userRepository, _mapper);
+            repository = Substitute.For<IGenericEntityRepository<User>>();
+            mapper = Substitute.For<IMapper>();
+            handler = new UpdateUserCommandHandler(repository, mapper);
         }
 
         [Fact]
@@ -45,17 +45,17 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Status = command.Status
             };
 
-            _mapper.Map<User>(command).Returns(user);
-            _userRepository.UpdateAsync(user).Returns(Result<Guid>.Success(user.Id));
+            mapper.Map<User>(command).Returns(user);
+            repository.UpdateAsync(user).Returns(Result<Guid>.Success(user.Id));
 
             // Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
             result.Should().BeOfType<Result<Guid>>();
             result.IsSuccess.Should().BeTrue();
             result.Data.Should().Be(user.Id);
-            await _userRepository.Received(1).UpdateAsync(user);
+            await repository.Received(1).UpdateAsync(user);
         }
 
         [Fact]
@@ -80,11 +80,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Status = command.Status
             };
 
-            _mapper.Map<User>(command).Returns(user);
-            _userRepository.UpdateAsync(user).Returns(Result<Guid>.Failure("Update operation failed."));
+            mapper.Map<User>(command).Returns(user);
+            repository.UpdateAsync(user).Returns(Result<Guid>.Failure("Update operation failed."));
 
             // Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
             result.Should().BeOfType<Result<Guid>>();

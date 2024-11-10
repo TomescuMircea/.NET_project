@@ -24,7 +24,10 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                     var descriptor = services.SingleOrDefault(
                         d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
 
-                    services.Remove(descriptor);
+                    if (descriptor != null)
+                    {
+                        services.Remove(descriptor);
+                    }
 
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
@@ -39,38 +42,39 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public void GivenUsers_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
+        public async void GivenUsers_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
         {
             // Arrange
             var client = factory.CreateClient();
 
             // Act
-            var response = client.GetAsync(BaseUrl);
+            var response = await client.GetAsync(BaseUrl);
 
             // Assert
-            response.Result.EnsureSuccessStatusCode();
-            response.Result.Content.Headers.ContentType.ToString().Should().Be("application/json; charset=utf-8");
+            response.EnsureSuccessStatusCode();
+            response.Content.Headers.ContentType?.ToString().Should().Be("application/json; charset=utf-8");
         }
 
         [Fact]
-        public void GivenExistingUsers_WhenGetAllIsCalled_ThenReturnsTheRightUsers()
+        public async void GivenExistingUsers_WhenGetAllIsCalled_ThenReturnsTheRightUsers()
         {
             // Arrange
             var client = factory.CreateClient();
             CreateSUT();
 
             // Act
-            var response = client.GetAsync(BaseUrl);
+            var response = await client.GetAsync(BaseUrl);
 
             // Assert
-            response.Result.EnsureSuccessStatusCode();
-            var users = response.Result.Content.ReadAsStringAsync().Result;
+            response.EnsureSuccessStatusCode();
+            var users = await response.Content.ReadAsStringAsync();
             users.Should().Contain("John");
         }
 
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this); 
             dbContext.Database.EnsureDeleted();
             dbContext.Dispose();
         }

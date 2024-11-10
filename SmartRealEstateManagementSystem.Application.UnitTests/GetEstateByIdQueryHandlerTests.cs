@@ -13,17 +13,17 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
     {
         private readonly IGenericEntityRepository<Estate> _estateRepository;
         private readonly IMapper _mapper;
-        private readonly GetEstateByIdQueryHandler _handler;
+        private readonly GetEstateByIdQueryHandler handler;
 
         public GetEstateByIdQueryHandlerTests()
         {
             _estateRepository = Substitute.For<IGenericEntityRepository<Estate>>();
             _mapper = Substitute.For<IMapper>();
-            _handler = new GetEstateByIdQueryHandler(_estateRepository, _mapper);
+            handler = new GetEstateByIdQueryHandler(_estateRepository, _mapper);
         }
 
         [Fact]
-        public void Given_GetEstateByIdQueryHandler_When_HandleIsCalled_Then_TheEstateShouldBeReturned()
+        public async void Given_GetEstateByIdQueryHandler_When_HandleIsCalled_Then_TheEstateShouldBeReturned()
         { 
             // Arrange
             var estate = new Estate
@@ -49,7 +49,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             _mapper.Map<EstateDto>(estate).Returns(estateDto);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None).Result;
+            var result = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
@@ -62,14 +62,14 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public void Given_GetEstateByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
+        public async void Given_GetEstateByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
         {
             // Arrange
             var query = new GetEstateByIdQuery { Id = new Guid("d2aca8c8-ea05-4303-ad6f-83b41d71f97c") };
-            _estateRepository.GetByIdAsync(query.Id).Returns((Estate)null);
+            _estateRepository.GetByIdAsync(query.Id).Returns((Estate?)null);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None).Result;
+            var result = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().BeNull();

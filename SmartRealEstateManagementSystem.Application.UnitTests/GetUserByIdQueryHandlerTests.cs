@@ -11,19 +11,19 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class GetUserByIdQueryHandlerTests
     {
-        private readonly IGenericEntityRepository<User> _userRepository;
-        private readonly IMapper _mapper;
-        private readonly GetUserByIdQueryHandler _handler;
+        private readonly IGenericEntityRepository<User> repository;
+        private readonly IMapper mapper;
+        private readonly GetUserByIdQueryHandler handler;
 
         public GetUserByIdQueryHandlerTests()
         {
-            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new GetUserByIdQueryHandler(_userRepository, _mapper);
+            repository = Substitute.For<IGenericEntityRepository<User>>();
+            mapper = Substitute.For<IMapper>();
+            handler = new GetUserByIdQueryHandler(repository, mapper);
         }
 
         [Fact]
-        public void Given_GetUserByIdQueryHandler_When_HandleIsCalled_Then_TheUserShouldBeReturned()
+        public async Task Given_GetUserByIdQueryHandler_When_HandleIsCalled_Then_TheUserShouldBeReturned()
         {
             // Arrange
             var user = new User
@@ -34,7 +34,6 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 LastName = "Doe",
                 Status = "Active"
             };
-            _userRepository.GetByIdAsync(user.Id).Returns(user);
             var query = new GetUserByIdQuery { Id = user.Id };
             var userDto = new UserDto
             {
@@ -44,10 +43,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 LastName = user.LastName,
                 Status = user.Status
             };
-            _mapper.Map<UserDto>(user).Returns(userDto);
+            mapper.Map<UserDto>(user).Returns(userDto);
+            repository.GetByIdAsync(user.Id).Returns(user);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None).Result;
+            var result = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
@@ -59,14 +59,14 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public void Given_GetUserByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
+        public async void Given_GetUserByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
         {
             // Arrange
             var query = new GetUserByIdQuery { Id = new Guid("d2aca8c8-ea05-4303-ad6f-83b41d71f97c") };
-            _userRepository.GetByIdAsync(query.Id).Returns((User)null);
+            repository.GetByIdAsync(query.Id).Returns((User?)null);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None).Result;
+            var result = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().BeNull();

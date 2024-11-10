@@ -33,6 +33,7 @@ namespace Infrastructure.Persistence
         public DbSet<Pay> Pays{ get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            String smallint = "smallint";
             modelBuilder.HasPostgresExtension("uuid-ossp");
 
             modelBuilder.Entity<Estate>(entity =>
@@ -125,11 +126,11 @@ namespace Infrastructure.Persistence
 
                 entity.Property(a => a.RoomNumber)
                     .IsRequired()
-                    .HasColumnType("smallint");
+                    .HasColumnType(smallint);
 
                 entity.Property(a => a.FloorNumber)
                     .IsRequired()
-                    .HasColumnType("smallint");
+                    .HasColumnType(smallint);
 
                 entity.Property(a => a.FullySeparated)
                     .IsRequired()
@@ -150,7 +151,7 @@ namespace Infrastructure.Persistence
 
                 entity.Property(b => b.FloorNumber)
                     .IsRequired()
-                    .HasColumnType("smallint");
+                    .HasColumnType(smallint);
 
                 entity.HasOne<Estate>()
                     .WithOne()
@@ -318,7 +319,7 @@ namespace Infrastructure.Persistence
 
                 entity.Property(rp => rp.Rating)
                     .IsRequired()
-                    .HasColumnType("smallint");
+                    .HasColumnType(smallint);
 
                 entity.HasOne<Estate>()
                     .WithMany()
@@ -352,7 +353,7 @@ namespace Infrastructure.Persistence
 
                 entity.Property(ru => ru.Rating)
                     .IsRequired()
-                    .HasColumnType("smallint"); 
+                    .HasColumnType(smallint); 
 
                 entity.HasOne<User>()
                     .WithMany()

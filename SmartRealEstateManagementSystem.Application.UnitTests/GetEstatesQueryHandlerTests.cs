@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public void Given_GetEstatesQueryHandler_When_HandleIsCalled_Then_AListOfEstatesShouldBeReturned()
+        public async void Given_GetEstatesQueryHandler_When_HandleIsCalled_Then_AListOfEstatesShouldBeReturned()
         {
             // Arrange
             List<Estate> estates = GenerateEstates();
@@ -31,11 +31,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             var query = new GetEstatesQuery();
             GenerateEstatesDto(estates);
             // Act
-            var result = _handler.Handle(query, CancellationToken.None);
+            var result = await _handler.Handle(query, CancellationToken.None);
             // Assert
             result.Should().NotBeNull();
-            Assert.Equal(2, result.Result.Count);
-            Assert.Equal(estates[0].Id, result.Result[0].Id);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(estates[0].Id, result[0].Id);
         }
 
         private void GenerateEstatesDto(List<Estate> estates)
@@ -71,7 +71,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             });
         }
 
-        private List<Estate> GenerateEstates()
+        static private List<Estate> GenerateEstates()
         {
             return new List<Estate>
             {

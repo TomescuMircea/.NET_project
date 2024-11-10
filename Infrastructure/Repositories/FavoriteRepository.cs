@@ -37,7 +37,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Favorite> GetByIdAsync(Guid id)
+        public Task<Favorite?> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

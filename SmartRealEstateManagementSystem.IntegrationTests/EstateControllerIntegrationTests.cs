@@ -25,7 +25,10 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                         d => d.ServiceType ==
                             typeof(DbContextOptions<ApplicationDbContext>));
 
-                    services.Remove(descriptor);
+                    if (descriptor != null)
+                    {
+                        services.Remove(descriptor);
+                    }
 
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
@@ -40,32 +43,32 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public void GivenEstates_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
+        public async void GivenEstates_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
         {
             // arrange
             var client = factory.CreateClient();
 
             // act
-            var response = client.GetAsync(BaseUrl);
+            var response = await client.GetAsync(BaseUrl);
 
             // assert
-            response.Result.EnsureSuccessStatusCode();
-            response.Result.Content.Headers.ContentType.ToString().Should().Be("application/json; charset=utf-8");
+            response.EnsureSuccessStatusCode();
+            response.Content.Headers.ContentType?.ToString().Should().Be("application/json; charset=utf-8");
         }
 
         [Fact]
-        public void GivenExistingEstates_WhenGetAllIsCalled_ThenReturnsTheRightEstates()
+        public async void GivenExistingEstates_WhenGetAllIsCalled_ThenReturnsTheRightEstates()
         {
             // arrange
             var client = factory.CreateClient();
             CreateSUT();
 
             // act
-            var response = client.GetAsync(BaseUrl);
+            var response = await client.GetAsync(BaseUrl);
 
             // assert
-            response.Result.EnsureSuccessStatusCode();
-            var estates = response.Result.Content.ReadAsStringAsync().Result;
+            response.EnsureSuccessStatusCode();
+            var estates = await response.Content.ReadAsStringAsync();
             estates.Should().Contain("Estate 1");
         }
 
@@ -104,6 +107,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
         public void Dispose()
         {
+            GC.SuppressFinalize(this); 
             dbContext.Database.EnsureDeleted();
             dbContext.Dispose();
         }

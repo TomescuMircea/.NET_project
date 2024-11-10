@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Report> GetByIdAsync(Guid id)
+        public Task<Report?> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

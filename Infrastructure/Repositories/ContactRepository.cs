@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories
             return await context.Contacts.ToListAsync();
         }
 
-        public async Task<Contact> GetByIdAsync(Guid id)
+        public async Task<Contact?> GetByIdAsync(Guid id)
         {
 
             return await context.Contacts.FindAsync(id);

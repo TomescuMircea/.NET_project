@@ -44,7 +44,7 @@ namespace Infrastructure.Repositories
             return await context.Estates.ToListAsync();
         }
 
-        public async Task<Estate> GetByIdAsync(Guid id)
+        public async Task<Estate?> GetByIdAsync(Guid id)
         {
             return await context.Estates.FindAsync(id);
         }

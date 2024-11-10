@@ -12,15 +12,15 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class UpdateContactCommandHandlerTests
     {
-        private readonly IGenericEntityRepository<Contact> _contactRepository;
-        private readonly IMapper _mapper;
-        private readonly UpdateContactCommandHandler _handler;
+        private readonly IGenericEntityRepository<Contact> repository;
+        private readonly IMapper mapper;
+        private readonly UpdateContactCommandHandler handler;
 
         public UpdateContactCommandHandlerTests()
         {
-            _contactRepository = Substitute.For<IGenericEntityRepository<Contact>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new UpdateContactCommandHandler(_contactRepository, _mapper);
+            repository = Substitute.For<IGenericEntityRepository<Contact>>();
+            mapper = Substitute.For<IMapper>();
+            handler = new UpdateContactCommandHandler(repository, mapper);
         }
 
         [Fact]
@@ -43,17 +43,17 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Phone = command.Phone
             };
 
-            _mapper.Map<Contact>(command).Returns(contact);
-            _contactRepository.UpdateAsync(contact).Returns(Result<Guid>.Success(contact.Id));
+            mapper.Map<Contact>(command).Returns(contact);
+            repository.UpdateAsync(contact).Returns(Result<Guid>.Success(contact.Id));
 
             // Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
             result.Should().BeOfType<Result<Guid>>();
             result.IsSuccess.Should().BeTrue();
             result.Data.Should().Be(contact.Id);
-            await _contactRepository.Received(1).UpdateAsync(contact);
+            await repository.Received(1).UpdateAsync(contact);
         }
 
         [Fact]
@@ -76,11 +76,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Phone = command.Phone
             };
 
-            _mapper.Map<Contact>(command).Returns(contact);
-            _contactRepository.UpdateAsync(contact).Returns(Result<Guid>.Failure("Update operation failed."));
+            mapper.Map<Contact>(command).Returns(contact);
+            repository.UpdateAsync(contact).Returns(Result<Guid>.Failure("Update operation failed."));
 
             // Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
             result.Should().BeOfType<Result<Guid>>();

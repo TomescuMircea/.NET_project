@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<BusinessSpace> GetByIdAsync(Guid id)
+        public Task<BusinessSpace?> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

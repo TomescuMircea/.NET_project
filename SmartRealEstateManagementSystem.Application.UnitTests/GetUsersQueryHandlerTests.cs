@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public void Given_GetUsersQueryHandler_When_HandleIsCalled_Then_AListOfUsersShouldBeReturned()
+        public async void Given_GetUsersQueryHandler_When_HandleIsCalled_Then_AListOfUsersShouldBeReturned()
         {
             // Arrange
             List<User> users = GenerateUsers();
@@ -32,13 +32,13 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             GenerateUsersDto(users);
 
             // Act
-            var result = _handler.Handle(query, CancellationToken.None);
+            var result = await _handler.Handle(query, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
-            Assert.Equal(2, result.Result.Count);
-            Assert.Equal(users[0].Id, result.Result[0].Id);
-            Assert.Equal(users[1].Id, result.Result[1].Id);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(users[0].Id, result[0].Id);
+            Assert.Equal(users[1].Id, result[1].Id);
         }
 
         private void GenerateUsersDto(List<User> users)
@@ -64,7 +64,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             });
         }
 
-        private List<User> GenerateUsers()
+        static private List<User> GenerateUsers()
         {
             return new List<User>
             {

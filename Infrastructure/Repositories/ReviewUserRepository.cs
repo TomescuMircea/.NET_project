@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<ReviewUser> GetByIdAsync(Guid id)
+        public Task<ReviewUser?> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }
