@@ -9,8 +9,8 @@ namespace Application.Use_Cases.QueryHandlers.UserQH
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
     {
-        public IGenericEntityRepository<User> repository;
-        public IMapper mapper;
+        private readonly IGenericEntityRepository<User> repository;
+        private readonly IMapper mapper;
         public GetUserByIdQueryHandler(IGenericEntityRepository<User> repository,IMapper mapper)
         {
            this.repository = repository;

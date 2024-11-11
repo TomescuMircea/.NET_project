@@ -11,15 +11,13 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 {
     public class DeleteUserCommandHandlerTests
     {
-        private readonly IGenericEntityRepository<User> _userRepository;
-        private readonly IMapper _mapper;
-        private readonly DeleteUserCommandhandler _handler;
+        private readonly IGenericEntityRepository<User> repository;
+        private readonly DeleteUserCommandhandler handler;
 
         public DeleteUserCommandHandlerTests()
         {
-            _userRepository = Substitute.For<IGenericEntityRepository<User>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new DeleteUserCommandhandler(_userRepository, _mapper);
+            repository = Substitute.For<IGenericEntityRepository<User>>();
+            handler = new DeleteUserCommandhandler(repository);
         }
 
         [Fact]
@@ -37,10 +35,10 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
                 Status = "Active"
             };
 
-            _userRepository.DeleteAsync(user.Id).Returns(Result<Guid>.Success(user.Id));
+            repository.DeleteAsync(user.Id).Returns(Result<Guid>.Success(user.Id));
 
             // Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
             result.IsSuccess.Should().BeTrue();
@@ -54,10 +52,10 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             // Arrange
             var command = new DeleteUserCommand(new Guid("e1b6c9a7-a5d4-4326-9d85-9b67d82e0bcb"));
 
-            _userRepository.DeleteAsync(command.Id).Returns(Result<Guid>.Failure("User not found"));
+            repository.DeleteAsync(command.Id).Returns(Result<Guid>.Failure("User not found"));
 
             // Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             // Assert
             result.IsSuccess.Should().BeFalse();

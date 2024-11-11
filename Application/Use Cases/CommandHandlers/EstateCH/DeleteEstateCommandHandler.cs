@@ -1,5 +1,4 @@
 ﻿using Application.Use_Cases.Commands.EstateC;
-using AutoMapper;
 using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
@@ -10,11 +9,9 @@ namespace Application.Use_Cases.CommandHandlers.EstateCH
     public class DeleteEstateCommandHandler : IRequestHandler<DeleteEstateCommand, Result<Guid>>
     {
         private readonly IGenericEntityRepository<Estate> repository;
-        private readonly IMapper mapper;
-        public DeleteEstateCommandHandler(IGenericEntityRepository<Estate> repository, IMapper mapper)
+        public DeleteEstateCommandHandler(IGenericEntityRepository<Estate> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public async Task<Result<Guid>> Handle(DeleteEstateCommand request, CancellationToken cancellationToken)

@@ -12,14 +12,12 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
     public class DeleteEstateCommandHandlerTests
     {
         private readonly IGenericEntityRepository<Estate> _estateRepository;
-        private readonly IMapper _mapper;
         private readonly DeleteEstateCommandHandler _handler;
 
         public DeleteEstateCommandHandlerTests()
         {
             _estateRepository = Substitute.For<IGenericEntityRepository<Estate>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new DeleteEstateCommandHandler(_estateRepository, _mapper);
+            _handler = new DeleteEstateCommandHandler(_estateRepository);
         }
 
         [Fact]

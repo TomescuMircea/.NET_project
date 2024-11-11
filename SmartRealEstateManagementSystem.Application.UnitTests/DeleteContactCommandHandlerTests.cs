@@ -17,15 +17,13 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 
     public class DeleteContactCommandHandlerTests
     {
-        private readonly IGenericEntityRepository<Contact> _contactRepository;
-        private readonly IMapper _mapper;
-        private readonly DeleteContactCommandHandler _handler;
+        private readonly IGenericEntityRepository<Contact> repository;
+        private readonly DeleteContactCommandHandler handler;
 
         public DeleteContactCommandHandlerTests()
         {
-            _contactRepository = Substitute.For<IGenericEntityRepository<Contact>>();
-            _mapper = Substitute.For<IMapper>();
-            _handler = new DeleteContactCommandHandler(_contactRepository, _mapper);
+            repository = Substitute.For<IGenericEntityRepository<Contact>>();
+            handler = new DeleteContactCommandHandler(repository);
         }
 
         [Fact]
@@ -42,10 +40,10 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
 
             };
 
-            _contactRepository.DeleteAsync(contact.Id).Returns(Result<Guid>.Success(contact.Id));
+            repository.DeleteAsync(contact.Id).Returns(Result<Guid>.Success(contact.Id));
 
             //Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             //Assert
             result.IsSuccess.Should().BeTrue();
@@ -60,10 +58,10 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             //Arrange
             var command = new DeleteContactCommand(new Guid("fb0c0cbf-cf67-4cc8-babc-63d8b24862b7"));
 
-            _contactRepository.DeleteAsync(command.Id).Returns(Result<Guid>.Failure("Contact not found"));
+            repository.DeleteAsync(command.Id).Returns(Result<Guid>.Failure("Contact not found"));
 
             //Act
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = await handler.Handle(command, CancellationToken.None);
 
             //Assert
             result.IsSuccess.Should().BeFalse();

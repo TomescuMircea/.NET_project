@@ -10,11 +10,9 @@ namespace Application.Use_Cases.CommandHandlers.UserCH
     public class DeleteUserCommandhandler : IRequestHandler<DeleteUserCommand, Result<Guid>>
     {
         private readonly IGenericEntityRepository<User> repository;
-        private readonly IMapper mapper;
-        public DeleteUserCommandhandler(IGenericEntityRepository<User> repository, IMapper mapper)
+        public DeleteUserCommandhandler(IGenericEntityRepository<User> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public async Task<Result<Guid>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
