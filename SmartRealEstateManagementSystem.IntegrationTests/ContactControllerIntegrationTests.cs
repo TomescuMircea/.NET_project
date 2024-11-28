@@ -32,7 +32,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
 
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
-                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                        options.UseInMemoryDatabase("InMemoryDbForTesting"+Guid.NewGuid().ToString());
                     });
                 });
             });
@@ -43,7 +43,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenContacts_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
+        public async Task GivenContacts_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
         {
             // arrange
             var client = factory.CreateClient();
@@ -57,7 +57,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async  void GivenExistingContacts_WhenGetAllIsCalled_ThenReturnsTheRightContacts()
+        public async Task GivenExistingContacts_WhenGetAllIsCalled_ThenReturnsTheRightContacts()
         {
             // arrange
             var client = factory.CreateClient();
@@ -73,7 +73,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenValidEstate_WhenCreatedIsCalled_Then_ShouldAddToDatabaseTheEstate()
+        public async Task GivenValidEstate_WhenCreatedIsCalled_Then_ShouldAddToDatabaseTheEstate()
         {
             // Arrange
             var client = factory.CreateClient();

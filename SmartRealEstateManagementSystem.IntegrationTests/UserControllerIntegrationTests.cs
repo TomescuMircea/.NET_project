@@ -42,7 +42,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenUsers_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
+        public async Task GivenUsers_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
         {
             // Arrange
             var client = factory.CreateClient();
@@ -56,7 +56,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenExistingUsers_WhenGetAllIsCalled_ThenReturnsTheRightUsers()
+        public async Task GivenExistingUsers_WhenGetAllIsCalled_ThenReturnsTheRightUsers()
         {
             // Arrange
             var client = factory.CreateClient();

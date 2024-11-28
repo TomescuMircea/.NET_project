@@ -5,6 +5,7 @@ using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data.Common;
 using System.Net.Http.Json;
 
 namespace SmartRealEstateManagementSystem.IntegrationTests
@@ -30,6 +31,12 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                         services.Remove(descriptor);
                     }
 
+                    var dbConnectionDescriptor = services.SingleOrDefault(
+                        d => d.ServiceType ==
+                            typeof(DbConnection));
+
+                    services.Remove(dbConnectionDescriptor);
+
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
                         options.UseInMemoryDatabase("InMemoryDbForTesting");
@@ -43,7 +50,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenEstates_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
+        public async Task GivenEstates_WhenGetAllIsCalled_ThenReturnsTheRightContentType()
         {
             // arrange
             var client = factory.CreateClient();
@@ -73,7 +80,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenValidEstate_WhenCreatedIsCalled_Then_ShouldAddToDatabaseTheEstate()
+        public async Task GivenValidEstate_WhenCreatedIsCalled_Then_ShouldAddToDatabaseTheEstate()
         {
             // Arrange
             var client = factory.CreateClient();
@@ -107,7 +114,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
         public void Dispose()
         {
-            GC.SuppressFinalize(this); 
+            GC.SuppressFinalize(this);
             dbContext.Database.EnsureDeleted();
             dbContext.Dispose();
         }
