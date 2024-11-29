@@ -166,7 +166,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                     // Add InMemory database for testing
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
-                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                        options.UseInMemoryDatabase("InMemoryDbForTesting"+Guid.NewGuid().ToString());
                     });
                 });
             });
@@ -208,7 +208,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async Task GivenValidContact_WhenCreatedIsCalled_ThenShouldAddToDatabaseTheContact()
+        public async void GivenValidEstate_WhenCreatedIsCalled_Then_ShouldAddToDatabaseTheEstate()
         {
             // Arrange
             var client = factory.CreateClient();

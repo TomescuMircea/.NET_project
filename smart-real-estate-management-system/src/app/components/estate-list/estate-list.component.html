@@ -1,0 +1,26 @@
+<div class="estate-list">
+  <h1>Estate List</h1>
+  <button (click)="navigateToCreateEstate()">Create Estate</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Price</th>
+        <th>Size</th>
+        <th>ListingDate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estate of estates">
+        <td>{{ estate.id }}</td>
+        <td>{{ estate.name }}</td>
+        <td>{{ estate.address }}</td>
+        <td>{{ estate.price }}</td>
+        <td>{{ estate.size }}</td>
+        <td>{{ estate.listingData }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
