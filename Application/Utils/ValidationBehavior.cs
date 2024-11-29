@@ -1,5 +1,7 @@
-﻿using FluentValidation;
+﻿using Domain.Common;
+using FluentValidation;
 using MediatR;
+using System.Text.Json;
 
 namespace Application.Utils
 {
@@ -19,9 +21,23 @@ namespace Application.Utils
                 .SelectMany(result => result.Errors)
                 .Where(f => f != null)
                 .ToList();
+
             if (failures.Count != 0)
             {
-                throw new ValidationException(failures);
+                var failuresString = string.Join(", ", failures);
+                var errorText = JsonSerializer.Serialize(failures);
+
+                if (typeof(TResponse).IsGenericType && typeof(TResponse).GetGenericTypeDefinition() == typeof(Result<>))
+                {
+                    var resultType = typeof(TResponse).GetGenericArguments()[0];
+                    var failureResult = typeof(Result<>).MakeGenericType(resultType)
+                        .GetMethod("Failure", new[] { typeof(string) })
+                        .Invoke(null, new object[] { failuresString });
+
+                    return (TResponse)failureResult;
+                }
+
+                //throw new ValidationException(failures);
             }
 
             return await next();
