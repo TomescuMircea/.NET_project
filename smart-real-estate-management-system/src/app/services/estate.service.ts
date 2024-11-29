@@ -19,4 +19,12 @@ export class EstateService {
   public createEstate(estate: Estate): Observable<Estate> {
     return this.http.post<Estate>(this.apiURL, estate);
   }
+
+  public updateEstate(estate: Estate): Observable<Estate> {
+    return this.http.put<Estate>(this.apiURL + '/' + estate.id, estate);
+  }
+
+  getEstateById(id: string): Observable<Estate> {
+    return this.http.get<Estate>(this.apiURL + '/' + id);
+  }
 }

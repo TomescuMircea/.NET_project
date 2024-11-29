@@ -8,5 +8,5 @@ export interface Estate {
     size: number;
     type: string;
     status: string;
-    listingDate: Date;
+    listingData: Date;
 }
