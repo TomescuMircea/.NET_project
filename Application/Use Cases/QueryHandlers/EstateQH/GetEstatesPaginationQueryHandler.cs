@@ -10,17 +10,17 @@ using MediatR;
 
 namespace Application.Use_Cases.QueryHandlers.EstateQH
 {
-    public class GetFilteredEstatesQueryHandler : IRequestHandler<GetFilteredEstatesQuery, Result<PagedResult<EstateDto>>>
+    public class GetEstatesPaginationQueryHandler : IRequestHandler<GetEstatesPaginationQuery, Result<PagedResult<EstateDto>>>
     {
         private readonly IGenericEntityRepository<Estate> repository;
         private readonly IMapper mapper;
 
-        public GetFilteredEstatesQueryHandler(IGenericEntityRepository<Estate> repository, IMapper mapper)
+        public GetEstatesPaginationQueryHandler(IGenericEntityRepository<Estate> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;
         }
-        public async Task<Result<PagedResult<EstateDto>>> Handle(GetFilteredEstatesQuery request, CancellationToken cancellationToken)
+        public async Task<Result<PagedResult<EstateDto>>> Handle(GetEstatesPaginationQuery request, CancellationToken cancellationToken)
         {
             var estates = await repository.GetAllAsync();
             var query = estates.AsQueryable();
