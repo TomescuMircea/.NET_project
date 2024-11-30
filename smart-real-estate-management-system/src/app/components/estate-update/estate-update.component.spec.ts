@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -31,8 +32,7 @@ describe('EstateUpdateComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
-      declarations: [EstateUpdateComponent],
+      imports: [ReactiveFormsModule, HttpClientModule, EstateUpdateComponent], // Importă componenta aici
       providers: [
         { provide: EstateService, useValue: estateServiceMock },
         { provide: Router, useValue: routerMock },
@@ -69,7 +69,7 @@ describe('EstateUpdateComponent', () => {
 
   it('should patch form values when getEstateById returns data', () => {
     const estateData = {
-      userId: '123',
+      userId: 'ee06a4ca-79b7-4ce7-8f3b-354424226a09',
       name: 'Test Estate',
       description: 'Test Description',
       price: 100,
@@ -78,7 +78,7 @@ describe('EstateUpdateComponent', () => {
       type: 'A',
       status: 'Available',
       listingData: '2023-01-01T00:00:00.000Z',
-      id: '1'
+      id: '9eef8dcc-01e5-4c29-8620-860f4aeeeb53'
     };
     estateServiceMock.getEstateById.and.returnValue(of(estateData));
     component.ngOnInit();
@@ -87,7 +87,7 @@ describe('EstateUpdateComponent', () => {
 
   it('should call updateEstate and navigate on valid form submission', () => {
     component.estateForm.setValue({
-      userId: '123',
+      userId: 'ee06a4ca-79b7-4ce7-8f3b-354424226a09',
       name: 'Test Estate',
       description: 'Test Description',
       price: 100,
@@ -96,7 +96,7 @@ describe('EstateUpdateComponent', () => {
       type: 'A',
       status: 'Available',
       listingData: '2023-01-01T00:00:00.000Z',
-      id: '1'
+      id: '9eef8dcc-01e5-4c29-8620-860f4aeeeb53'
     });
     component.onSubmit();
     expect(estateServiceMock.updateEstate).toHaveBeenCalled();
