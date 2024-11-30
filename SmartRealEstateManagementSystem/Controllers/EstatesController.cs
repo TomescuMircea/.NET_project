@@ -5,6 +5,7 @@ using Application.Utils;
 using Domain.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace SmartRealEstateManagementSystem.Controllers
 {
@@ -74,14 +75,34 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpGet("paginated")]
-        public async Task<ActionResult<PagedResult<EstateDto>>> GetFilteredEstates([FromQuery] int page, [FromQuery] int pageSize)
+        public async Task<ActionResult<PagedResult<EstateDto>>> GetPaginatedEstate([FromQuery] int page, [FromQuery] int pageSize)
         {
-            var query = new GetFilteredEstatesQuery
+            var query = new GetEstatesPaginationQuery
             {
                 Page = page,
                 PageSize = pageSize
             };
             var result = await mediator.Send(query);
+            return Ok(result);
+        }
+
+
+        [HttpGet("filter")]
+        public async Task<ActionResult<List<EstateDto>>> GetFilteredEstate([FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size)
+        {
+            var query = new GetEstateByFilterQuery
+            {
+                Price = price,
+                Type = type,
+                Address = address,
+                Size = size
+            };
+            var result = await mediator.Send(query);
+            if (result == null)
+            {
+                return BadRequest("Price or Size must be greater than 0");
+            }
+
             return Ok(result);
         }
     }

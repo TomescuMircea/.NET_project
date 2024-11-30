@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Use_Cases.Queries.EstateQ
 {
-    public class GetFilteredEstatesQuery : IRequest<Result<PagedResult<EstateDto>>>
+    public class GetEstatesPaginationQuery : IRequest<Result<PagedResult<EstateDto>>>
     {
         public int Page { get; set; }
 

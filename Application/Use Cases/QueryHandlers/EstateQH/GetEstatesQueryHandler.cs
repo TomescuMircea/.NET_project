@@ -23,7 +23,8 @@ namespace Application.Use_Cases.QueryHandlers.EstateQH
         {
             var estates = await repository.GetAllAsync();
             return mapper.Map<List<EstateDto>>(estates);
-
         }
+
+
     }
 }
