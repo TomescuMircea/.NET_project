@@ -1,0 +1,14 @@
+<div class="container" *ngIf="estate">
+    <h1>{{ estate.name }}</h1>
+    <div class="details">
+     <p><strong>Description:</strong> {{ estate.description }}</p>
+     <p><strong>Price:</strong> {{ estate.price }}</p>
+     <p><strong>Address:</strong> {{ estate.address }}</p>
+     <p><strong>Size:</strong> {{ estate.size }}</p>
+     <p><strong>Type:</strong> {{ estate.type }}</p>
+     <p><strong>Status:</strong> {{ estate.status }}</p>
+     <p><strong>Listing Date:</strong> {{ estate.listingData }}</p>
+     
+    </div>
+    <button class="delete-button" (click)="onDelete(estate.id)">Delete</button>
+  </div>

@@ -24,7 +24,11 @@ export class EstateService {
     return this.http.put<Estate>(this.apiURL + '/' + estate.id, estate);
   }
 
-  getEstateById(id: string): Observable<Estate> {
+  public getEstateById(id: string): Observable<Estate> {
     return this.http.get<Estate>(this.apiURL + '/' + id);
+  }
+
+  public deleteEstate(id: string): Observable<any> {
+    return this.http.delete(this.apiURL + '/' + id);
   }
 }

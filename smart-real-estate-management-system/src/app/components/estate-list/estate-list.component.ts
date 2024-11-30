@@ -29,4 +29,8 @@ export class EstateListComponent implements OnInit {
   navigateToUpdateEstate(id: string): void {
     this.router.navigate(['estates/update', id]);
   }
+
+  navigateToDetailEstate(id: string): void {
+    this.router.navigate(['estates/detail', id]);
+  }
 }
