@@ -4,7 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs'; //observable mock
 import { EstateService } from '../../services/estate.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 //definirea unei suite de teste pentru componenta
 describe('EstateCreateComponent', () => {
@@ -27,10 +28,12 @@ describe('EstateCreateComponent', () => {
   
     // Configurare modul de testare
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientTestingModule, EstateCreateComponent], // Adaugă HttpClientTestingModule aici
+      imports: [ReactiveFormsModule, EstateCreateComponent], // Adaugă HttpClientTestingModule aici
       providers: [
         { provide: EstateService, useValue: estateServiceMock },
-        { provide: Router, useValue: routerMock }
+        { provide: Router, useValue: routerMock },
+        provideHttpClient(),  
+        provideHttpClientTesting()
       ]
     }).compileComponents();
   

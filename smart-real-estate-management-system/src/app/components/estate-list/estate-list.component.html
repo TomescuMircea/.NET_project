@@ -1,8 +1,6 @@
 <div class="estate-list">
   <h1>Estate List</h1>
   <button (click)="navigateToCreateEstate()">Create Estate</button>
-  <!-- <span style="margin-right: 10px;"></span>
-  <button (click)="navigateToUpdateEstate()">Update Estate</button> -->
   <table>
     <thead>
       <tr>
@@ -13,7 +11,6 @@
         <th>ListingDate</th>
       </tr>
     </thead>
-
     <tbody>
       <tr *ngFor="let estate of estates">
         <td>{{ estate.name }}</td>
@@ -26,6 +23,12 @@
           (click)="navigateToUpdateEstate(estate.id || '')"
         >
           Edit
+        </button>
+        <button
+          id="detail-button"
+          (click)="navigateToDetailEstate(estate.id || '')"
+        >
+          Detail
         </button>
       </tr>
     </tbody>

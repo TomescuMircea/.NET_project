@@ -17,8 +17,9 @@ export class EstateListComponent implements OnInit {
   constructor(private estateService: EstateService, private router: Router) { }
 
   ngOnInit(): void {
-    this.estateService.getEstates().subscribe((data: Estate[]) => {
+    this.estateService.getEstates(1, 2).subscribe((data: Estate[]) => {
       this.estates = data;
+      console.log("data", data);
     });
   }
 
@@ -28,5 +29,9 @@ export class EstateListComponent implements OnInit {
 
   navigateToUpdateEstate(id: string): void {
     this.router.navigate(['estates/update', id]);
+  }
+
+  navigateToDetailEstate(id: string): void {
+    this.router.navigate(['estates/detail', id]);
   }
 }

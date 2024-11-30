@@ -8,18 +8,18 @@ import { Estate } from '../models/estate.model';
 })
 export class EstateService {
 
-  private apiURL = 'http://localhost:5045/api/estates';
+  private apiURL = 'http://localhost:5045/api/estates/paginated';
 
   constructor(private http: HttpClient) { }
 
-  // public getEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
-  //   const paginatedUrl = `${this.apiURL}?page=${pageNumber}&pageSize=${pageSize}`;
-  //   return this.http.get<Estate[]>(paginatedUrl);
-  // }
-  
-  public getEstates(): Observable<Estate[]>{
-    return this.http.get<Estate[]>(this.apiURL);
+  public getEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
+    const paginatedUrl = `${this.apiURL}?page=${pageNumber}&pageSize=${pageSize}`;
+    return this.http.get<Estate[]>(paginatedUrl);
   }
+  
+  // public getEstates(): Observable<Estate[]>{
+  //   return this.http.get<Estate[]>(this.apiURL);
+  // }
   public createEstate(estate: Estate): Observable<Estate> {
     return this.http.post<Estate>(this.apiURL, estate);
   }
@@ -28,7 +28,11 @@ export class EstateService {
     return this.http.put<Estate>(this.apiURL + '/' + estate.id, estate);
   }
 
-  getEstateById(id: string): Observable<Estate> {
+  public getEstateById(id: string): Observable<Estate> {
     return this.http.get<Estate>(this.apiURL + '/' + id);
+  }
+
+  public deleteEstate(id: string): Observable<any> {
+    return this.http.delete(this.apiURL + '/' + id);
   }
 }
