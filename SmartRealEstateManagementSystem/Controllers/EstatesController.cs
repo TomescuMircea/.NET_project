@@ -74,7 +74,7 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpGet("paginated")]
-        public async Task<ActionResult<PagedResult<EstateDto>>> GetFilteredBooks([FromQuery] int page, [FromQuery] int pageSize)
+        public async Task<ActionResult<PagedResult<EstateDto>>> GetFilteredEstates([FromQuery] int page, [FromQuery] int pageSize)
         {
             var query = new GetFilteredEstatesQuery
             {
