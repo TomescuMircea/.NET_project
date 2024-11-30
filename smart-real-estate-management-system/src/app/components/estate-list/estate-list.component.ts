@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { Estate } from '../../models/estate.model';
 import { EstateService } from '../../services/estate.service';
 import { Router } from '@angular/router';
@@ -19,8 +19,6 @@ export class EstateListComponent implements OnInit {
   ngOnInit(): void {
     this.estateService.getEstates().subscribe((data: Estate[]) => {
       this.estates = data;
-      console.log("data:", data);
-      console.log("estates:", this.estates);
     });
   }
 

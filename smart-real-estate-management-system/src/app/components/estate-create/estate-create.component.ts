@@ -23,7 +23,7 @@ export class EstateCreateComponent implements OnInit{
   
     this.estateForm= this.fb.group(
       {
-        userId: ['', [Validators.required, Validators.pattern('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]],
+        userId: ['', [Validators.required, Validators.pattern('^(?:\\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\\}{0,1})$')]],
         name:[ '', [Validators.required, Validators.maxLength(100)]],
         description:['', [Validators.required, Validators.maxLength(500)]],
         price: ['', [Validators.required, Validators.min(1)]],

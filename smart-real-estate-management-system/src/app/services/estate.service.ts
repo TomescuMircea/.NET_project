@@ -8,15 +8,18 @@ import { Estate } from '../models/estate.model';
 })
 export class EstateService {
 
-  private apiURL = 'http://localhost:5045/api/estates/paginated';
+  private apiURL = 'http://localhost:5045/api/estates';
 
   constructor(private http: HttpClient) { }
 
-  public getEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
-    const paginatedUrl = `${this.apiURL}?page=${pageNumber}&pageSize=${pageSize}`;
-    return this.http.get<Estate[]>(paginatedUrl);
-  }
+  // public getEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
+  //   const paginatedUrl = `${this.apiURL}?page=${pageNumber}&pageSize=${pageSize}`;
+  //   return this.http.get<Estate[]>(paginatedUrl);
+  // }
   
+  public getEstates(): Observable<Estate[]>{
+    return this.http.get<Estate[]>(this.apiURL);
+  }
   public createEstate(estate: Estate): Observable<Estate> {
     return this.http.post<Estate>(this.apiURL, estate);
   }

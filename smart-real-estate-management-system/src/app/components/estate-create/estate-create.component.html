@@ -7,7 +7,7 @@
       <div class="error" *ngIf="estateForm.get('userId')?.hasError('required')">
         User Id is required
       </div>
-      <div class="error" *ngIf="estateForm.get('')?.hasError('pattern')">
+      <div class="error" *ngIf="estateForm.get('userId')?.hasError('pattern')">
         User Id must be a valid guid
       </div>
     </div>
@@ -17,7 +17,7 @@
       <div class="error" *ngIf="estateForm.get('name')?.hasError('required')">
         Name is required
       </div>
-      <div class="error" *ngIf="estateForm.get('')?.hasError('maxlength')">
+      <div class="error" *ngIf="estateForm.get('name')?.hasError('maxlength')">
         Name cannot be longer than 100 characters
       </div>
     </div>
