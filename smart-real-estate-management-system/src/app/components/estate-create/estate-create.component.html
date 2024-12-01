@@ -86,25 +86,11 @@
     <div class="form-group">
       <label for="status">Status</label>
       <input id="status" formControlName="status" />
-      <div class="error" *ngIf="estateForm.get('status')?.hasError('status')">
+      <div class="error" *ngIf="estateForm.get('status')?.hasError('required')">
         Status is required
       </div>
-      <div
-        class="error"
-        *ngIf="estateForm.get('status')?.hasError('maxlength')"
-      >
+      <div class="error" *ngIf="estateForm.get('status')?.hasError('maxlength')">
         Status cannot be longer than 100 characters
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="listingData">Listing Data</label>
-      <input id="listingData" formControlName="listingData" />
-      <div
-        class="error"
-        *ngIf="estateForm.get('listingData')?.hasError('required')"
-      >
-        Listing Data is required
       </div>
     </div>
     <button type="submit" [disabled]="estateForm.invalid">Create Estate</button>

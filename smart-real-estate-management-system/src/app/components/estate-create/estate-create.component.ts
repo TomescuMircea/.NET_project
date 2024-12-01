@@ -29,8 +29,7 @@ export class EstateCreateComponent implements OnInit{
         address:['', [Validators.required, Validators.maxLength(200)]],
         size: ['', [Validators.required, Validators.min(1)]],
         type: ['', [Validators.required, Validators.maxLength(1)]],
-        status: ['', [Validators.required, Validators.maxLength(200)]],
-        listingData: ['', Validators.required],
+        status: ['', [Validators.required, Validators.maxLength(100)]],
      });
  }
 
@@ -42,7 +41,7 @@ export class EstateCreateComponent implements OnInit{
  onSubmit(): void {
    if(this.estateForm.valid){
       const formValue = this.estateForm.value;
-      formValue.listingData = new Date(formValue.listingData).toISOString();
+      formValue.listingData = new Date().toISOString();
 
       this.estateService.createEstate(formValue).subscribe(()=>{
       this.router.navigate(['/estates/paginated']);
