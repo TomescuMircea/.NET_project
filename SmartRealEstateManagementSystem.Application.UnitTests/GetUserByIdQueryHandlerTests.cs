@@ -59,7 +59,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetUserByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
+        public async Task Given_GetUserByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
         {
             // Arrange
             var query = new GetUserByIdQuery { Id = new Guid("d2aca8c8-ea05-4303-ad6f-83b41d71f97c") };

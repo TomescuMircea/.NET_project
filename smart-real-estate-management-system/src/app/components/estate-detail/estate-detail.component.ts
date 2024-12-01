@@ -15,9 +15,9 @@ export class EstateDetailComponent implements OnInit {
   estate: any;
 
   constructor(
-    private route: ActivatedRoute,
-    private estateService: EstateService,
-    private router: Router
+    private readonly route: ActivatedRoute,
+    private readonly estateService: EstateService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {

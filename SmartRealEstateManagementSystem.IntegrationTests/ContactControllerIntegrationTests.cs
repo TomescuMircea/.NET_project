@@ -208,7 +208,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenValidEstate_WhenCreatedIsCalled_Then_ShouldAddToDatabaseTheEstate()
+        public async Task GivenValidEstate_WhenCreatedIsCalled_Then_ShouldAddToDatabaseTheEstate()
         {
             // Arrange
             var client = factory.CreateClient();

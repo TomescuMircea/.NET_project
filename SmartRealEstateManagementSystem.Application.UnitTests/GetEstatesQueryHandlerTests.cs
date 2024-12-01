@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetEstatesQueryHandler_When_HandleIsCalled_Then_AListOfEstatesShouldBeReturned()
+        public async Task Given_GetEstatesQueryHandler_When_HandleIsCalled_Then_AListOfEstatesShouldBeReturned()
         {
             // Arrange
             List<Estate> estates = GenerateEstates();

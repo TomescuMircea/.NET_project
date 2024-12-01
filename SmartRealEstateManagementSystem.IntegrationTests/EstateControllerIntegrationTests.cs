@@ -35,7 +35,10 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                         d => d.ServiceType ==
                             typeof(DbConnection));
 
-                    services.Remove(dbConnectionDescriptor);
+                    if (dbConnectionDescriptor != null)
+                    {
+                        services.Remove(dbConnectionDescriptor);
+                    }
 
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
@@ -64,7 +67,7 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
         }
 
         [Fact]
-        public async void GivenExistingEstates_WhenGetAllIsCalled_ThenReturnsTheRightEstates()
+        public async Task GivenExistingEstates_WhenGetAllIsCalled_ThenReturnsTheRightEstates()
         {
             // arrange
             var client = factory.CreateClient();

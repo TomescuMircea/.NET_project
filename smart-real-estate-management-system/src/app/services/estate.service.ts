@@ -7,9 +7,9 @@
   providedIn: 'root'
 })
 export class EstateService {
-  private apiURL = 'http://localhost:5045/api/estates';
+  private readonly apiURL = 'http://localhost:5045/api/estates';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getPaginatedEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
     const paginatedUrl = `${this.apiURL}/paginated?page=${pageNumber}&pageSize=${pageSize}`;

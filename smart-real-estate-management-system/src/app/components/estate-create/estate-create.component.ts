@@ -16,11 +16,10 @@ export class EstateCreateComponent implements OnInit{
   estateForm: FormGroup;
 
 
- constructor(private fb:FormBuilder,
-             private estateService: EstateService,
-             private router: Router
+ constructor(private readonly fb:FormBuilder,
+             private readonly estateService: EstateService,
+             private readonly router: Router
  ) {
-  
     this.estateForm= this.fb.group(
       {
         userId: ['', [Validators.required, Validators.pattern('^(?:\\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\\}{0,1})$')]],
@@ -35,7 +34,10 @@ export class EstateCreateComponent implements OnInit{
      });
  }
 
- ngOnInit(): void {}
+ ngOnInit(): void {
+  this.estateForm.reset();
+ }
+
 
  onSubmit(): void {
    if(this.estateForm.valid){

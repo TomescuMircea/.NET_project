@@ -19,7 +19,8 @@ export class EstateListComponent implements OnInit {
   pageSize: number = 5; 
   pageSizeOptions: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
 
-  constructor(private estateService: EstateService, private router: Router) {}
+  constructor(private readonly estateService: EstateService, 
+              private readonly router: Router) {}
 
   ngOnInit(): void {
     this.loadEstates();

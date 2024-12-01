@@ -16,10 +16,10 @@ export class EstateUpdateComponent implements OnInit
   estateForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
-    private estateService: EstateService,
-    private router: Router,
-    private route: ActivatedRoute
+    private readonly fb: FormBuilder,
+    private readonly estateService: EstateService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
 
   ) {
     this.estateForm = this.fb.group({
