@@ -1,13 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { EstateService } from './estate.service';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('EstateService', () => {
   let service: EstateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule] // Importă HttpClientModule aici
+      imports: [], 
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ] 
     });
     service = TestBed.inject(EstateService);
   });

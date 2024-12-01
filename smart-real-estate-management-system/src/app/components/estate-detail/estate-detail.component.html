@@ -1,14 +1,37 @@
 <div class="container" *ngIf="estate">
-    <h1>{{ estate.name }}</h1>
-    <div class="details">
-     <p><strong>Description:</strong> {{ estate.description }}</p>
-     <p><strong>Price:</strong> {{ estate.price }}</p>
-     <p><strong>Address:</strong> {{ estate.address }}</p>
-     <p><strong>Size:</strong> {{ estate.size }}</p>
-     <p><strong>Type:</strong> {{ estate.type }}</p>
-     <p><strong>Status:</strong> {{ estate.status }}</p>
-     <p><strong>Listing Date:</strong> {{ estate.listingData }}</p>
-     
+  <h1>{{ estate.name }}</h1>
+  <div class="details">
+    <div class="row">
+      <p><strong>Description:</strong></p>
+      <p>{{ estate.description }}</p>
     </div>
-    <button class="delete-button" (click)="onDelete(estate.id)">Delete</button>
+    <div class="row">
+      <p><strong>Price:</strong></p>
+      <p>{{ estate.price }}€</p>
+    </div>
+
+    <div class="row">
+      <p><strong>Address:</strong></p>
+      <p>{{ estate.address }}</p>
+    </div>
+
+    <div class="row">
+      <p><strong>Size:</strong></p>
+      <p>{{ estate.size }}</p>
+    </div>
+
+    <div class="row">
+      <p><strong>Type:</strong></p>
+      <p>{{ estate.type }}</p>
+    </div>
+    <div class="row">
+      <p><strong>Status:</strong></p>
+      <p>{{ estate.status }}</p>
+    </div>
+    <div class="row">
+      <p><strong>Listing Date:</strong></p>
+      <p>{{ estate.listingData }}</p>
+    </div>
   </div>
+  <button class="delete-button" (click)="onDelete(estate.id)">Delete</button>
+</div>

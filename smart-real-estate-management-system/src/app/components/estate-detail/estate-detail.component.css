@@ -26,8 +26,12 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
   }
-  
+  .row{
+    display: flex;
+    flex-direction: row;
+  }
   .details p {
     margin: 5px 0;
     word-wrap: break-word; /* Adaugă această linie */

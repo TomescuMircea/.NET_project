@@ -40,6 +40,7 @@ export class EstateUpdateComponent implements OnInit
     const estateId = this.route.snapshot.paramMap.get('id');
   if (estateId) {
     this.estateService.getEstateById(estateId).subscribe(data => {
+      console.log("Update: ", data);
       this.estateForm.patchValue(data);
     });
   }
@@ -52,7 +53,7 @@ export class EstateUpdateComponent implements OnInit
 
 
       this.estateService.updateEstate(formValue).subscribe(() => {
-        this.router.navigate(['/estates']);
+        this.router.navigate(['/estates/paginated']);
       });
     }
   }

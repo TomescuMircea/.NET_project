@@ -1,6 +1,22 @@
 <div class="estate-list">
   <h1>Estate List</h1>
-  <button (click)="navigateToCreateEstate()">Create Estate</button>
+  <button class="createEstate" (click)="navigateToCreateEstate()">
+    Create Estate
+  </button>
+  <div class="pagination-controls">
+    <label for="pageSize">Items per page:</label>
+    <select id="pageSize" class="pageSize">
+      <option
+        *ngFor="let option of pageSizeOptions"
+        [value]="option"
+        [selected]="option === pageSize"
+        (click)="changePageSize(option)"
+      >
+        {{ option }}
+      </option>
+    </select>
+  </div>
+
   <table>
     <thead>
       <tr>
@@ -8,7 +24,8 @@
         <th>Address</th>
         <th>Price</th>
         <th>Size</th>
-        <th>ListingDate</th>
+        <th>Listing Date</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -17,20 +34,30 @@
         <td>{{ estate.address }}</td>
         <td>{{ estate.price }}</td>
         <td>{{ estate.size }}</td>
-        <td>{{ estate.listingData }}</td>
-        <button
-          id="edit-button"
-          (click)="navigateToUpdateEstate(estate.id || '')"
-        >
-          Edit
-        </button>
-        <button
-          id="detail-button"
-          (click)="navigateToDetailEstate(estate.id || '')"
-        >
-          Detail
-        </button>
+        <td>{{ estate.listingData | date }}</td>
+        <td>
+          <button (click)="navigateToUpdateEstate(estate.id || '')">
+            Edit
+          </button>
+          <button (click)="navigateToDetailEstate(estate.id || '')">
+            Detail
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+
+  <div class="pagination">
+    <a class="pagination-btn" (click)="changePage(false)">&#x276E;</a>
+    <div *ngFor="let num of getPagesArray()">
+      <a
+        class="pagination-number"
+        [class.active]="num === currentPage"
+        (click)="goToPage(num)"
+      >
+        {{ num }}
+      </a>
+    </div>
+    <a class="pagination-btn" (click)="changePage(true)">&#x276F;</a>
+  </div>
 </div>

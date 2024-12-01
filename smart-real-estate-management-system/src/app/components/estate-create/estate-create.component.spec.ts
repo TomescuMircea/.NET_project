@@ -2,31 +2,27 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EstateCreateComponent } from './estate-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { of } from 'rxjs'; //observable mock
+import { of } from 'rxjs';
 import { EstateService } from '../../services/estate.service';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 
-//definirea unei suite de teste pentru componenta
 describe('EstateCreateComponent', () => {
   let component: EstateCreateComponent;
-  let fixture: ComponentFixture<EstateCreateComponent>; //wrapper pentru componenta care permite accesul la proprietati si metode ale componentei
-  let estateServiceMock: any; //mock-uri
+  let fixture: ComponentFixture<EstateCreateComponent>; 
+  let estateServiceMock: any;
   let routerMock: any;
 
  
   beforeEach(async () => {
-    // estateServiceMock este un mock pentru EstateService
     estateServiceMock = {
       createEstate: jasmine.createSpy('createEstate').and.returnValue(of({}))
     };
   
-    // routerMock este un mock pentru Router
     routerMock = {
       navigate: jasmine.createSpy('navigate')
     };
   
-    // Configurare modul de testare
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, EstateCreateComponent], // Adaugă HttpClientTestingModule aici
       providers: [
@@ -93,7 +89,7 @@ describe('EstateCreateComponent', () => {
     component.onSubmit();
 
     expect(estateServiceMock.createEstate).toHaveBeenCalledWith(component.estateForm.value);
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/estates']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/estates/paginated']);
   });
 
   it('should not call createEstate on invalid form submission', () => {
