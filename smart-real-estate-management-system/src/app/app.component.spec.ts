@@ -38,7 +38,8 @@ describe('AppComponent', () => {
       DummyComponent
       ],
       providers: [
-      { provide: Location, useClass: SpyLocation }
+      { provide: Location, useClass: SpyLocation },
+      provideRouter(appRoutes)
       ]
     });
 
@@ -59,14 +60,14 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('smart-real-estate-management-system');
   });
 
-  it('should navigate to "" redirects to /estates', async () => {
+  it('should navigate to "" redirects to /estates/paginated', async () => {
     await router.navigate(['']);
-    expect(location.path()).toBe('/estates');
+    expect(location.path()).toBe('/estates/paginated');
   });
 
   it('should navigate to "estates" loads EstateListComponent', async () => {
-    await router.navigate(['/estates']);
-    expect(location.path()).toBe('/estates');
+    await router.navigate(['/estates/paginated']);
+    expect(location.path()).toBe('/estates/paginated');
   });
 
   it('should navigate to "estates/create" loads EstateCreateComponent', async () => {

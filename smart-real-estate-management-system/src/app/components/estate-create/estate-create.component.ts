@@ -39,8 +39,10 @@ export class EstateCreateComponent implements OnInit{
 
  onSubmit(): void {
    if(this.estateForm.valid){
-    console.log("ceva")
-     this.estateService.createEstate(this.estateForm.value).subscribe(()=>{
+      const formValue = this.estateForm.value;
+      formValue.listingData = new Date(formValue.listingData).toISOString();
+
+      this.estateService.createEstate(formValue).subscribe(()=>{
       this.router.navigate(['/estates/paginated']);
      });
    }
