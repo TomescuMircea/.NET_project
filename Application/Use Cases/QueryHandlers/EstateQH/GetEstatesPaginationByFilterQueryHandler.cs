@@ -25,14 +25,19 @@ namespace Application.Use_Cases.QueryHandlers.EstateQH
             var estates = await repository.GetAllAsync();
             var query = estates.AsQueryable();
 
+            if (request.Name != default)
+            {
+                query = query.Where(e => e.Name.Contains(request.Name));
+            }
+
             if (request.Address != default)
             {
-                query = query.Where(e => e.Address == request.Address);
+                query = query.Where(e => e.Address.Contains(request.Address));
             }
 
             if (request.Type != default)
             {
-                query = query.Where(e => e.Type == request.Type);
+                query = query.Where(e => e.Type.Contains(request.Type));
             }
 
             if (request.Size != default)

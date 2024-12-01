@@ -88,10 +88,11 @@ namespace SmartRealEstateManagementSystem.Controllers
 
 
         [HttpGet("filter")]
-        public async Task<ActionResult<List<EstateDto>>> GetFilteredEstate([FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size)
+        public async Task<ActionResult<List<EstateDto>>> GetFilteredEstate([FromQuery] string? name,  [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size)
         {
             var query = new GetEstateByFilterQuery
             {
+                Name = name,
                 Price = price,
                 Type = type,
                 Address = address,
@@ -108,10 +109,11 @@ namespace SmartRealEstateManagementSystem.Controllers
 
         [HttpGet("filter/paginated")]
         public async Task<ActionResult<PagedResult<EstateDto>>>
-            GetFilteredPaginatedEstate([FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size, [FromQuery] int page, [FromQuery] int pageSize)
+            GetFilteredPaginatedEstate([FromQuery] string? name,  [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size, [FromQuery] int page, [FromQuery] int pageSize)
         {
             var query = new GetEstatesPaginationByFilterQuery
             {
+                Name = name,
                 Page = page,
                 PageSize = pageSize,
                 Price = price,
