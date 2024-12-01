@@ -5,13 +5,13 @@
   </button>
   <div class="pagination-controls">
     <label for="pageSize">Items per page:</label>
-    <select id="pageSize" class="pageSize">
-      <option
-        *ngFor="let option of pageSizeOptions"
-        [value]="option"
-        [selected]="option === pageSize"
-        (click)="changePageSize(option)"
-      >
+    <select id="pageSize" class="pageSize"
+            [value]="pageSize"
+            (change)="changePageSize($event)">
+      <option 
+        *ngFor="let option of pageSizeOptions" 
+        [value]="option" 
+        [selected]="option === pageSize">
         {{ option }}
       </option>
     </select>

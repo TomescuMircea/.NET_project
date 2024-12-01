@@ -16,7 +16,7 @@ export class EstateListComponent implements OnInit {
   estates: Estate[] = [];
   currentPage: number = 1;
   totalPages: number= 0;
-  pageSize: number = 4; 
+  pageSize: number = 5; 
   pageSizeOptions: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
 
   constructor(private estateService: EstateService, private router: Router) {}
@@ -43,10 +43,14 @@ export class EstateListComponent implements OnInit {
     this.loadEstates();
   }
 
-  changePageSize(size: number): void {
-    this.pageSize = size;
-    this.currentPage = 1; 
-    this.loadEstates();
+  changePageSize(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const size = selectElement.value;
+    if (size) {
+      this.pageSize = Number(size);
+      this.currentPage = 1; 
+      this.loadEstates();
+    }
   }
 
   goToPage(page: number): void {
