@@ -15,6 +15,9 @@ export class EstateService {
     const paginatedUrl = `${this.apiURL}/paginated?page=${pageNumber}&pageSize=${pageSize}`;
     return this.http.get<Estate>(paginatedUrl);
 
+  public getEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
+    const paginatedUrl = `${this.apiURL}?page=${pageNumber}&pageSize=${pageSize}`;
+    return this.http.get<Estate[]>(paginatedUrl);
   }
 
   public createEstate(estate: Estate): Observable<Estate> {
