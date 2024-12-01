@@ -45,7 +45,7 @@ namespace Application.Use_Cases.QueryHandlers.EstateQH
                 if (request.Size > 0)
                     query = query.Where(e => e.Size == request.Size);
                 else
-                    return null;
+                    return Result<PagedResult<EstateDto>>.Failure("Invalid size value");
             }
 
             if (request.Price != default)
@@ -53,7 +53,7 @@ namespace Application.Use_Cases.QueryHandlers.EstateQH
                 if (request.Price > 0)
                     query = query.Where(e => e.Price == request.Price);
                 else
-                    return null;
+                    return Result<PagedResult<EstateDto>>.Failure("Invalid price value");
             }
 
             // Apply paging
