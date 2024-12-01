@@ -63,7 +63,6 @@ describe('EstateUpdateComponent', () => {
     expect(formValues.size).toBe('');
     expect(formValues.type).toBe('');
     expect(formValues.status).toBe('');
-    expect(formValues.listingData).toBe('');
     expect(formValues.id).toBe('');
   });
 
@@ -81,7 +80,6 @@ describe('EstateUpdateComponent', () => {
       size: 200,
       type: 'A',
       status: 'Available',
-      listingData: '2023-01-01T00:00:00.000Z',
       id: '9eef8dcc-01e5-4c29-8620-860f4aeeeb53'
     };
     estateServiceMock.getEstateById.and.returnValue(of(estateData));
@@ -99,7 +97,6 @@ describe('EstateUpdateComponent', () => {
       size: 200,
       type: 'A',
       status: 'Available',
-      listingData: '2023-01-01T00:00:00.000Z',
       id: '9eef8dcc-01e5-4c29-8620-860f4aeeeb53'
     });
     component.onSubmit();

@@ -53,7 +53,6 @@ describe('EstateCreateComponent', () => {
       size: 100,
       type: 'A',
       status: 'Available',
-      listingData: '2023-10-10'
     });
     expect(component.estateForm.valid).toBeTrue();
   });
@@ -68,7 +67,6 @@ describe('EstateCreateComponent', () => {
       size: '',
       type: '',
       status: '',
-      listingData: ''
     });
     expect(component.estateForm.invalid).toBeTrue();
   });
@@ -83,7 +81,6 @@ describe('EstateCreateComponent', () => {
       size: 100,
       type: 'A',
       status: 'Available',
-      listingData: '2023-10-10'
     });
 
     component.onSubmit();
@@ -102,7 +99,6 @@ describe('EstateCreateComponent', () => {
       size: '',
       type: '',
       status: '',
-      listingData: ''
     });
 
     component.onSubmit();
