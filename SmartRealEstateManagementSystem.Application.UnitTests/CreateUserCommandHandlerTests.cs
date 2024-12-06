@@ -37,10 +37,8 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             var user = new User
             {
                 Id = new Guid("fb0c0cbf-cf67-4cc8-babc-63d8b24862b7"),
-                Type = command.Type,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
-                Status = command.Status
             };
 
             _mapper.Map<User>(command).Returns(user);

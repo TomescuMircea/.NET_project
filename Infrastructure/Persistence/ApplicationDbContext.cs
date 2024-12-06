@@ -205,6 +205,7 @@ namespace Infrastructure.Persistence
                     .HasForeignKey<Credential>(c => c.UserId) 
                     .OnDelete(DeleteBehavior.Cascade); 
             });
+            modelBuilder.Entity<Credential>().OwnsOne(x => x.Access);
 
             // ModelBuilder for Entity<Favorite>
             modelBuilder.Entity<Favorite>(entity =>

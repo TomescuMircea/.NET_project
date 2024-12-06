@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartRealEstateManagementSy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRealEstateManagementSystem.IntegrationTests", "SmartRealEstateManagementSystem.IntegrationTests\SmartRealEstateManagementSystem.IntegrationTests.csproj", "{46D4F91A-A4A0-42DE-A613-26ED8CB70F9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identityyy\Identity.csproj", "{7BEABFDC-ECEF-456E-B607-0D66BE512BA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{46D4F91A-A4A0-42DE-A613-26ED8CB70F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46D4F91A-A4A0-42DE-A613-26ED8CB70F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46D4F91A-A4A0-42DE-A613-26ED8CB70F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BEABFDC-ECEF-456E-B607-0D66BE512BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BEABFDC-ECEF-456E-B607-0D66BE512BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BEABFDC-ECEF-456E-B607-0D66BE512BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BEABFDC-ECEF-456E-B607-0D66BE512BA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{8A35E9B4-74A1-4BBB-983F-96FCBDEEB6B7} = {60F480AF-6458-48F1-9BB7-5F096B6F088B}
 		{B4C3FC66-177F-4DE4-BC9F-0227C21CBD53} = {8A35E9B4-74A1-4BBB-983F-96FCBDEEB6B7}
 		{46D4F91A-A4A0-42DE-A613-26ED8CB70F9E} = {B202998B-6878-4749-BD43-01A68FE45954}
+		{7BEABFDC-ECEF-456E-B607-0D66BE512BA6} = {97CA4855-0BD7-4D09-B2A4-E458976FAA89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D43D9D32-0BB0-4996-A4E9-689D7D629757}
