@@ -13,10 +13,10 @@ namespace Identity
     {
         public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<UserDbContext>(options => options.UseSqlite(configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<UsersDbContext>(options => options.UseSqlite(configuration.GetConnectionString("UserConnection")));
 
             // Add Authentication
-            var key = Encoding.ASCII.GetBytes("My Secret Key For Identity Module");
+            var key = Encoding.ASCII.GetBytes("YourSecretKeyHere");
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

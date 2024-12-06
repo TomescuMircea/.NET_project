@@ -8,10 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Use Cases\Queries\Credential\**" />
+    <EmbeddedResource Remove="Use Cases\Queries\Credential\**" />
+    <None Remove="Use Cases\Queries\Credential\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Use Cases\Queries\Apartment\" />
     <Folder Include="Use Cases\Queries\House\" />
     <Folder Include="Use Cases\Queries\BusinessSpace\" />
-    <Folder Include="Use Cases\Queries\Credential\" />
     <Folder Include="Use Cases\Queries\Image\" />
     <Folder Include="Use Cases\Queries\Favorite\" />
     <Folder Include="Use Cases\Queries\Report\" />
@@ -41,7 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Identityyy\Identity.csproj" />
+    <ProjectReference Include="..\Identity\Identity.csproj" />
   </ItemGroup>
 
 </Project>

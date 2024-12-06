@@ -11,14 +11,16 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, G
 
     public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        var user = new Credential
+        var user = new User
         {
             Email = request.Email,
             UserName = request.Username,
-            Password = BCrypt.Net.BCrypt.HashPassword(request.Password)
+            Password = BCrypt.Net.BCrypt.HashPassword(request.Password),
+            FirstName = request.FirstName,
+            LastName = request.LastName
         };
 
         await repository.Register(user, cancellationToken);
-        return user.UserId;
+        return user.Id;
     }
 }

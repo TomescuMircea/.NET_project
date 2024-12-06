@@ -29,19 +29,21 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             var user = new User
             {
                 Id = new Guid("d2aca8c8-ea05-4303-ad6f-83b41d71f97c"),
-                Type = "Admin",
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
             var query = new GetUserByIdQuery { Id = user.Id };
             var userDto = new UserDto
             {
                 Id = user.Id,
-                Type = user.Type,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Status = user.Status
+                UserName = user.UserName,
+                Email = user.Email,
+                Password = user.Password
             };
             mapper.Map<UserDto>(user).Returns(userDto);
             repository.GetByIdAsync(user.Id).Returns(user);
@@ -52,10 +54,8 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             // Assert
             result.Should().NotBeNull();
             result.Id.Should().Be(user.Id);
-            result.Type.Should().Be(user.Type);
             result.FirstName.Should().Be(user.FirstName);
             result.LastName.Should().Be(user.LastName);
-            result.Status.Should().Be(user.Status);
         }
 
         [Fact]

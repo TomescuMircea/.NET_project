@@ -18,8 +18,6 @@ namespace Infrastructure.Persistence
 
         public DbSet<Favorite> Favorites { get; set; }
 
-        public DbSet<Credential> Credentials { get; set; }
-
         public DbSet<House> Houses { get; set; }
 
         public DbSet<Image> Images { get; set; }
@@ -100,10 +98,6 @@ namespace Infrastructure.Persistence
                     .HasDefaultValueSql("uuid_generate_v4()")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(u => u.Type)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
                 entity.Property(u => u.FirstName)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -112,9 +106,17 @@ namespace Infrastructure.Persistence
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(u => u.Status)
+                entity.Property(u => u.UserName)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(u => u.Email)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(u => u.Password)
+                    .IsRequired()
+                    .HasMaxLength(100);
             });
 
             // ModelBuilder for Entity<Apartment>
@@ -180,32 +182,6 @@ namespace Infrastructure.Persistence
                     .HasForeignKey<Contact>(c => c.UserId) 
                     .OnDelete(DeleteBehavior.Cascade); 
             });
-
-            // ModelBuilder for Entity<Credential>
-            modelBuilder.Entity<Credential>(entity =>
-            {
-                entity.ToTable("Credentials");
-
-                entity.HasKey(c => c.UserId); 
-
-                entity.Property(c => c.UserName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(c => c.Email)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(c => c.Password)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.HasOne<User>()
-                    .WithOne()
-                    .HasForeignKey<Credential>(c => c.UserId) 
-                    .OnDelete(DeleteBehavior.Cascade); 
-            });
-            modelBuilder.Entity<Credential>().OwnsOne(x => x.Access);
 
             // ModelBuilder for Entity<Favorite>
             modelBuilder.Entity<Favorite>(entity =>
