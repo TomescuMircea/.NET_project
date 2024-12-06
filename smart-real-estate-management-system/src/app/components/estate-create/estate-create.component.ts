@@ -22,15 +22,13 @@ export class EstateCreateComponent implements OnInit{
  ) {
     this.estateForm= this.fb.group(
       {
-        userId: ['', [Validators.required, Validators.pattern('^(?:\\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\\}{0,1})$')]],
         name:[ '', [Validators.required, Validators.maxLength(100)]],
         description:['', [Validators.required, Validators.maxLength(500)]],
         price: ['', [Validators.required, Validators.min(1)]],
         address:['', [Validators.required, Validators.maxLength(200)]],
         size: ['', [Validators.required, Validators.min(1)]],
         type: ['', [Validators.required, Validators.maxLength(1)]],
-        status: ['', [Validators.required, Validators.maxLength(200)]],
-        listingData: ['', Validators.required],
+        status: ['', [Validators.required, Validators.maxLength(100)]],
      });
  }
 
@@ -42,7 +40,8 @@ export class EstateCreateComponent implements OnInit{
  onSubmit(): void {
    if(this.estateForm.valid){
       const formValue = this.estateForm.value;
-      formValue.listingData = new Date(formValue.listingData).toISOString();
+      formValue.userId = '18079d7f-3f19-4b9f-b7ea-c4c7bd2b8e37';
+      formValue.listingData = new Date().toISOString();
 
       this.estateService.createEstate(formValue).subscribe(()=>{
       this.router.navigate(['/estates/paginated']);

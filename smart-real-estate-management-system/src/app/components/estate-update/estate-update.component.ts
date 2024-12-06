@@ -31,7 +31,6 @@ export class EstateUpdateComponent implements OnInit
       size: ['', [Validators.required, Validators.min(1)]],
       type: ['', [Validators.required, Validators.maxLength(1)]],
       status: ['', [Validators.required, Validators.maxLength(100)]],
-      listingData: ['', [Validators.required]],
       id: ['', [Validators.required, Validators.pattern('^(?:\\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\\}{0,1})$')]]
     });
   }
@@ -49,7 +48,7 @@ export class EstateUpdateComponent implements OnInit
   onSubmit(): void {
     if (this.estateForm.valid) {
       const formValue = this.estateForm.value;
-      formValue.listingData = new Date(formValue.listingData).toISOString();
+      formValue.listingData = new Date().toISOString();
 
 
       this.estateService.updateEstate(formValue).subscribe(() => {
