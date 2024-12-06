@@ -11,7 +11,6 @@ namespace Domain.Entities
         public required string LastName { get; set; }
         public required string Status { get; set; }
 
-        
         public ICollection<Estate>? Estates { get; set; }
     }
 }
