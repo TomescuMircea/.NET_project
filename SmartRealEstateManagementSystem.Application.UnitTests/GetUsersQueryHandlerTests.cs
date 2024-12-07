@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetUsersQueryHandler_When_HandleIsCalled_Then_AListOfUsersShouldBeReturned()
+        public async Task Given_GetUsersQueryHandler_When_HandleIsCalled_Then_AListOfUsersShouldBeReturned()
         {
             // Arrange
             List<User> users = GenerateUsers();

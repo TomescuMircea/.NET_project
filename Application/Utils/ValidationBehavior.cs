@@ -25,19 +25,22 @@ namespace Application.Utils
             if (failures.Count != 0)
             {
                 var failuresString = string.Join(", ", failures);
-                var errorText = JsonSerializer.Serialize(failures);
 
                 if (typeof(TResponse).IsGenericType && typeof(TResponse).GetGenericTypeDefinition() == typeof(Result<>))
                 {
                     var resultType = typeof(TResponse).GetGenericArguments()[0];
-                    var failureResult = typeof(Result<>).MakeGenericType(resultType)
-                        .GetMethod("Failure", new[] { typeof(string) })
-                        .Invoke(null, new object[] { failuresString });
+                    var failureMethod = typeof(Result<>).MakeGenericType(resultType)
+                        .GetMethod("Failure", new[] { typeof(string) });
 
-                    return (TResponse)failureResult;
+                    if (failureMethod != null)
+                    {
+                        var failureResult = failureMethod.Invoke(null, new object[] { failuresString });
+                        if (failureResult != null)
+                        {
+                            return (TResponse)failureResult;
+                        }
+                    }
                 }
-
-                //throw new ValidationException(failures);
             }
 
             return await next();

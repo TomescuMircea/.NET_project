@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetEstateByIdQueryHandler_When_HandleIsCalled_Then_TheEstateShouldBeReturned()
+        public async Task Given_GetEstateByIdQueryHandler_When_HandleIsCalled_Then_TheEstateShouldBeReturned()
         { 
             // Arrange
             var estate = new Estate
@@ -62,7 +62,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetEstateByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
+        public async Task Given_GetEstateByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
         {
             // Arrange
             var query = new GetEstateByIdQuery { Id = new Guid("d2aca8c8-ea05-4303-ad6f-83b41d71f97c") };

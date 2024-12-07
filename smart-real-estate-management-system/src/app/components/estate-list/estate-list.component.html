@@ -1,28 +1,63 @@
 <div class="estate-list">
-    <h1>
-        Estate List
-    </h1>
-    <button (click)="navigateToCreateEstate()">Create Estate</button>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Price</th>
-                <th>Size</th>
-                <th>ListingDate</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let estate of estates">
-                <td>{{estate.id}}</td>
-                <td>{{estate.name}}</td>
-                <td>{{estate.address}}</td>
-                <td>{{estate.price}}</td>
-                <td>{{estate.size}}</td>
-                <td>{{estate.listingDate}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <h1>Estate List</h1>
+  <button class="createEstate" (click)="navigateToCreateEstate()">
+    Create Estate
+  </button>
+  <div class="pagination-controls">
+    <label for="pageSize">Items per page:</label>
+    <select id="pageSize" class="pageSize"
+            [value]="pageSize"
+            (change)="changePageSize($event)">
+      <option 
+        *ngFor="let option of pageSizeOptions" 
+        [value]="option" 
+        [selected]="option === pageSize">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Price</th>
+        <th>Size</th>
+        <th>Listing Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estate of estates">
+        <td>{{ estate.name }}</td>
+        <td>{{ estate.address }}</td>
+        <td>{{ estate.price }}</td>
+        <td>{{ estate.size }}</td>
+        <td>{{ estate.listingData | date }}</td>
+        <td>
+          <button (click)="navigateToUpdateEstate(estate.id || '')">
+            Edit
+          </button>
+          <button (click)="navigateToDetailEstate(estate.id || '')">
+            Detail
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <a class="pagination-btn" (click)="changePage(false)">&#x276E;</a>
+    <div *ngFor="let num of getPagesArray()">
+      <a
+        class="pagination-number"
+        [class.active]="num === currentPage"
+        (click)="goToPage(num)"
+      >
+        {{ num }}
+      </a>
+    </div>
+    <a class="pagination-btn" (click)="changePage(true)">&#x276F;</a>
+  </div>
 </div>

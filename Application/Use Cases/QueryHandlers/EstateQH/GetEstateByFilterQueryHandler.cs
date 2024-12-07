@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Use_Cases.QueryHandlers.EstateQH
 {
-    public class GetEstateByFilterQueryHandler : IRequestHandler<GetEstateByFilterQuery, List<EstateDto>>
+    public class GetEstateByFilterQueryHandler : IRequestHandler<GetEstateByFilterQuery, List<EstateDto>?>
     {
         private readonly IGenericEntityRepository<Estate> repository;
         private readonly IMapper mapper;
@@ -18,7 +18,7 @@ namespace Application.Use_Cases.QueryHandlers.EstateQH
             this.mapper = mapper;
         }
 
-        public async Task<List<EstateDto>> Handle(GetEstateByFilterQuery request, CancellationToken cancellationToken)
+        public async Task<List<EstateDto>?> Handle(GetEstateByFilterQuery request, CancellationToken cancellationToken)
         {
             var estates = await repository.GetAllAsync();
             var filteredEstates = estates.AsQueryable();

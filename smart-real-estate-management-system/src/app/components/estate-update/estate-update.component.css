@@ -1,4 +1,4 @@
-.estate-create {
+.estate-update {
     max-width: 600px;
     margin: 0 auto;
     padding: 1rem;
@@ -28,11 +28,9 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-
   .form-group input {
     box-sizing: border-box;
   }
-  
   .error {
     color: red;
     font-size: 0.875rem;

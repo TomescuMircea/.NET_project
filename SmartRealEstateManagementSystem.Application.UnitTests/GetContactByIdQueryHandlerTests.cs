@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetContactByIdQueryHandler_When_HandleIsCalled_Then_TheContactShouldBeReturned()
+        public async Task Given_GetContactByIdQueryHandler_When_HandleIsCalled_Then_TheContactShouldBeReturned()
         {
             // Arrange
             var contact = new Contact
@@ -56,7 +56,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetContactByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
+        public async Task Given_GetContactByIdQueryHandler_When_HandleIsCalledWithInexistentId_Then_ShouldReturnNull()
         {
             // Arrange
             var query = new GetContactByIdQuery { Id = new Guid("a3c7b2a9-715d-4b99-8e1d-43ed32a6a8b1") };

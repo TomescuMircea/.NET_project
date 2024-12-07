@@ -23,7 +23,7 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
         }
 
         [Fact]
-        public async void Given_GetContactsQueryHandler_When_HandleIsCalled_Then_AListOfContactsShouldBeReturned()
+        public async Task Given_GetContactsQueryHandler_When_HandleIsCalled_Then_AListOfContactsShouldBeReturned()
         {
             // Arrange
             List<Contact> contacts = GenerateContacts();

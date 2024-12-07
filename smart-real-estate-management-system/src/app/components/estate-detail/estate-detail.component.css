@@ -1,0 +1,59 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  p strong {
+    color: #000;
+  }
+  
+  .details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+  }
+  .row{
+    display: flex;
+    flex-direction: row;
+  }
+  .details p {
+    margin: 5px 0;
+    word-wrap: break-word; /* Adaugă această linie */
+    overflow-wrap: break-word; /* Adaugă această linie */
+  }
+  
+  .details p strong {
+    display: inline-block;
+    width: 150px;
+  }
+  
+  .delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff1a1a;
+  }
