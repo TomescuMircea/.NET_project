@@ -40,7 +40,11 @@ export class EstateCreateComponent implements OnInit{
  onSubmit(): void {
    if(this.estateForm.valid){
       const formValue = this.estateForm.value;
-      formValue.userId = '18079d7f-3f19-4b9f-b7ea-c4c7bd2b8e37';
+      const user = JSON.parse(localStorage.getItem('userId') || '{}');
+      console.log(user);
+      if (user) {
+        formValue.userId = user;
+      }
       formValue.listingData = new Date().toISOString();
 
       this.estateService.createEstate(formValue).subscribe(()=>{

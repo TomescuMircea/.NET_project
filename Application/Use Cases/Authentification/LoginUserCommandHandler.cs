@@ -16,7 +16,6 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
         var user = new User
         {
             Email = request.Email,
-            UserName = request.Username,
             Password = request.Password
         };
         var token = await userRepository.Login(user);
