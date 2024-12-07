@@ -4,6 +4,7 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using System.Net.Http.Json;
@@ -25,6 +26,14 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                     var descriptor = services.SingleOrDefault(
                         d => d.ServiceType ==
                             typeof(DbContextOptions<ApplicationDbContext>));
+
+                    if (descriptor != null)
+                    {
+                        services.Remove(descriptor);
+                    }
+                    descriptor = services.SingleOrDefault(
+                        d => d.ServiceType ==
+                            typeof(IDbContextOptionsConfiguration<ApplicationDbContext>));
 
                     if (descriptor != null)
                     {
