@@ -1,14 +1,14 @@
 ﻿using Application.Use_Cases.Queries.EstateQ;
 using Domain.Entities;
+using System.Text;
 
 public class NameFilterStrategy : IFilterStrategy
 {
-    public IQueryable<Estate> ApplyFilter(IQueryable<Estate> query, GetEstatesPaginationByFilterQuery request)
+    public void ApplyFilter(StringBuilder sqlQuery, GetEstatesPaginationByFilterQuery request)
     {
         if (!string.IsNullOrEmpty(request.Name))
         {
-            query = query.Where(e => e.Name.Contains(request.Name));
+            sqlQuery.Append(" AND LOWER(\"Name\") LIKE LOWER('%").Append(request.Name).Append("%')");
         }
-        return query;
     }
 }

@@ -1,7 +1,7 @@
 using Application.Use_Cases.Queries.EstateQ;
-using Domain.Entities;
+using System.Text;
 
 public interface IFilterStrategy
 {
-    IQueryable<Estate> ApplyFilter(IQueryable<Estate> query, GetEstatesPaginationByFilterQuery request);
+    void ApplyFilter(StringBuilder sqlQuery, GetEstatesPaginationByFilterQuery request);
 }

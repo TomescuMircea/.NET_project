@@ -1,14 +1,14 @@
 ﻿using Application.Use_Cases.Queries.EstateQ;
 using Domain.Entities;
+using System.Text;
 
 public class AddressFilterStrategy : IFilterStrategy
 {
-    public IQueryable<Estate> ApplyFilter(IQueryable<Estate> query, GetEstatesPaginationByFilterQuery request)
+    public void ApplyFilter(StringBuilder sqlQuery, GetEstatesPaginationByFilterQuery request)
     {
         if (!string.IsNullOrEmpty(request.Address))
         {
-            query = query.Where(e => e.Address.Contains(request.Address));
+            sqlQuery.Append(" AND LOWER(\"Address\") LIKE LOWER('%").Append(request.Address).Append("%')");
         }
-        return query;
     }
 }

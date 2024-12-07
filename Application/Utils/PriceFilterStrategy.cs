@@ -1,14 +1,14 @@
 ﻿using Application.Use_Cases.Queries.EstateQ;
 using Domain.Entities;
+using System.Text;
 
 public class PriceFilterStrategy : IFilterStrategy
 {
-    public IQueryable<Estate> ApplyFilter(IQueryable<Estate> query, GetEstatesPaginationByFilterQuery request)
+    public void ApplyFilter(StringBuilder sqlQuery, GetEstatesPaginationByFilterQuery request)
     {
         if (request.Price > 0)
         {
-            query = query.Where(e => e.Price == request.Price);
+            sqlQuery.Append(" AND \"Price\" = ").Append(request.Price);
         }
-        return query;
     }
 }

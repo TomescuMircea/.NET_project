@@ -1,14 +1,14 @@
 ﻿using Application.Use_Cases.Queries.EstateQ;
 using Domain.Entities;
+using System.Text;
 
 public class TypeFilterStrategy : IFilterStrategy
 {
-    public IQueryable<Estate> ApplyFilter(IQueryable<Estate> query, GetEstatesPaginationByFilterQuery request)
+    public void ApplyFilter(StringBuilder sqlQuery, GetEstatesPaginationByFilterQuery request)
     {
         if (!string.IsNullOrEmpty(request.Type))
         {
-            query = query.Where(e => e.Type.Contains(request.Type));
+            sqlQuery.Append(" AND LOWER(\"Type\") LIKE LOWER('%").Append(request.Type).Append("%')");
         }
-        return query;
     }
 }

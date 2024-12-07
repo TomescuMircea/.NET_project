@@ -1,14 +1,14 @@
 ﻿using Application.Use_Cases.Queries.EstateQ;
 using Domain.Entities;
+using System.Text;
 
 public class SizeFilterStrategy : IFilterStrategy
 {
-    public IQueryable<Estate> ApplyFilter(IQueryable<Estate> query, GetEstatesPaginationByFilterQuery request)
+    public void ApplyFilter(StringBuilder sqlQuery, GetEstatesPaginationByFilterQuery request)
     {
         if (request.Size > 0)
         {
-            query = query.Where(e => e.Size == request.Size);
+            sqlQuery.Append(" AND \"Size\" = ").Append(request.Size);
         }
-        return query;
     }
 }
