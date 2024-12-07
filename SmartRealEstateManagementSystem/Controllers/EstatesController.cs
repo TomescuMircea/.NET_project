@@ -90,6 +90,11 @@ namespace SmartRealEstateManagementSystem.Controllers
         [HttpGet("filter")]
         public async Task<ActionResult<List<EstateDto>>> GetFilteredEstate([FromQuery] string? name,  [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size)
         {
+            if (price < 0 || size < 0)
+            {
+                return BadRequest("Price or Size cannot be negative");
+            }
+
             var query = new GetEstateByFilterQuery
             {
                 Name = name,
@@ -99,18 +104,19 @@ namespace SmartRealEstateManagementSystem.Controllers
                 Size = size
             };
             var result = await mediator.Send(query);
-            if (result == null)
-            {
-                return BadRequest("Price or Size must be greater than 0");
-            }
 
             return Ok(result);
         }
 
         [HttpGet("filter/paginated")]
         public async Task<ActionResult<PagedResult<EstateDto>>>
-            GetFilteredPaginatedEstate([FromQuery] string? name,  [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size, [FromQuery] int page, [FromQuery] int pageSize)
+            GetFilteredPaginatedEstate([FromQuery] string? name, [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size, [FromQuery] int page, [FromQuery] int pageSize)
         {
+            if (price < 0 || size < 0)
+            {
+                return BadRequest("Price or Size cannot be negative");
+            }
+
             var query = new GetEstatesPaginationByFilterQuery
             {
                 Name = name,
@@ -122,10 +128,6 @@ namespace SmartRealEstateManagementSystem.Controllers
                 Size = size
             };
             var result = await mediator.Send(query);
-            if (result == null)
-            {
-                return BadRequest("Price or Size must be greater than 0");
-            }
             return Ok(result);
         }
     }
