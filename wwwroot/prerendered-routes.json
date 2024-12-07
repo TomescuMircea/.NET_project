@@ -1,0 +1,6 @@
+{
+  "routes": [
+    "/estates/create",
+    "/estates/paginated"
+  ]
+}
