@@ -1,86 +1,76 @@
 <div class="estate-update">
-    <h1>Update Estate</h1>
-    <form [formGroup]="estateForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="userId">User Id</label>
-        <input id="userId" formControlName="userId" />
-        <div class="error" *ngIf="estateForm.get('userId')?.hasError('required')">
-          UserId is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('userId')?.hasError('pattern')">
-          UserId must be a valid GUID
-        </div>
+  <h1>Update Estate</h1>
+  <form [formGroup]="estateForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" formControlName="name"/>
+      <div class="error" *ngIf="estateForm.get('name')?.hasError('required')">
+        Name is required
       </div>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input id="name" formControlName="name"/>
-        <div class="error" *ngIf="estateForm.get('name')?.hasError('required')">
-          Name is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('name')?.hasError('maxlength')">
-          Name cannot be longer than 100 characters
-        </div>
+      <div class="error" *ngIf="estateForm.get('name')?.hasError('maxlength')">
+        Name cannot be longer than 100 characters
       </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input id="description" formControlName="description" />
-        <div class="error" *ngIf="estateForm.get('description')?.hasError('required')">
-          Description is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('description')?.hasError('maxlength')">
-          Description cannot be longer than 500 characters
-        </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input id="description" formControlName="description" />
+      <div class="error" *ngIf="estateForm.get('description')?.hasError('required')">
+        Description is required
       </div>
-      <div class="form-group">
-        <label for="price">Price</label>
-        <input id="price" formControlName="price"  />
-        <div class="error" *ngIf="estateForm.get('price')?.hasError('required')">
-          Price Date is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('price')?.hasError('min')">
-          Price must be greater than 0
-        </div>
+      <div class="error" *ngIf="estateForm.get('description')?.hasError('maxlength')">
+        Description cannot be longer than 500 characters
       </div>
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input id="address" formControlName="address" />
-        <div class="error" *ngIf="estateForm.get('address')?.hasError('required')">
-          Address is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('address')?.hasError('maxlength')">
-          Address cannot be longer than 200 characters
-        </div>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" formControlName="price"  />
+      <div class="error" *ngIf="estateForm.get('price')?.hasError('required')">
+        Price Date is required
       </div>
-      <div class="form-group">
-        <label for="size">Size</label>
-        <input id="size" formControlName="size" />
-        <div class="error" *ngIf="estateForm.get('size')?.hasError('required')">
-          Size is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('size')?.hasError('min')">
-          Size must be greater than 0
-        </div>
+      <div class="error" *ngIf="estateForm.get('price')?.hasError('min')">
+        Price must be greater than 0
       </div>
-      <div class="form-group">
-        <label for="type">Type</label>
-        <input id="type" formControlName="type" />
-        <div class="error" *ngIf="estateForm.get('type')?.hasError('required')">
-          Type is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('type')?.hasError('maxlength')">
-          Type cannot be longer than 1 character
-        </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input id="address" formControlName="address" />
+      <div class="error" *ngIf="estateForm.get('address')?.hasError('required')">
+        Address is required
       </div>
-      <div class="form-group">
-        <label for="status">Status</label>
-        <input id="status" formControlName="status" />
-        <div class="error" *ngIf="estateForm.get('status')?.hasError('required')">
-          Status is required
-        </div>
-        <div class="error" *ngIf="estateForm.get('status')?.hasError('maxlength')">
-          Status cannot be longer than 100 characters
-        </div>
+      <div class="error" *ngIf="estateForm.get('address')?.hasError('maxlength')">
+        Address cannot be longer than 200 characters
       </div>
-      <button type="submit" [disabled]="estateForm.invalid">Update Estate</button>
-    </form>
-  </div>
+    </div>
+    <div class="form-group">
+      <label for="size">Size</label>
+      <input id="size" formControlName="size" />
+      <div class="error" *ngIf="estateForm.get('size')?.hasError('required')">
+        Size is required
+      </div>
+      <div class="error" *ngIf="estateForm.get('size')?.hasError('min')">
+        Size must be greater than 0
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="type">Type</label>
+      <input id="type" formControlName="type" />
+      <div class="error" *ngIf="estateForm.get('type')?.hasError('required')">
+        Type is required
+      </div>
+      <div class="error" *ngIf="estateForm.get('type')?.hasError('maxlength')">
+        Type cannot be longer than 1 character
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input id="status" formControlName="status" />
+      <div class="error" *ngIf="estateForm.get('status')?.hasError('required')">
+        Status is required
+      </div>
+      <div class="error" *ngIf="estateForm.get('status')?.hasError('maxlength')">
+        Status cannot be longer than 100 characters
+      </div>
+    </div>
+    <button type="submit" [disabled]="estateForm.invalid">Update Estate</button>
+  </form>
+</div>

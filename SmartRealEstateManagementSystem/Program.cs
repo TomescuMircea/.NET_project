@@ -1,5 +1,6 @@
 using Application;
 using Infrastructure;
+using Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddIdentity(builder.Configuration);
+
 builder.Services.AddControllers();
 
 // Add services to the container.
@@ -42,6 +45,9 @@ app.UseRouting();
 app.UseCors("MyAllowSpecificOrigins");
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

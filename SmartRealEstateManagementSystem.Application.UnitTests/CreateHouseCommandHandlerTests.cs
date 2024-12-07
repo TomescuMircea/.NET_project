@@ -32,9 +32,6 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             _mapper = Substitute.For<IMapper>();
             _handler = new CreateHouseCommandHandler(_houseRepository, _mapper);
         }
-
-
-
         [Fact]
         public async Task Given_ValidCommand_When_HandleIsCalled_Then_ShouldReturnSuccessResult()
         {
@@ -42,10 +39,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             var user = new User
             {
                 Id = new Guid("fb0c0cbf-cf67-4cc8-babc-63d8b24862b7"),
-                Type = "f",
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
             var estate = new Estate
             {
@@ -93,10 +91,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             var user = new User
             {
                 Id = new Guid("fb0c0cbf-cf67-4cc8-babc-63d8b24862b7"),
-                Type = "f",
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
             var estate = new Estate
             {

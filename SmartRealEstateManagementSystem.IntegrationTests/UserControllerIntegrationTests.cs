@@ -94,8 +94,9 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
             {
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active",
-                Type = "Normal"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
             dbContext.Users.Add(user);
             dbContext.SaveChanges();

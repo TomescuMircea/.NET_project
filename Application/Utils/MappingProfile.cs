@@ -7,7 +7,6 @@ using Application.Use_Cases.Commands.BusinessSpaceC;
 using Application.Use_Cases.Commands.UserC;
 using Application.Use_Cases.Commands.HouseC;
 using Application.Use_Cases.Commands.ContactC;
-using Application.Use_Cases.Commands.CredentialC;
 using Application.Use_Cases.Commands.FavoriteC;
 using Application.Use_Cases.Commands.ImageC;
 using Application.Use_Cases.Commands.ReportC;
@@ -31,9 +30,6 @@ namespace Application.Utils
             CreateMap<CreateContactCommand,  Contact>().ReverseMap();
             CreateMap<UpdateContactCommand, Contact>().ReverseMap();
             CreateMap<DeleteContactCommand, Contact>().ReverseMap();
-
-            CreateMap<Credential, CredentialDto>().ReverseMap();
-            CreateMap<CreateCredentialCommand, Credential>().ReverseMap();
 
             CreateMap<Estate,EstateDto>().ReverseMap();
             CreateMap<CreateEstateCommand,Estate>().ReverseMap();
