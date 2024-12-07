@@ -1,12 +1,14 @@
-﻿using Application.DTO;
+using Application.DTO;
 using Application.Use_Cases.Queries.EstateQ;
 using Application.Utils;
 using AutoMapper;
 using Domain.Common;
 using Domain.Entities;
 using Domain.Repositories;
-using Gridify;
+using Infrastructure.Persistence;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace Application.Use_Cases.QueryHandlers.EstateQH
 {
@@ -14,54 +16,42 @@ namespace Application.Use_Cases.QueryHandlers.EstateQH
     {
         private readonly IGenericEntityRepository<Estate> repository;
         private readonly IMapper mapper;
+        private readonly ApplicationDbContext dbContext;
+        private readonly List<IFilterStrategy> filterStrategies;
 
-        public GetEstatesPaginationByFilterQueryHandler(IGenericEntityRepository<Estate> repository, IMapper mapper)
+        public GetEstatesPaginationByFilterQueryHandler(IGenericEntityRepository<Estate> repository, IMapper mapper, ApplicationDbContext dbContext)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.dbContext = dbContext;
+            filterStrategies = new List<IFilterStrategy>
+                    {
+                        new NameFilterStrategy(),
+                        new AddressFilterStrategy(),
+                        new TypeFilterStrategy(),
+                        new SizeFilterStrategy(),
+                        new PriceFilterStrategy()
+                    };
         }
+
         public async Task<Result<PagedResult<EstateDto>>> Handle(GetEstatesPaginationByFilterQuery request, CancellationToken cancellationToken)
         {
-            var estates = await repository.GetAllAsync();
-            var query = estates.AsQueryable();
+            var sqlQuery = new StringBuilder("SELECT * FROM \"Estates\" WHERE 1=1");
 
-            if (request.Name != default)
+            foreach (var strategy in filterStrategies)
             {
-                query = query.Where(e => e.Name.Contains(request.Name));
+                strategy.ApplyFilter(sqlQuery, request);
             }
 
-            if (request.Address != default)
-            {
-                query = query.Where(e => e.Address.Contains(request.Address));
-            }
+            var estates = await dbContext.Set<Estate>()
+                .FromSqlRaw(sqlQuery.ToString())
+                .ToListAsync(cancellationToken);
 
-            if (request.Type != default)
-            {
-                query = query.Where(e => e.Type.Contains(request.Type));
-            }
-
-            if (request.Size != default)
-            {
-                if (request.Size > 0)
-                    query = query.Where(e => e.Size == request.Size);
-                else
-                    return Result<PagedResult<EstateDto>>.Failure("Invalid size value");
-            }
-
-            if (request.Price != default)
-            {
-                if (request.Price > 0)
-                    query = query.Where(e => e.Price == request.Price);
-                else
-                    return Result<PagedResult<EstateDto>>.Failure("Invalid price value");
-            }
-
-            // Apply paging
-            var pagedEstates = query.ApplyPaging(request.Page, request.PageSize);
+            var pagedEstates = estates.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
 
             var estateDtos = mapper.Map<List<EstateDto>>(pagedEstates);
 
-            var pagedResult = new PagedResult<EstateDto>(estateDtos, query.Count());
+            var pagedResult = new PagedResult<EstateDto>(estateDtos, estates.Count);
 
             return Result<PagedResult<EstateDto>>.Success(pagedResult);
         }
