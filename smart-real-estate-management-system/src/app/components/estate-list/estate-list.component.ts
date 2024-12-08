@@ -64,6 +64,10 @@ export class EstateListComponent implements OnInit {
   getPagesArray(): number[] {
     return Array.from({ length: this.totalPages }, (_, index) => index + 1);
   }
+
+  navigateToHome(): void {  
+    this.router.navigate(['']);
+   }
   
   navigateToCreateEstate(): void {
         this.router.navigate(['estates/create']);
