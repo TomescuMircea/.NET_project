@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Domain.Common;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -22,7 +24,13 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginUserCommand command)
     {
-        var token = await _mediator.Send(command);
-        return Ok(new { Token = token });
+        var result = await _mediator.Send(command);
+        if (!result.IsSuccess)
+        {
+            // Returnează BadRequest cu mesaj de eroare
+            return BadRequest(result.ErrorMessage);
+        }
+
+        return StatusCode(StatusCodes.Status201Created, result.Data);
     }
 }

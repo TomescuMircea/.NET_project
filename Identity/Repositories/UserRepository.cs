@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Common;
+using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +33,7 @@ namespace Identity.Repositories
             var existingUser = await usersDbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
             if (existingUser == null || !VerifyPassword(user.Password, existingUser.Password))
             {
-                throw new UnauthorizedAccessException("Invalid credentials");
+                return Result<string>.Failure("Invalid credentials");
             }
            
             var claims = new List<Claim>
@@ -51,8 +52,7 @@ namespace Identity.Repositories
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-
+            return Result<string>.Success(tokenHandler.WriteToken(token));
         }
       
         public async Task<Guid> Register(User user, CancellationToken cancellationToken)
