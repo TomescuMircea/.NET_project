@@ -4,7 +4,9 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data.Common;
 using System.Net.Http.Json;
 
 namespace SmartRealEstateManagementSystem.IntegrationTests
@@ -23,7 +25,6 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
             {
                 builder.ConfigureServices(services =>
                 {
-                    // Remove existing DbContextOptions<ApplicationDbContext>
                     var descriptor = services.SingleOrDefault(
                         d => d.ServiceType ==
                             typeof(DbContextOptions<ApplicationDbContext>));
@@ -32,11 +33,27 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                     {
                         services.Remove(descriptor);
                     }
+                    descriptor = services.SingleOrDefault(
+                        d => d.ServiceType ==
+                            typeof(IDbContextOptionsConfiguration<ApplicationDbContext>));
 
-                    // Add InMemory database for testing
+                    if (descriptor != null)
+                    {
+                        services.Remove(descriptor);
+                    }
+
+                    var dbConnectionDescriptor = services.SingleOrDefault(
+                        d => d.ServiceType ==
+                            typeof(DbConnection));
+
+                    if (dbConnectionDescriptor != null)
+                    {
+                        services.Remove(dbConnectionDescriptor);
+                    }
+
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
-                        options.UseInMemoryDatabase("InMemoryDbForTesting"+Guid.NewGuid().ToString());
+                        options.UseInMemoryDatabase("InMemoryDbForTesting");
                     });
                 });
             });
