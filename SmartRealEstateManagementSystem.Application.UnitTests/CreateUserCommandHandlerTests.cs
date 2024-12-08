@@ -28,10 +28,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             // Arrange
             var command = new CreateUserCommand
             {
-                Type = "f",
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
 
             var user = new User
@@ -61,10 +62,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             // Arrange
             var command = new CreateUserCommand
             {
-                Type = "f",
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
             var user = new User
             {
