@@ -61,13 +61,9 @@
   }
   
   /* Stilizare pentru containerul principal */
-  .main-container {
-    background-image: url('/assets/background.jpg'); /* Calea către imaginea de fundal */
-    background-size: cover; /* Acoperă întregul ecran */
-    background-position: center; /* Centrează imaginea */
-    background-repeat: no-repeat; /* Nu repeta imaginea */
-    height: 90vh; /* Înălțimea întregii pagini */
-    width: 99vw; /* Lățimea întregii pagini */
+  .main-container { 
+    height: 70vh; /* Înălțimea întregii pagini */
+    width: 100vw; /* Lățimea întregii pagini */
     display: flex;
     flex-direction: column;
   }

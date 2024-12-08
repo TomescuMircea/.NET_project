@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url('/assets/background.jpg'); /* Calea către imaginea de fundal */
+    background-size: cover; /* Acoperă întregul ecran */
+    background-position: center; /* Centrează imaginea */
+    background-repeat: no-repeat; /* Nu repeta imaginea */
+    height: 100vh; /* Înălțimea întregii pagini */
+    width: 100vw; /* Lățimea întregii pagini */
+    margin: 0; /* Elimină marginile implicite */
+    padding: 0; /* Elimină padding-ul implicit */
+  }
