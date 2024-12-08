@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Common;
+using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,12 +21,12 @@ namespace Identity.Repositories
             this.configuration=configuration;
         }
 
-        public async Task<string> Login(User user)
+        public async Task<Result<string>> Login(User user)
         {
             var existingUser = await usersDbContext.Users.SingleOrDefaultAsync(u => u.Email == user.Email);
             if (existingUser == null)
             {
-                throw new UnauthorizedAccessException("Invalid credentials");
+                return Result<string>.Failure("Invalid credentials");
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -38,7 +39,7 @@ namespace Identity.Repositories
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            return Result<string>.Success(tokenHandler.WriteToken(token));
         }
 
         public async Task<Guid> Register(User user, CancellationToken cancellationToken)
