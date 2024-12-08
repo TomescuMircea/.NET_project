@@ -16,7 +16,7 @@ export class HomeComponent {
   constructor(private readonly userService: UserService, private readonly router: Router) { }
 
   navigateToEstateList(): void {
-    this.router.navigate(['estates/paginated']);
+    this.router.navigate(['estates/filter/paginated']);
    }
 
    navigateToLogin(): void {

@@ -11,7 +11,7 @@ export const appRoutes: Routes = [
     {path : '', component: HomeComponent},
     {path : 'login', component: LoginComponent},
     {path : 'register', component: RegisterComponent},
-    {path : 'estates/paginated', component: EstateListComponent},
+    {path : 'estates/filter/paginated', component: EstateListComponent},
     {path : 'estates/create', component: EstateCreateComponent},
     {path : 'estates/update/:id', component: EstateUpdateComponent},
     {path : 'estates/detail/:id', component: EstateDetailComponent}

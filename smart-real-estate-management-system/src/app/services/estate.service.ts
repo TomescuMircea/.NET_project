@@ -12,14 +12,9 @@ export class EstateService {
   constructor(private readonly http: HttpClient) {}
 
   public getPaginatedEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
-    const paginatedUrl = `${this.apiURL}/paginated?page=${pageNumber}&pageSize=${pageSize}`;
+    const paginatedUrl = `${this.apiURL}/filter/paginated?page=${pageNumber}&pageSize=${pageSize}`;
     return this.http.get<Estate[]>(paginatedUrl);
   }
-
-  // public createEstate(estate: Estate): Observable<Estate> {
-    
-  //   return this.http.post<Estate>(this.apiURL, estate);
-  // }
 
   public createEstate(estate: Estate): Observable<Estate> {
     // Obține token-ul din localStorage
