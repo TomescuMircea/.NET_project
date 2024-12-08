@@ -1,0 +1,22 @@
+<div class="main-container">
+  <nav class="navbar">
+    <ul class="left-nav">
+      <li><button (click)="navigateToEstateList()">Estates</button></li>
+    </ul>
+    <ul class="right-nav">
+      <li *ngIf="!isLogged()">
+        <button (click)="navigateToLogin()">Login</button>
+      </li>
+      <li *ngIf="!isLogged()">
+        <button (click)="navigateToRegister()">Register</button>
+      </li>
+      <li *ngIf="isLogged()">
+        <button>{{ getUserName() }}</button>
+        <button (click)="logout()">Logout</button>
+      </li>
+    </ul>
+  </nav>
+  <div class="welcome-container">
+    <h1>Welcome to the Smart Real Estate Management App</h1>
+  </div>
+</div>

@@ -4,6 +4,7 @@ using FluentAssertions;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using System.Net.Http.Json;
@@ -25,6 +26,14 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
                     var descriptor = services.SingleOrDefault(
                         d => d.ServiceType ==
                             typeof(DbContextOptions<ApplicationDbContext>));
+
+                    if (descriptor != null)
+                    {
+                        services.Remove(descriptor);
+                    }
+                    descriptor = services.SingleOrDefault(
+                        d => d.ServiceType ==
+                            typeof(IDbContextOptionsConfiguration<ApplicationDbContext>));
 
                     if (descriptor != null)
                     {
@@ -91,10 +100,11 @@ namespace SmartRealEstateManagementSystem.IntegrationTests
             var user = new User
             {
                 Id = new Guid("fb0c0cbf-cf67-4cc8-babc-63d8b24862b7"),
-                Type = "f",
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
 
             var command = new CreateEstateCommand

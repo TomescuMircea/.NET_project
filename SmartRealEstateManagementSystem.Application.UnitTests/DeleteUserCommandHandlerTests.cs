@@ -29,10 +29,11 @@ namespace SmartRealEstateManagementSystem.Application.UnitTests
             var user = new User
             {
                 Id = command.Id,
-                Type = "Admin",
                 FirstName = "John",
                 LastName = "Doe",
-                Status = "Active"
+                UserName = "johndoe",
+                Email = "john@gmail.com",
+                Password = "12345678"
             };
 
             repository.DeleteAsync(user.Id).Returns(Result<Guid>.Success(user.Id));

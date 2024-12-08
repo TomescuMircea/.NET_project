@@ -45,7 +45,6 @@ describe('EstateCreateComponent', () => {
 
   it('should have a valid form when all fields are filled correctly', () => {
     component.estateForm.setValue({
-      userId: '123e4567-e89b-12d3-a456-426614174000',
       name: 'Test Estate',
       description: 'Test Description',
       price: 100,
@@ -59,7 +58,6 @@ describe('EstateCreateComponent', () => {
 
   it('should have an invalid form when required fields are missing', () => {
     component.estateForm.setValue({
-      userId: '',
       name: '',
       description: '',
       price: '',
@@ -73,7 +71,6 @@ describe('EstateCreateComponent', () => {
 
   it('should call createEstate and navigate on valid form submission', () => {
     component.estateForm.setValue({
-      userId: '123e4567-e89b-12d3-a456-426614174000',
       name: 'Test Estate',
       description: 'Test Description',
       price: 100,
@@ -91,7 +88,6 @@ describe('EstateCreateComponent', () => {
 
   it('should not call createEstate on invalid form submission', () => {
     component.estateForm.setValue({
-      userId: '',
       name: '',
       description: '',
       price: '',

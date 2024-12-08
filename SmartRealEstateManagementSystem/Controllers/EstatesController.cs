@@ -4,6 +4,7 @@ using Application.Use_Cases.Queries.EstateQ;
 using Application.Utils;
 using Domain.Common;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -11,6 +12,7 @@ namespace SmartRealEstateManagementSystem.Controllers
 {
     [Route("api/estates")]
     [ApiController]
+    [Authorize]
     public class EstatesController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -19,9 +21,12 @@ namespace SmartRealEstateManagementSystem.Controllers
             this.mediator = mediator;
         }
 
+       
         [HttpPost]
         public async Task<ActionResult<Result<Guid>>> CreateEstate(CreateEstateCommand command)
         {
+            Console.WriteLine(command);
+
             var result = await mediator.Send(command);
             if (!result.IsSuccess)
             {
@@ -31,12 +36,14 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<EstateDto>>> GetEstates()
         {
             return await mediator.Send(new GetEstatesQuery());
         }
 
         [HttpGet("{id:guid}")]
+        [AllowAnonymous]
         public async Task<ActionResult<EstateDto>> GetEstateById(Guid id)
         {
             var query = new GetEstateByIdQuery { Id = id };
@@ -48,6 +55,7 @@ namespace SmartRealEstateManagementSystem.Controllers
             return Ok(result);
         }
 
+       
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<Result<Guid>>> UpdateEstate(Guid id, UpdateEstateCommand command)
         {
@@ -75,6 +83,7 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpGet("paginated")]
+        [AllowAnonymous]
         public async Task<ActionResult<PagedResult<EstateDto>>> GetPaginatedEstate([FromQuery] int page, [FromQuery] int pageSize)
         {
             var query = new GetEstatesPaginationQuery
@@ -88,6 +97,7 @@ namespace SmartRealEstateManagementSystem.Controllers
 
 
         [HttpGet("filter")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<EstateDto>>> GetFilteredEstate([FromQuery] string? name,  [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size)
         {
             if (price < 0 || size < 0)
@@ -109,6 +119,7 @@ namespace SmartRealEstateManagementSystem.Controllers
         }
 
         [HttpGet("filter/paginated")]
+        [AllowAnonymous]
         public async Task<ActionResult<PagedResult<EstateDto>>>
             GetFilteredPaginatedEstate([FromQuery] string? name, [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size, [FromQuery] int page, [FromQuery] int pageSize)
         {

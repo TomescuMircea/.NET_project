@@ -18,7 +18,6 @@ namespace Infrastructure
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddScoped<IGenericEntityRepository<Estate>, EstateRepository>();
-            services.AddScoped<IGenericEntityRepository<Credential>, CredentialRepository>();
             services.AddScoped<IGenericEntityRepository<Image>, ImageRepository>();
             services.AddScoped<IGenericEntityRepository<House>, HouseRepository>();
             services.AddScoped<IGenericEntityRepository<Favorite>, FavoriteRepository>();

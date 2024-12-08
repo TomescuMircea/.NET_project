@@ -8,10 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Use Cases\Queries\Credential\**" />
+    <EmbeddedResource Remove="Use Cases\Queries\Credential\**" />
+    <None Remove="Use Cases\Queries\Credential\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Use Cases\Queries\Apartment\" />
     <Folder Include="Use Cases\Queries\House\" />
     <Folder Include="Use Cases\Queries\BusinessSpace\" />
-    <Folder Include="Use Cases\Queries\Credential\" />
     <Folder Include="Use Cases\Queries\Image\" />
     <Folder Include="Use Cases\Queries\Favorite\" />
     <Folder Include="Use Cases\Queries\Report\" />
@@ -30,6 +35,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
     <PackageReference Include="Gridify" Version="2.15.1" />
@@ -38,11 +44,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="NSubstitute" Version="5.3.0" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Identity\Identity.csproj" />
   </ItemGroup>
 
 </Project>

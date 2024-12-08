@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EstateService } from '../../services/estate.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-estate-create',
@@ -14,15 +15,16 @@ import { CommonModule } from '@angular/common';
 export class EstateCreateComponent implements OnInit{
 
   estateForm: FormGroup;
+  errorMessage: string = '';
 
 
  constructor(private readonly fb:FormBuilder,
              private readonly estateService: EstateService,
-             private readonly router: Router
+             private readonly router: Router,
+             private readonly userService: UserService
  ) {
     this.estateForm= this.fb.group(
       {
-        userId: ['', [Validators.required, Validators.pattern('^(?:\\{{0,1}(?:[0-9a-fA-F]){8}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){4}-(?:[0-9a-fA-F]){12}\\}{0,1})$')]],
         name:[ '', [Validators.required, Validators.maxLength(100)]],
         description:['', [Validators.required, Validators.maxLength(500)]],
         price: ['', [Validators.required, Validators.min(1)]],
@@ -39,15 +41,33 @@ export class EstateCreateComponent implements OnInit{
 
 
  onSubmit(): void {
-   if(this.estateForm.valid){
-      const formValue = this.estateForm.value;
-      formValue.listingData = new Date().toISOString();
+  if (this.estateForm.valid) {
+    const formValue = this.estateForm.value;
 
-      this.estateService.createEstate(formValue).subscribe(()=>{
+  
+   const userId=this.userService.getUserId();
+
+    // Verifică dacă UserId este extras
+    if (userId) {
+      formValue.userId = userId;
+    } else {
+      this.errorMessage = 'You must log in.';
+      console.error(this.errorMessage);
+      return;
+    }
+
+    // Adaugă data curentă
+    formValue.listingData = new Date().toISOString();
+
+    console.log('Form data:', formValue);
+
+    // Trimite cererea la API
+    this.estateService.createEstate(formValue).subscribe(() => {
       this.router.navigate(['/estates/paginated']);
-     });
-   }
-
- }
-
+    });
+  }
 }
+
+ 
+}
+
