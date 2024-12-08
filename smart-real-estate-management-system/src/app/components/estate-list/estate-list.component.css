@@ -1,125 +1,171 @@
+.active, .filter:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 18px;
+  padding-top: 8px;
+  display: none;
+  overflow: hidden;
+  width: 30%;
+} 
+
+.filter-collapsible{
+  padding: 10px 20px;
+  background-color: #008B8B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.content label {
+  font-weight: bold;
+  color: #333;
+}
+
+.content input[type="text"],
+.content input[type="number"] {
+  width: 50%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.content input[type="submit"] {
+  background-color:  #107F52;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .pagination-controls{
   margin-bottom: 20px;
 }
 .pageSize{
   margin-left: 10px;
 }
+
 .estate-list {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.createEstate{
+
+  background-color:  #107F52;
+}
+
+.createEstate:hover{
+  background-color:#17B169;
+
+}
+button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  background-color: #008B8B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #20B2AA
+  ;
+}
+
+#edit-button, #detail-button {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.pagination {
+  margin-top: 50px;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination-btn {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  transition: color 0.3s ease;
+ 
+}
+
+.pagination-btn:hover {
+  color:#e0e0e0;
+}
+
+
+
+.pagination-number {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+  background-color: #f0f0f0; /* Fundal gri deschis implicit */
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+
+.pagination-number.active {
+  font-weight: bold;
+  color: #fff;
+  background-color: #008B8B; /* Fundal albastru pentru pagina activă */
+ 
+}
+
+.pagination-number:not(.active):hover {
+  background-color: #e0e0e0; /* Fundal gri mai închis la hover */
+}
+
+
+@media (max-width: 600px) {
+  .estate-list {
+    padding: 10px;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+
+  table, th, td {
+    font-size: 14px;
   }
-  
+
   th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  .createEstate{
-
-    background-color:  #107F52;
+    padding: 6px;
   }
 
-  .createEstate:hover{
-    background-color:#17B169;
-
-  }
   button {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    background-color: #008B8B;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    width: 100%;
+    padding: 10px;
   }
-  
-  button:hover {
-    background-color: #20B2AA
-    ;
-  }
-
-  #edit-button, #detail-button {
-    margin-left: 10px;
-    margin-top: 20px;
-  }
-  
-  .pagination {
-    margin-top: 50px;
-   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .pagination-btn {
-    padding: 5px 10px;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-    transition: color 0.3s ease;
-   
-  }
-  
-  .pagination-btn:hover {
-    color:#e0e0e0;
-  }
-  
-  
-  
-  .pagination-number {
-    padding: 5px 10px;
-    text-decoration: none;
-    color: black;
-    background-color: #f0f0f0; /* Fundal gri deschis implicit */
-    cursor: pointer;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 3px;
-    border: 1px solid transparent;
-  }
-  
-  .pagination-number.active {
-    font-weight: bold;
-    color: #fff;
-    background-color: #008B8B; /* Fundal albastru pentru pagina activă */
-   
-  }
-  
-  .pagination-number:not(.active):hover {
-    background-color: #e0e0e0; /* Fundal gri mai închis la hover */
-  }
-  
-  
-  @media (max-width: 600px) {
-    .estate-list {
-      padding: 10px;
-    }
-  
-    table, th, td {
-      font-size: 14px;
-    }
-  
-    th, td {
-      padding: 6px;
-    }
-  
-    button {
-      width: 100%;
-      padding: 10px;
-    }
-  }
-  
+}
