@@ -1,7 +1,8 @@
- import { Injectable } from '@angular/core';
- import { HttpClient } from '@angular/common/http';
- import { Observable } from 'rxjs';
- import { Estate } from '../models/estate.model';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Estate } from '../models/estate.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,26 @@ export class EstateService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getPaginatedEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
+  getPaginatedEstates(name: string, address: string, type: string, price: number, size: number, page: number, pageSize: number): Observable<any> {
+    let params = new HttpParams()
+      .set('name', name)
+      .set('address', address)
+      .set('type', type)
+      .set('price', price.toString())
+      .set('size', size.toString())
+      .set('page', page.toString())
+      .set('pageSize', pageSize.toString());
+
+    return this.http.get<any>(`${this.apiURL}/filter/paginated`, { params });
+  }
+
+
+  public getPaginatedFilterEstates(pageNumber: number, pageSize: number): Observable<Estate[]> {
     const paginatedUrl = `${this.apiURL}/filter/paginated?page=${pageNumber}&pageSize=${pageSize}`;
+    // filter/paginated?type=1&page=1&pageSize=5
     return this.http.get<Estate[]>(paginatedUrl);
   }
+
 
   public createEstate(estate: Estate): Observable<Estate> {
     // Obține token-ul din localStorage

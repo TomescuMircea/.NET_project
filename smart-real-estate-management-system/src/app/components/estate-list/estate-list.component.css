@@ -1,56 +1,103 @@
+.active, .filter:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 18px;
+  padding-top: 8px;
+  display: none;
+  overflow: hidden;
+  width: 30%;
+} 
+
+.filter-collapsible{
+  padding: 10px 20px;
+  background-color: #008B8B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.content label {
+  font-weight: bold;
+  color: #333;
+}
+
+.content input[type="text"],
+.content input[type="number"] {
+  width: 50%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.content input[type="submit"] {
+  background-color:  #107F52;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .pagination-controls{
   margin-bottom: 20px;
 }
 .pageSize{
   margin-left: 10px;
 }
+
 .estate-list {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  .createEstate{
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-    background-color:  #107F52;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
 
-  .createEstate:hover{
-    background-color:#17B169;
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
 
-  }
-  button {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    background-color: #008B8B;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #20B2AA
-    ;
-  }
+th {
+  background-color: #f2f2f2;
+}
+
+.createEstate{
+
+  background-color:  #107F52;
+}
+
+.createEstate:hover{
+  background-color:#17B169;
+
+}
+button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  background-color: #008B8B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #20B2AA
+  ;
+}
 
   .home-button{
     background-color: #444;
