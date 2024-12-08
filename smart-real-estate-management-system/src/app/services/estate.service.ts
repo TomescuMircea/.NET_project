@@ -36,7 +36,16 @@ export class EstateService {
   }
   
   public updateEstate(estate: Estate): Observable<Estate> {
-    return this.http.put<Estate>(`${this.apiURL}/${estate.id}`, estate);
+    // Obține token-ul din localStorage
+    const token = localStorage.getItem('token');
+    console.log("Token", token);
+  
+    // Creează anteturile și adaugă token-ul
+    const headers = token
+      ? { Authorization: `Bearer ${token}` }
+      : undefined;
+
+    return this.http.put<Estate>(`${this.apiURL}/${estate.id}`, estate, { headers });
   }
 
   public getEstateById(id: string): Observable<Estate> {
@@ -44,6 +53,15 @@ export class EstateService {
   }
 
   public deleteEstate(id: string): Observable<any> {
-    return this.http.delete(`${this.apiURL}/${id}`);
+    // Obține token-ul din localStorage
+    const token = localStorage.getItem('token');
+    console.log("Token", token);
+  
+    // Creează anteturile și adaugă token-ul
+    const headers = token
+      ? { Authorization: `Bearer ${token}` }
+      : undefined;
+
+    return this.http.delete(`${this.apiURL}/${id}`, { headers });
   }
 }

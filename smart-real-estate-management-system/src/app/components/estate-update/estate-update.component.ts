@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstateService } from '../../services/estate.service';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-estate-update',
@@ -19,7 +20,8 @@ export class EstateUpdateComponent implements OnInit
     private readonly fb: FormBuilder,
     private readonly estateService: EstateService,
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly userService: UserService
 
   ) {
     this.estateForm = this.fb.group({
@@ -49,7 +51,16 @@ export class EstateUpdateComponent implements OnInit
     if (this.estateForm.valid) {
       const formValue = this.estateForm.value;
       formValue.listingData = new Date().toISOString();
-      console.log("Estate: ", formValue);
+
+      const userId=this.userService.getUserId();
+
+      if (userId!=formValue.userId){
+        console.error('This user is unauthorized to edit this estate.');
+        return;
+      }
+      
+      console.log('Form data:', formValue);
+
       this.estateService.updateEstate(formValue).subscribe(() => {
         this.router.navigate(['/estates/paginated']);
       });
