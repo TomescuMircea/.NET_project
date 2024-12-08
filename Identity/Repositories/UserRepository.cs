@@ -34,12 +34,18 @@ namespace Identity.Repositories
             {
                 throw new UnauthorizedAccessException("Invalid credentials");
             }
-
+           
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, existingUser.Id.ToString()), // UserId
+                new Claim(ClaimTypes.Name, existingUser.UserName), // Numele utilizatorului
+                new Claim("email", existingUser.Email) // Email-ul utilizatorului (opțional)
+            };
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]!);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Name, existingUser.Id.ToString()) }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

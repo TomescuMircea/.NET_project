@@ -31,6 +31,13 @@ namespace Identity
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key)
+                  //  { ValidateIssuer = true,
+                  //ValidateAudience = true,
+                  //ValidateLifetime = true,
+                  //ValidateIssuerSigningKey = true,
+                  //ValidIssuer = configuration["Jwt:Issuer"],
+                  //ValidAudience = configuration["Jwt:Audience"],
+                  //IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
 
             });

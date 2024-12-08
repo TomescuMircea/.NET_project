@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EstateService } from '../../services/estate.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-estate-create',
@@ -18,7 +19,8 @@ export class EstateCreateComponent implements OnInit{
 
  constructor(private readonly fb:FormBuilder,
              private readonly estateService: EstateService,
-             private readonly router: Router
+             private readonly router: Router,
+             private readonly userService: UserService
  ) {
     this.estateForm= this.fb.group(
       {
@@ -38,20 +40,32 @@ export class EstateCreateComponent implements OnInit{
 
 
  onSubmit(): void {
-   if(this.estateForm.valid){
-      const formValue = this.estateForm.value;
-      const user = JSON.parse(localStorage.getItem('userId') || '{}');
-      console.log(user);
-      if (user) {
-        formValue.userId = user;
-      }
-      formValue.listingData = new Date().toISOString();
+  if (this.estateForm.valid) {
+    const formValue = this.estateForm.value;
 
-      this.estateService.createEstate(formValue).subscribe(()=>{
+  
+   const userId=this.userService.getUserId();
+
+    // Verifică dacă UserId este extras
+    if (userId) {
+      formValue.userId = userId;
+    } else {
+      console.error('UserId is missing in token.');
+      return;
+    }
+
+    // Adaugă data curentă
+    formValue.listingData = new Date().toISOString();
+
+    console.log('Form data:', formValue);
+
+    // Trimite cererea la API
+    this.estateService.createEstate(formValue).subscribe(() => {
       this.router.navigate(['/estates/paginated']);
-     });
-   }
-
- }
-
+    });
+  }
 }
+
+ 
+}
+

@@ -21,9 +21,12 @@ namespace SmartRealEstateManagementSystem.Controllers
             this.mediator = mediator;
         }
 
+       
         [HttpPost]
         public async Task<ActionResult<Result<Guid>>> CreateEstate(CreateEstateCommand command)
         {
+            Console.WriteLine(command);
+
             var result = await mediator.Send(command);
             if (!result.IsSuccess)
             {
@@ -52,6 +55,7 @@ namespace SmartRealEstateManagementSystem.Controllers
             return Ok(result);
         }
 
+       
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<Result<Guid>>> UpdateEstate(Guid id, UpdateEstateCommand command)
         {
