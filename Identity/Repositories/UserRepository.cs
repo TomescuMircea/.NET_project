@@ -28,7 +28,7 @@ namespace Identity.Repositories
             return BCrypt.Net.BCrypt.Verify(inputPassword, storedPasswordHash);
         }
 
-        public async Task<string> Login(User user)
+        public async Task<Result<string>> Login(User user)
         {
             var existingUser = await usersDbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
             if (existingUser == null || !VerifyPassword(user.Password, existingUser.Password))
@@ -52,7 +52,7 @@ namespace Identity.Repositories
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return Result<string>.Success(tokenHandler.WriteToken(token));
+            return Result<string>.Success($"{{\"token\": \"{tokenHandler.WriteToken(token)}\"}}");
         }
       
         public async Task<Guid> Register(User user, CancellationToken cancellationToken)

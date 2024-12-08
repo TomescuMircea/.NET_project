@@ -37,6 +37,7 @@ export class UserService {
     return this.http.post<any>(`${this.apiURL}/login`, user).pipe(
       tap((response: any) => {
         const token = response.token;
+        console.log('Service token: ', token);
         localStorage.setItem('token', token);
 
         // Decodează token-ul pentru a extrage numele
