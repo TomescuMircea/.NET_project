@@ -57,3 +57,11 @@ p strong {
 .delete-button:hover {
   background-color: #ff1a1a;
 }
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+  display: block;
+}

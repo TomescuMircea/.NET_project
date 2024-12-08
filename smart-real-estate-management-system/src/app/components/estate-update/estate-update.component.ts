@@ -15,6 +15,7 @@ import { UserService } from '../../services/user.service';
 export class EstateUpdateComponent implements OnInit 
 {
   estateForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -53,9 +54,15 @@ export class EstateUpdateComponent implements OnInit
       formValue.listingData = new Date().toISOString();
 
       const userId=this.userService.getUserId();
-
-      if (userId!=formValue.userId){
-        console.error('This user is unauthorized to edit this estate.');
+      
+      if (!userId) {
+        this.errorMessage = 'You must log in.';
+        console.error(this.errorMessage);
+        return;
+      }
+      else if (userId!=formValue.userId){
+        this.errorMessage = 'You are not authorized to edit this estate.';
+        console.error(this.errorMessage);
         return;
       }
       

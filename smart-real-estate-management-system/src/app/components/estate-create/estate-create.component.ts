@@ -15,6 +15,7 @@ import { UserService } from '../../services/user.service';
 export class EstateCreateComponent implements OnInit{
 
   estateForm: FormGroup;
+  errorMessage: string = '';
 
 
  constructor(private readonly fb:FormBuilder,
@@ -50,7 +51,8 @@ export class EstateCreateComponent implements OnInit{
     if (userId) {
       formValue.userId = userId;
     } else {
-      console.error('UserId is missing in token.');
+      this.errorMessage = 'You must log in.';
+      console.error(this.errorMessage);
       return;
     }
 

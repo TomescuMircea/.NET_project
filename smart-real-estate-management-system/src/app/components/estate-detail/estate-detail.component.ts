@@ -13,6 +13,7 @@ import { UserService } from '../../services/user.service';
 })
 export class EstateDetailComponent implements OnInit {
   estate: any;
+  errorMessage: string = '';
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -33,8 +34,14 @@ export class EstateDetailComponent implements OnInit {
   onDelete(id: string): void {
     const userId=this.userService.getUserId();
 
-    if (userId!=this.estate.userId){
-      console.error('This user is unauthorized to delete this estate.');
+    if (!userId) {
+      this.errorMessage = 'You must log in.';
+      console.error(this.errorMessage);
+      return;
+    }
+    else if (userId!=this.estate.userId) {
+      this.errorMessage = 'You are not authorized to delete this estate.';
+      console.error(this.errorMessage);
       return;
     }
 

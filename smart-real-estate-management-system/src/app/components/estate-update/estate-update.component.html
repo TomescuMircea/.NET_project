@@ -71,6 +71,9 @@
         Status cannot be longer than 100 characters
       </div>
     </div>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>  
     <button type="submit" [disabled]="estateForm.invalid">Update Estate</button>
   </form>
 </div>
