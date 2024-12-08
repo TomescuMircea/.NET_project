@@ -69,7 +69,7 @@ export class EstateUpdateComponent implements OnInit
       console.log('Form data:', formValue);
 
       this.estateService.updateEstate(formValue).subscribe(() => {
-        this.router.navigate(['/estates/paginated']);
+        this.router.navigate(['/estates/filter/paginated']);
       });
     }
   }

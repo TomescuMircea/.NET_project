@@ -46,7 +46,7 @@ export class EstateDetailComponent implements OnInit {
     }
 
     this.estateService.deleteEstate(id).subscribe(() => {
-      this.router.navigate(['/estates/paginated']);
+      this.router.navigate(['/estates/filter/paginated']);
     });
   }
 }

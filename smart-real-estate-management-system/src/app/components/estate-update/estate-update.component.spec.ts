@@ -101,6 +101,6 @@ describe('EstateUpdateComponent', () => {
     });
     component.onSubmit();
     expect(estateServiceMock.updateEstate).toHaveBeenCalled();
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/estates/paginated']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/estates/filter/paginated']);
   });
 });

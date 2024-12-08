@@ -63,7 +63,7 @@ export class EstateCreateComponent implements OnInit{
 
     // Trimite cererea la API
     this.estateService.createEstate(formValue).subscribe(() => {
-      this.router.navigate(['/estates/paginated']);
+      this.router.navigate(['/estates/filter/paginated']);
     });
   }
 }
