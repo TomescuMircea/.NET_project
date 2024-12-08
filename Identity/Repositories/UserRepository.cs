@@ -22,10 +22,15 @@ namespace Identity.Repositories
             this.repository = repository;
         }
 
+        private bool VerifyPassword(string inputPassword, string storedPasswordHash)
+        {
+            return BCrypt.Net.BCrypt.Verify(inputPassword, storedPasswordHash);
+        }
+
         public async Task<string> Login(User user)
         {
-            var existingUser = await usersDbContext.Users.SingleOrDefaultAsync(u => u.Email == user.Email);
-            if (existingUser == null)
+            var existingUser = await usersDbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+            if (existingUser == null || !VerifyPassword(user.Password, existingUser.Password))
             {
                 throw new UnauthorizedAccessException("Invalid credentials");
             }
@@ -41,8 +46,9 @@ namespace Identity.Repositories
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
-        }
 
+        }
+      
         public async Task<Guid> Register(User user, CancellationToken cancellationToken)
         {
             usersDbContext.Users.Add(user);
