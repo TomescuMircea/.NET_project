@@ -13,11 +13,13 @@ namespace Identity.Repositories
     {
         private readonly UsersDbContext usersDbContext;
         private readonly IConfiguration configuration;
+        private readonly IGenericEntityRepository<User> repository;
 
-        public UserRepository(UsersDbContext usersDbContext, IConfiguration configuration)
+        public UserRepository(UsersDbContext usersDbContext, IConfiguration configuration, IGenericEntityRepository<User> repository)
         {
-            this.usersDbContext=usersDbContext;
-            this.configuration=configuration;
+            this.usersDbContext = usersDbContext;
+            this.configuration = configuration;
+            this.repository = repository;
         }
 
         public async Task<string> Login(User user)
@@ -45,6 +47,7 @@ namespace Identity.Repositories
         {
             usersDbContext.Users.Add(user);
             await usersDbContext.SaveChangesAsync(cancellationToken);
+            await repository.AddAsync(user);
             return user.Id;
         }
     }
