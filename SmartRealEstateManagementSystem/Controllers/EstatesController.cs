@@ -82,42 +82,6 @@ namespace SmartRealEstateManagementSystem.Controllers
             return StatusCode(StatusCodes.Status200OK, result.Data);
         }
 
-        [HttpGet("paginated")]
-        [AllowAnonymous]
-        public async Task<ActionResult<PagedResult<EstateDto>>> GetPaginatedEstate([FromQuery] int page, [FromQuery] int pageSize)
-        {
-            var query = new GetEstatesPaginationQuery
-            {
-                Page = page,
-                PageSize = pageSize
-            };
-            var result = await mediator.Send(query);
-            return Ok(result);
-        }
-
-
-        [HttpGet("filter")]
-        [AllowAnonymous]
-        public async Task<ActionResult<List<EstateDto>>> GetFilteredEstate([FromQuery] string? name,  [FromQuery] string? address, [FromQuery] string? type, [FromQuery] decimal price, [FromQuery] decimal size)
-        {
-            if (price < 0 || size < 0)
-            {
-                return BadRequest("Price or Size cannot be negative");
-            }
-
-            var query = new GetEstateByFilterQuery
-            {
-                Name = name,
-                Price = price,
-                Type = type,
-                Address = address,
-                Size = size
-            };
-            var result = await mediator.Send(query);
-
-            return Ok(result);
-        }
-
         [HttpGet("filter/paginated")]
         [AllowAnonymous]
         public async Task<ActionResult<PagedResult<EstateDto>>>
