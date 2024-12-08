@@ -49,4 +49,8 @@ export class EstateDetailComponent implements OnInit {
       this.router.navigate(['/estates/filter/paginated']);
     });
   }
+
+  onBack(): void {
+    this.router.navigate(['/estates/filter/paginated']);
+  }
 }

@@ -37,11 +37,15 @@
   button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #008B8B;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #20B2AA;
   }
   
   button:disabled {
@@ -61,6 +65,15 @@
     cursor: pointer;
     color: blue;
   }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+  }
+
   @media (max-width: 600px) {
     input {
       padding: 0.25rem;

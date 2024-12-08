@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(private fb: FormBuilder, private readonly userService: UserService,
     private readonly router: Router) 
@@ -30,8 +31,14 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
 
-      this.userService.login(this.loginForm.value).subscribe((response: any) => {
-        this.router.navigate(['']);
+      this.userService.login(this.loginForm.value).subscribe({
+        next: () => {
+          this.router.navigate(['']);
+        },
+        error: (err) => {
+          this.errorMessage = err.error;
+          console.error(this.errorMessage);
+        }
       });
     }
   }

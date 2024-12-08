@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, catchError } from 'rxjs';
 import { User } from '../models/user.model';
 import {jwtDecode} from 'jwt-decode';
 
@@ -36,19 +36,22 @@ export class UserService {
   public login(user: User): Observable<any> {
     return this.http.post<any>(`${this.apiURL}/login`, user).pipe(
       tap((response: any) => {
-        const token = response.token;
-        console.log('Service token: ', token);
-        localStorage.setItem('token', token);
+      const token = response.token;
+      console.log('Service token: ', token);
+      localStorage.setItem('token', token);
 
-        // Decodează token-ul pentru a extrage numele
-        const decodedToken = jwtDecode<any>(token);
-        this.userName = decodedToken['unique_name'] || null;
-        this.userId = decodedToken['nameid'] || '';
-        console.log('Service username: ', this.userName);
+      // Decodează token-ul pentru a extrage numele
+      const decodedToken = jwtDecode<any>(token);
+      this.userName = decodedToken['unique_name'] || null;
+      this.userId = decodedToken['nameid'] || '';
+      console.log('Service username: ', this.userName);
 
-        if (this.userName !== null) {
-          localStorage.setItem('userName', this.userName);
-        }
+      if (this.userName !== null) {
+        localStorage.setItem('userName', this.userName);
+      }
+      }),
+      catchError((error) => {
+        throw error;
       })
     );
   }
