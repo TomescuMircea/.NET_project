@@ -49,7 +49,7 @@ export class EstateUpdateComponent implements OnInit
     if (this.estateForm.valid) {
       const formValue = this.estateForm.value;
       formValue.listingData = new Date().toISOString();
-
+      console.log("Estate: ", formValue);
       this.estateService.updateEstate(formValue).subscribe(() => {
         this.router.navigate(['/estates/paginated']);
       });

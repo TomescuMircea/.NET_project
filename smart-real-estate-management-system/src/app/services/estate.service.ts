@@ -16,10 +16,25 @@ export class EstateService {
     return this.http.get<Estate[]>(paginatedUrl);
   }
 
-  public createEstate(estate: Estate): Observable<Estate> {
-    return this.http.post<Estate>(this.apiURL, estate);
-  }
+  // public createEstate(estate: Estate): Observable<Estate> {
+    
+  //   return this.http.post<Estate>(this.apiURL, estate);
+  // }
 
+  public createEstate(estate: Estate): Observable<Estate> {
+    // Obține token-ul din localStorage
+    const token = localStorage.getItem('token');
+    console.log("Token1", token);
+  
+    // Creează anteturile și adaugă token-ul
+    const headers = token
+      ? { Authorization: `Bearer ${token}` }
+      : undefined;
+  
+    // Trimite cererea POST cu antetul personalizat
+    return this.http.post<Estate>(this.apiURL, estate, { headers });
+  }
+  
   public updateEstate(estate: Estate): Observable<Estate> {
     return this.http.put<Estate>(`${this.apiURL}/${estate.id}`, estate);
   }

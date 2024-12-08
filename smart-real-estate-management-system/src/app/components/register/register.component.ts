@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit
       this.userService.register(this.registerForm.value).subscribe((response) => {
         console.log(response);
         localStorage.setItem('userId', JSON.stringify(response));
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
       });
 
       // this.userService.register(this.registerForm.value).subscribe(() => {

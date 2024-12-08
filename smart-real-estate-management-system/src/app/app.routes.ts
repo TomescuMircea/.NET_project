@@ -15,4 +15,5 @@ export const appRoutes: Routes = [
     {path : 'estates/create', component: EstateCreateComponent},
     {path : 'estates/update/:id', component: EstateUpdateComponent},
     {path : 'estates/detail/:id', component: EstateDetailComponent}
+
 ];
