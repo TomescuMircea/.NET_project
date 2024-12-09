@@ -1,5 +1,6 @@
 ﻿using Domain.Repositories;
 using Identity.Repositories;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +14,10 @@ namespace Identity
     {
         public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<UsersDbContext>(options => options.UseSqlite(configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<UsersDbContext>(options =>
+                options.UseNpgsql(
+                    configuration.GetConnectionString("UserConnection"),
+                    b => b.MigrationsAssembly(typeof(UsersDbContext).Assembly.FullName)));
 
             // Add Authentication
             var key = Encoding.ASCII.GetBytes("My Secret Key For Identity Module");

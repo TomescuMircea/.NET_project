@@ -57,7 +57,7 @@ namespace Identity.Repositories
       
         public async Task<Guid> Register(User user, CancellationToken cancellationToken)
         {
-            usersDbContext.Users.Add(user);
+            await usersDbContext.Users.AddAsync(user);
             await usersDbContext.SaveChangesAsync(cancellationToken);
             await repository.AddAsync(user);
             return user.Id;
