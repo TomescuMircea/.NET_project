@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("https://smart-real-estate-management-227505df1e15.herokuapp.com");
+                          policy.AllowAnyOrigin();
                           policy.AllowAnyHeader();
                           policy.AllowAnyMethod();
                       });
