@@ -8,7 +8,7 @@ import {jwtDecode} from 'jwt-decode';
   providedIn: 'root',
 })
 export class UserService {
-  private readonly apiURL = 'http://localhost:5045/api/Auth';
+  private readonly apiURL = 'https://smart-real-estate-management-227505df1e15.herokuapp.com/api/Auth';
 
   isUserLoggedIn: boolean = false;
   public userName: string | null = null;

@@ -8,7 +8,7 @@ import { Estate } from '../models/estate.model';
   providedIn: 'root'
 })
 export class EstateService {
-  private readonly apiURL = 'http://localhost:5045/api/estates';
+  private readonly apiURL = 'https://smart-real-estate-management-227505df1e15.herokuapp.com/api/estates';
 
   constructor(private readonly http: HttpClient) {}
 
