@@ -88,9 +88,29 @@ app.MapControllers();
 
 await app.RunAsync();
 
+await CreateHostBuilder(args).Build().RunAsync();
+
 public partial class Program
 {
     protected Program()
     {
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.Configure(app =>
+                {
+                    app.UsePathBase("/api");
+
+                    app.UseRouting();
+                    app.UseEndpoints(endpoints =>
+                    {
+                        endpoints.MapControllers();
+                    });
+                });
+
+                webBuilder.UseStartup<Program>();
+            });
 }
