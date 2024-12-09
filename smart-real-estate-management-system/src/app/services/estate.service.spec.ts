@@ -51,11 +51,11 @@ describe('EstateService', () => {
         id: '9eef8dcc-01e5-4c29-8620-860f4aeeeb53'}
     ];
 
-    service.getPaginatedEstates(1,2).subscribe((estates: Estate[]) => {
+    service.getPaginatedFilterEstates(1,2).subscribe((estates: Estate[]) => {
       expect(estates).toEqual(dummyEstates);
     });
 
-    const request = httpMock.expectOne('http://localhost:5045/api/estates/paginated?page=1&pageSize=2');
+    const request = httpMock.expectOne('http://localhost:5045/api/estates/filter/paginated?page=1&pageSize=2');
     expect(request.request.method).toBe('GET');
     request.flush(dummyEstates);
   });

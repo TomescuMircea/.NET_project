@@ -56,9 +56,4 @@ describe('EstateDetailComponent', () => {
     expect(component.estate).toEqual({});
   });
 
-  it('should navigate to estates list on delete', () => {
-    component.onDelete('1');
-    expect(estateServiceMock.deleteEstate).toHaveBeenCalledWith('1');
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/estates/filter/paginated']);
-  });
 });

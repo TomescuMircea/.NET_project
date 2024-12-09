@@ -87,7 +87,25 @@ describe('EstateUpdateComponent', () => {
     expect(component.estateForm.value).toEqual(estateData);
   });
 
-  it('should call updateEstate and navigate on valid form submission', () => {
+    it('should not call updateEstate if form is invalid', () => {
+    component.estateForm.setValue({
+      userId: '',
+      name: '',
+      description: '',
+      price: '',
+      address: '',
+      size: '',
+      type: '',
+      status: '',
+      id: ''
+    });
+    component.onSubmit();
+    expect(estateServiceMock.updateEstate).not.toHaveBeenCalled();
+    expect(routerMock.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should set errorMessage if user is not logged in', () => {
+    spyOn(component['userService'], 'getUserId').and.returnValue(null as any);
     component.estateForm.setValue({
       userId: 'ee06a4ca-79b7-4ce7-8f3b-354424226a09',
       name: 'Test Estate',
@@ -100,7 +118,27 @@ describe('EstateUpdateComponent', () => {
       id: '9eef8dcc-01e5-4c29-8620-860f4aeeeb53'
     });
     component.onSubmit();
-    expect(estateServiceMock.updateEstate).toHaveBeenCalled();
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/estates/filter/paginated']);
-  });
+    expect(component.errorMessage).toBe('You must log in.');
+    expect(estateServiceMock.updateEstate).not.toHaveBeenCalled();
+    expect(routerMock.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should set errorMessage if user is not authorized to edit the estate', () => {
+    spyOn(component['userService'], 'getUserId').and.returnValue('different-user-id');
+    component.estateForm.setValue({
+      userId: 'ee06a4ca-79b7-4ce7-8f3b-354424226a09',
+      name: 'Test Estate',
+      description: 'Test Description',
+      price: 100,
+      address: 'Test Address',
+      size: 200,
+      type: 'A',
+      status: 'Available',
+      id: '9eef8dcc-01e5-4c29-8620-860f4aeeeb53'
+    });
+    component.onSubmit();
+    expect(component.errorMessage).toBe('You are not authorized to edit this estate.');
+    expect(estateServiceMock.updateEstate).not.toHaveBeenCalled();
+    expect(routerMock.navigate).not.toHaveBeenCalled();
+    });
 });

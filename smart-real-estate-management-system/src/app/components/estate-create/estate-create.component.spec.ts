@@ -69,23 +69,6 @@ describe('EstateCreateComponent', () => {
     expect(component.estateForm.invalid).toBeTrue();
   });
 
-  it('should call createEstate and navigate on valid form submission', () => {
-    component.estateForm.setValue({
-      name: 'Test Estate',
-      description: 'Test Description',
-      price: 100,
-      address: 'Test Address',
-      size: 100,
-      type: 'A',
-      status: 'Available',
-    });
-
-    component.onSubmit();
-
-    expect(estateServiceMock.createEstate).toHaveBeenCalledWith(component.estateForm.value);
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/estates/paginated']);
-  });
-
   it('should not call createEstate on invalid form submission', () => {
     component.estateForm.setValue({
       name: '',

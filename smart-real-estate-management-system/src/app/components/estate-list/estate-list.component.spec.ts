@@ -52,7 +52,7 @@ describe('EstateListComponent', () => {
   it('should load estates on initialization', () => {
     component.pageSize = 4;
     component.ngOnInit();
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(1, 4);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('', '', '', 0, 0, 1, 4);
     expect(component.estates.length).toBe(2); 
     expect(component.totalPages).toBe(2); 
   });
@@ -80,7 +80,7 @@ describe('EstateListComponent', () => {
     component.totalPages = 3;
     component.changePage(true);
     expect(component.currentPage).toBe(2);
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(2, 4);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('', '', '', 0, 0, 2, 4);
   });
 
   it('should not change page if on the first page and "previous" is clicked', () => {
@@ -88,7 +88,7 @@ describe('EstateListComponent', () => {
     component.pageSize = 4;
     component.changePage(false);
     expect(component.currentPage).toBe(1);
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(1, 4);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('', '', '', 0, 0, 1, 4);
   });
 
   it('should change page size and reset to the first page', () => {
@@ -96,14 +96,14 @@ describe('EstateListComponent', () => {
     component.changePageSize(event);
     expect(component.pageSize).toBe(5);
     expect(component.currentPage).toBe(1); 
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(1, 5);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('', '', '', 0, 0, 1, 5);
   });
 
   it('should go to a specific page and load estates', () => {
     component.pageSize = 4;
     component.goToPage(3);
     expect(component.currentPage).toBe(3);
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(3, 4);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('', '', '', 0, 0, 3, 4);
   });
 
   it('should return the correct pages array', () => {
@@ -117,7 +117,7 @@ describe('EstateListComponent', () => {
     component.totalPages = 3;
     component.changePage(true);
     expect(component.currentPage).toBe(3);
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(3, 4);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('', '', '', 0, 0, 3, 4);
   });
 
   it('should change to the next page if not on the last page and "next" is clicked', () => {
@@ -126,15 +126,20 @@ describe('EstateListComponent', () => {
     component.totalPages = 3;
     component.changePage(true);
     expect(component.currentPage).toBe(3);
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(3, 4);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('', '', '', 0, 0, 3, 4);
   });
 
   it('should change to the previous page if not on the first page and "previous" is clicked', () => {
+    component.filter.name = 'Estate 1';
+    component.filter.address = 'Address 1';
+    component.filter.type = 'A';
+    component.filter.price = 100;
+    component.filter.size = 100;
     component.currentPage = 2;
     component.pageSize = 4;
     component.totalPages = 3;
     component.changePage(false);
     expect(component.currentPage).toBe(1);
-    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith(1, 4);
+    expect(estateServiceMock.getPaginatedEstates).toHaveBeenCalledWith('Estate 1', 'Address 1', 'A', 100, 100, 1, 4);
   });
 });

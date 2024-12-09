@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'dist/smart-real-estate-management-s
 
 // Redirecționează toate cererile către index.html
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/smart-real-estate-management-system/browser/estates/paginated/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/smart-real-estate-management-system/index.html'));
 });
 
 const PORT = process.env.PORT || 8080;
