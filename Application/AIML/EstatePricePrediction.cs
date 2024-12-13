@@ -8,6 +8,6 @@ namespace Application.AIML
 {
     public class EstatePricePrediction
     {
-        public int Price { get; set; }
+        public float Price { get; set; }
     }
 }

@@ -58,6 +58,10 @@ namespace Application.AIML
 
         public float Predict(EstateData estateData)
         {
+            if ( model == null)
+            {
+                model = mlContext.Model.Load("model.zip", out DataViewSchema schema);
+            }
             var predictionEngine = mlContext.Model.CreatePredictionEngine<EstateData, EstatePricePrediction>(model);
             var prediction = predictionEngine.Predict(estateData);
             return prediction.Price;
