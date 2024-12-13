@@ -42,7 +42,7 @@ namespace Application.AIML
                         nameof(EstateData.Bedrooms), nameof(EstateData.Bathrooms), 
                         nameof(EstateData.LandSize), nameof(EstateData.HouseSize)))
                         .Append(mlContext.Regression.Trainers.Sdca(labelColumnName: nameof(EstateData.Price),
-                        featureColumnName: "Features"));
+                        featureColumnName: "Features",maximumNumberOfIterations: 100));
 
                 // Train the model
                 model = pipeline.Fit(trainingData);

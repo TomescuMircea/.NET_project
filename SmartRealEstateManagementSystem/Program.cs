@@ -92,9 +92,6 @@ await CreateHostBuilder(args).Build().RunAsync();
 
 public partial class Program
 {
-    protected Program()
-    {
-    }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
@@ -113,4 +110,11 @@ public partial class Program
 
                 webBuilder.UseStartup<Program>();
             });
+
+    //public void Configure(IApplicationBuilder app)
+    //{
+    //    app.UseRouting();
+    //    app.UseHttpsRedirection();
+    //    app.UseCors("MyAllowSpecificOrigins");
+    //}
 }
