@@ -9,7 +9,7 @@ namespace Application.AIML
         private ITransformer model;
         private IDataView testData;
 
-        public EstatePricePredictionModel() => mlContext = new MLContext();
+        public EstatePricePredictionModel() => mlContext = new MLContext(seed: 0);
 
         public RegressionMetrics Train(IDataView dataView, bool retrain = false)
         {
@@ -24,10 +24,10 @@ namespace Application.AIML
             }
             else
             {
-                var pipeline = mlContext.Transforms.Categorical.OneHotEncoding("StreetFeaturized", nameof(EstateData.Street))
-                        .Append(mlContext.Transforms.Categorical.OneHotEncoding("CityFeaturized", nameof(EstateData.ZipCode)))
-                        .Append(mlContext.Transforms.Categorical.OneHotEncoding("StateEncoded", nameof(EstateData.State)))
-                        .Append(mlContext.Transforms.Categorical.OneHotEncoding("ZipCodeEncoded", nameof(EstateData.ZipCode)))
+                var pipeline = mlContext.Transforms.Text.FeaturizeText("StreetFeaturized", nameof(EstateData.Street))
+                        .Append(mlContext.Transforms.Text.FeaturizeText("CityFeaturized", nameof(EstateData.ZipCode)))
+                        .Append(mlContext.Transforms.Text.FeaturizeText("StateEncoded", nameof(EstateData.State)))
+                        .Append(mlContext.Transforms.Text.FeaturizeText("ZipCodeEncoded", nameof(EstateData.ZipCode)))
                         .Append(mlContext.Transforms.Conversion.ConvertType(nameof(EstateData.Bedrooms), outputKind: DataKind.Single))
                         .Append(mlContext.Transforms.Conversion.ConvertType(nameof(EstateData.Bathrooms), outputKind: DataKind.Single))
                         .Append(mlContext.Transforms.Conversion.ConvertType(nameof(EstateData.LandSize), outputKind: DataKind.Single))
@@ -41,7 +41,8 @@ namespace Application.AIML
                         "ZipCodeEncoded", 
                         nameof(EstateData.Bedrooms), nameof(EstateData.Bathrooms), 
                         nameof(EstateData.LandSize), nameof(EstateData.HouseSize)))
-                        .Append(mlContext.Regression.Trainers.Sdca(labelColumnName: nameof(EstateData.Price), featureColumnName: "Features"));
+                        .Append(mlContext.Regression.Trainers.Sdca(labelColumnName: nameof(EstateData.Price),
+                        featureColumnName: "Features"));
 
                 // Train the model
                 model = pipeline.Fit(trainingData);
