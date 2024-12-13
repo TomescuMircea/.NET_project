@@ -1,5 +1,4 @@
 ﻿using Application.AIML;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.ML.Data;
 
@@ -13,22 +12,15 @@ namespace SmartRealEstateManagementSystem.Controllers
         public EstatePricePredictionController()
         {
             estatePricePredictionModel = new EstatePricePredictionModel();
-
-
         }
         [HttpPost("train")]
-        public ActionResult<RegressionMetrics> TrainModel()
+        public ActionResult<RegressionMetrics> TrainModel([FromBody] bool retrain)
         {
             var data = EstateDataParser.GetEstates();
-            return estatePricePredictionModel.Train(data);
+            return estatePricePredictionModel.Train(data,retrain);
             //return Ok();
         }
-        //[HttpPost("evaluate")]
-        //public ActionResult<RegressionMetrics> TestPrediction()
-        //{
-        //    return estatePricePredictionModel.EvaluateModel();
-        //}
-        //[HttpPost("predict")]
+        [HttpPost("predict")]
         public ActionResult<float> PredictPrice(EstateData estateData)
         {
             return estatePricePredictionModel.Predict(estateData);
